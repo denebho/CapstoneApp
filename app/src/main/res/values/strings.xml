@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Ayos!</string>
+
+    <!-- Welcome Page -->
+    <string name="getStarted">GET STARTED</string>
+
+    <!-- Login Page -->
+    <string name="welcome">Welcome!</string>
+    <string name="emailHint">Your Email Address</string>
+    <string name="pwordHint">Your Password</string>
+    <string name="login">LOGIN</string>
+    <string name="forgotPassword">Forgot your password?</string>
+    <string name="noAccount">No account yet? Sign up here.</string>
+
+    <!-- Signup Page -->
+    <string name="backButton">Back Button</string>
+    <string name="signup">SIGN UP</string>
+    <string name="supportSignUp">Sign up to get started with Ayos!</string>
+    <string name="createAccount">Create Account</string>
+    <string name="emailaddHint">Email Address</string>
+    <string name="lastnameHint">Last Name</string>
+    <string name="firstnameHint">First Name</string>
+    <string name="middlenameHint">Middle Name</string>
+    <string name="dateofbirthHint">Date of Birth</string>
+    <string name="mobilnoHint">Mobile Number</string>
+    <string name="landlinenoHint">Landline Number</string>
+    <string name="passwordHint">Password</string>
+    <string name="retypePassword">Retype Password</string>
+    <string name="termsConditions">By clicking Sign Up, you agree to all the Terms and Conditions.</string>
+    <string name="alreadyUser">Already have an Account? Login here.</string>
+
+    <!-- ForgotPassword Page -->
+    <string name="supportForgotPassword">Input your email to make a new password.</string>
+    <string name="registeredEmail">Enter your registered email</string>
+    <string name="newPassword">Enter your new password</string>
+    <string name="confirmNewPassword">Confirm new password</string>
+    <string name="saveNewPassword">RESET PASSWORD</string>
+
+    <!-- Home Page -->
+    <string name="ayosAppliance">Ayos Appliance</string>
+    <string name="ayosElectrical">Ayos Electrical</string>
+    <string name="ayosPlumbing">Ayos Plumbing</string>
+    <string name="ayosAircon">Ayos Aircon</string>
+
+    <!-- Profile Page -->
+    <string name="yourName">Your Name</string>
+    <string name="yourEmail">email@address.com</string>
+    <string name="personalInfo">PERSONAL INFO</string>
+    <string name="ayosWorker">PARTNER WITH AYOS!</string>
+    <string name="contactUs">CONTACT US</string>
+    <string name="aboutUs">ABOUT US</string>
+    <string name="logOut">LOG OUT</string>
+    <string name="editProfile">Edit/Save Profile</string>
+
+</resources>

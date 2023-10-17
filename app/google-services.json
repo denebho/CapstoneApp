@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "721814593296",
+    "project_id": "ayos-app-25ebb",
+    "storage_bucket": "ayos-app-25ebb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:721814593296:android:b07459231cb41965378f95",
+        "android_client_info": {
+          "package_name": "com.example.ayosapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwgG-ewWCNARBfaMJi6Oz7zt-XK1QLHMg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
