@@ -52,4 +52,18 @@
     <string name="logOut">LOG OUT</string>
     <string name="editProfile">Edit/Save Profile</string>
 
+    <!-- Bookings Page -->
+    <string name="statusInProgress">In Progress</string>
+    <string name="statusCancelled">Cancelled</string>
+    <string name="statusAyosNa">Ayos Na!</string>
+
+    <string name="paymentGcash">GCASH</string>
+    <string name="paymentCash">CASH</string>
+    <string name="paymentStatusPaid">Paid</string>
+    <string name="paymentStatusUnpaid">Unpaid</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>

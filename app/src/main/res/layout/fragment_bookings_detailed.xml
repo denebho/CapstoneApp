@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".BookingsDetailedFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginVertical="20dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/statusBar"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@id/itemImage"
+                android:gravity="center"
+                android:text="Ayos Na!"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:background="@drawable/floating_edittextblue" />
+
+            <ImageView
+                android:id="@+id/itemImage"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/home_electrical" />
+
+            <TextView
+                android:id="@+id/itemWorker"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="35dp"
+                android:layout_toEndOf="@id/itemImage"
+                android:text="Jane Doe"
+                android:textColor="@color/primary_blue"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/itemEmployee"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="60dp"
+                android:layout_toEndOf="@id/itemImage"
+                android:text="Ayos Worker"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <View
+                android:id="@+id/line1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignTop="@+id/itemImage"
+                android:layout_marginTop="90dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/serviceAddress"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_alignTop="@id/line1"
+                android:text="Service Address"
+                android:textColor="@color/primary_blue"
+                android:textStyle="bold"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/itemAddressImage"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignTop="@+id/serviceAddress"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="25dp"
+                android:src="@drawable/baseline_place_24" />
+
+            <TextView
+                android:id="@+id/itemAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/serviceAddress"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="25dp"
+                android:layout_toEndOf="@id/itemAddressImage"
+                android:text="203 Bayswater Road, Makati South Hills, Brgy. San Martin de Porres, Paranaque City"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/servicedate"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="50dp"
+                android:layout_alignTop="@id/itemAddress"
+                android:text="Service Date"
+                android:textColor="@color/primary_blue"
+                android:textStyle="bold"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/itemDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_alignTop="@+id/servicedate"
+                android:gravity="center"
+                android:text="2023/10/20-2023/10/22"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/serviceCategory"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="50dp"
+                android:layout_alignTop="@id/servicedate"
+                android:text="Service Category"
+                android:textColor="@color/primary_blue"
+                android:textStyle="bold"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/itemCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_alignTop="@+id/serviceCategory"
+                android:gravity="center"
+                android:text="Ayos Electrical"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <View
+                android:id="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignTop="@+id/itemCategory"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/serviceBreakdown"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_alignTop="@id/line2"
+                android:text="Breakdown Cost"
+                android:textColor="@color/primary_blue"
+                android:textStyle="bold"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/bookingFee"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_alignTop="@id/serviceBreakdown"
+                android:text="Booking Fee"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/itemBookingFee"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginStart="220dp"
+                android:layout_marginTop="30dp"
+                android:layout_alignTop="@id/serviceBreakdown"
+                android:layout_toEndOf="@id/bookingFee"
+                android:text="₱89"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/serviceFee"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_alignTop="@id/bookingFee"
+                android:text="Service Fee"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/itemServiceFee"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginStart="220dp"
+                android:layout_marginTop="30dp"
+                android:layout_alignTop="@id/itemBookingFee"
+                android:layout_toEndOf="@id/bookingFee"
+                android:text="₱800"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/extraDayFee"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_alignTop="@id/serviceFee"
+                android:text="Extra Day Fee"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/itemExtradayFee"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginStart="220dp"
+                android:layout_marginTop="60dp"
+                android:layout_alignTop="@id/itemBookingFee"
+                android:layout_toEndOf="@id/bookingFee"
+                android:text="₱200"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <View
+                android:id="@+id/line3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignTop="@+id/extraDayFee"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/totalFee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_alignTop="@+id/line3"
+                android:gravity="center"
+                android:text="TOTAL"
+                android:textColor="@color/primary_blue"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/itemTotalFee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="220dp"
+                android:layout_marginTop="20dp"
+                android:layout_alignTop="@+id/line3"
+                android:layout_toEndOf="@id/totalFee"
+                android:gravity="center"
+                android:text="₱1089"
+                android:textColor="@color/primary_blue"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/paymentStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_alignTop="@id/totalFee"
+                android:text="STATUS"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/itemPaymentStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginStart="220dp"
+                android:layout_marginTop="30dp"
+                android:layout_alignTop="@id/itemTotalFee"
+                android:layout_toEndOf="@id/bookingFee"
+                android:text="Paid"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/paymentMethod"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_alignTop="@id/paymentStatus"
+                android:text="PAYMENT METHOD"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/itemPaymentMethod"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginStart="220dp"
+                android:layout_marginTop="30dp"
+                android:layout_alignTop="@id/itemPaymentStatus"
+                android:layout_toEndOf="@id/bookingFee"
+                android:text="Cash"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="40dp"
+                android:layout_alignTop="@+id/paymentMethod" />
+
+            <TextView
+                android:id="@+id/bookingId"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignTop="@id/ratingBar"
+                android:text="BOOKING ID: #0000000000 "
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
