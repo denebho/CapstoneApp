@@ -30,12 +30,13 @@ class SignupActivity : AppCompatActivity() {
                 && password.isNotEmpty() && retypePassword.isNotEmpty()){
                 if (password == retypePassword){
 
-                    firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{
-                        if (it.isSuccessful){
-                            val intent = Intent(this, LoginActivity::class.java)
+                    firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this){task->
+                        if (task.isSuccessful){
+                            val intent = Intent(this@SignupActivity, LoginActivity::class.java)
+                            finish()
                             startActivity(intent)
                         } else {
-                            Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
                         }
                     }
                 } else {
@@ -46,10 +47,10 @@ class SignupActivity : AppCompatActivity() {
             }
         }
 
-        binding.signupBtn.setOnClickListener {
+        /*binding.signupBtn.setOnClickListener {
             val loginIntent = Intent(this, LoginActivity::class.java)
             startActivity(loginIntent)
-        }
+        }*/
         binding.backButton.setOnClickListener{
             val backIntent = Intent(this, LoginActivity::class.java)
             startActivity(backIntent)
