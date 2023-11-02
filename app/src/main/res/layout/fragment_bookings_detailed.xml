@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,9 +8,6 @@
     tools:context=".BookingsDetailedFragment">
 
     <androidx.cardview.widget.CardView
-        android:layout_marginVertical="20dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="20dp"
@@ -155,7 +152,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_alignTop="@+id/serviceCategory"
                 android:gravity="center"
-                android:text="Ayos Electrical"
+                android:text="Category"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -196,11 +193,11 @@
                 android:id="@+id/itemBookingFee"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginStart="220dp"
+                android:layout_marginStart="210dp"
                 android:layout_marginTop="30dp"
                 android:layout_alignTop="@id/serviceBreakdown"
                 android:layout_toEndOf="@id/bookingFee"
-                android:text="₱89"
+                android:text="booking fee"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
@@ -219,11 +216,11 @@
                 android:id="@+id/itemServiceFee"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginStart="220dp"
+                android:layout_marginStart="210dp"
                 android:layout_marginTop="30dp"
                 android:layout_alignTop="@id/itemBookingFee"
                 android:layout_toEndOf="@id/bookingFee"
-                android:text="₱800"
+                android:text="service fee"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
@@ -242,11 +239,11 @@
                 android:id="@+id/itemExtradayFee"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginStart="220dp"
+                android:layout_marginStart="210dp"
                 android:layout_marginTop="60dp"
                 android:layout_alignTop="@id/itemBookingFee"
                 android:layout_toEndOf="@id/bookingFee"
-                android:text="₱200"
+                android:text="extra day fee"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
@@ -282,7 +279,7 @@
                 android:layout_alignTop="@+id/line3"
                 android:layout_toEndOf="@id/totalFee"
                 android:gravity="center"
-                android:text="₱1089"
+                android:text="total fee"
                 android:textColor="@color/primary_blue"
                 android:textStyle="bold"
                 android:textSize="20sp" />
@@ -302,7 +299,7 @@
                 android:id="@+id/itemPaymentStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginStart="220dp"
+                android:layout_marginStart="210dp"
                 android:layout_marginTop="30dp"
                 android:layout_alignTop="@id/itemTotalFee"
                 android:layout_toEndOf="@id/bookingFee"
@@ -325,7 +322,7 @@
                 android:id="@+id/itemPaymentMethod"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginStart="220dp"
+                android:layout_marginStart="210dp"
                 android:layout_marginTop="30dp"
                 android:layout_alignTop="@id/itemPaymentStatus"
                 android:layout_toEndOf="@id/bookingFee"
@@ -357,4 +354,4 @@
 
     </androidx.cardview.widget.CardView>
 
-</LinearLayout>
+</FrameLayout>

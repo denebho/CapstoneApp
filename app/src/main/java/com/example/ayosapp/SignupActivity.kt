@@ -23,11 +23,14 @@ class SignupActivity : AppCompatActivity() {
             val firstname = binding.firstNameEt.text.toString()
             val lastname = binding.lastNameEt.text.toString()
             val phonenumber = binding.phoneNoEt.text.toString()
+            val dateofBirth = binding.dateofBirthEt.text.toString()
             val password = binding.passwordEt.text.toString()
             val retypePassword = binding.retypepasswordEt.text.toString()
+            val customerChoice = binding.customerRg.text.toString()
+            val ayosworkerChoice = binding.ayosworkerRg.text.toString()
 
             if (email.isNotEmpty() && firstname.isNotEmpty() && lastname.isNotEmpty() && phonenumber.isNotEmpty()
-                && password.isNotEmpty() && retypePassword.isNotEmpty()){
+                && dateofBirth.isNotEmpty() && password.isNotEmpty() && retypePassword.isNotEmpty() || customerChoice.isNotEmpty() || ayosworkerChoice.isNotEmpty()){
                 if (password == retypePassword){
 
                     firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{
@@ -46,10 +49,11 @@ class SignupActivity : AppCompatActivity() {
             }
         }
 
-        binding.signupBtn.setOnClickListener {
+        /* binding.signupBtn.setOnClickListener {
             val loginIntent = Intent(this, LoginActivity::class.java)
             startActivity(loginIntent)
-        }
+        } */
+
         binding.backButton.setOnClickListener{
             val backIntent = Intent(this, LoginActivity::class.java)
             startActivity(backIntent)

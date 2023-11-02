@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-        replaceFragment(AyosnowFragment())
+        replaceFragment(HomeFragment())
 
     }
     private fun replaceFragment(fragment: Fragment){

@@ -28,9 +28,9 @@ ArrayAdapter<BookingsData>(context, R.layout.bookings_item, dataArrayList) {
         val bookingTotal = convertView.findViewById<TextView>(R.id.itemTotal)
 
         bookingImage.setImageResource(bookingsData!!.image)
-        bookingStatus.text = bookingsData.status.toString()
+        bookingStatus.text = bookingsData.status
         bookingDate.text = bookingsData.dateofService
-        bookingCategory.text = bookingsData.serviceOffered.toString()
+        bookingCategory.text = bookingsData.serviceOffered
         bookingWorker.text = bookingsData.workerName
         bookingTotal.text = bookingsData.totalPrice.toString()
 

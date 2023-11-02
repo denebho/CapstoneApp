@@ -9,51 +9,48 @@ import com.example.ayosapp.databinding.FragmentBookingsDetailedBinding
 
 class BookingsDetailedFragment : Fragment() {
 
-    private var _binding: FragmentBookingsDetailedBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentBookingsDetailedBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentBookingsDetailedBinding.inflate(inflater, container, false)
+        binding = FragmentBookingsDetailedBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val image = requireArguments().getInt("image")
-        val category = requireArguments().getInt("category")
-        val paymentStatus = requireArguments().getInt("payment status")
-        val status = requireArguments().getInt("status")
-        val paymentMethod = requireArguments().getInt("payment method")
-        val bookingFee = requireArguments().getDouble("booking fee")
-        val serviceFee = requireArguments().getDouble("service fee")
-        val extraDayFee = requireArguments().getDouble("extra day fee")
-        val totalFee = requireArguments().getDouble("total fee")
-        val worker = requireArguments().getString("worker")
-        val address = requireArguments().getString("address")
-        val date = requireArguments().getString("date")
-        val bookingId = requireArguments().getString("booking id")
+        arguments?.let { args ->
+            val image = args.getInt("image", R.drawable.home_electrical)
+            val category = args.getString("category", "Category")
+            val paymentStatus = args.getString("payment status", "Pay Status")
+            val status = args.getString("status", "Status")
+            val paymentMethod = args.getString("payment method", "Pay Method")
+            val bookingFee = args.getString("booking fee", "39.00")?.toDouble() ?: 0.0
+            val serviceFee = args.getString("service fee", "500.00")?.toDouble() ?: 0.0
+            val extraDayFee = args.getString("extra day fee", "100.00")?.toDouble() ?: 0.0
+            val totalFee = args.getString("total fee", "539.00")?.toDouble() ?: 0.0
+            val worker = args.getString("worker", "Worker Name")
+            val address = args.getString("address", "Road, Barangay, City")
+            val date = args.getString("date", "XX/XX/20XX")
+            val bookingId = args.getString("booking id", "#XXXXX")
 
-        // Update the UI with detailed information
-        binding.itemImage.setImageResource(image)
-        binding.itemCategory.text = getString(category)
-        binding.itemPaymentStatus.text = getString(paymentStatus)
-        binding.statusBar.text = getString(status)
-        binding.itemPaymentMethod.text = getString(paymentMethod)
-        binding.itemBookingFee.text = bookingFee.toString()
-        binding.itemServiceFee.text = serviceFee.toString()
-        binding.itemExtradayFee.text = extraDayFee.toString()
-        binding.itemTotalFee.text = totalFee.toString()
-        binding.itemWorker.text = worker
-        binding.itemAddress.text = address
-        binding.itemDate.text = date
-        binding.bookingId.text = bookingId
-    }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+            // Update the UI with detailed information
+            binding.itemImage.setImageResource(image)
+            binding.itemCategory.text = category
+            binding.itemPaymentStatus.text = paymentStatus
+            binding.statusBar.text = status
+            binding.itemPaymentMethod.text = paymentMethod
+            binding.itemBookingFee.text = bookingFee.toString()
+            binding.itemServiceFee.text = serviceFee.toString()
+            binding.itemExtradayFee.text = extraDayFee.toString()
+            binding.itemTotalFee.text = totalFee.toString()
+            binding.itemWorker.text = worker
+            binding.itemAddress.text = address
+            binding.itemDate.text = date
+            binding.bookingId.text = bookingId
+        }
     }
 }
