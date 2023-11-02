@@ -1,6 +1,7 @@
 package com.example.ayosapp
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -26,11 +27,9 @@ class SignupActivity : AppCompatActivity() {
             val dateofBirth = binding.dateofBirthEt.text.toString()
             val password = binding.passwordEt.text.toString()
             val retypePassword = binding.retypepasswordEt.text.toString()
-            val customerChoice = binding.customerRg.text.toString()
-            val ayosworkerChoice = binding.ayosworkerRg.text.toString()
 
             if (email.isNotEmpty() && firstname.isNotEmpty() && lastname.isNotEmpty() && phonenumber.isNotEmpty()
-                && dateofBirth.isNotEmpty() && password.isNotEmpty() && retypePassword.isNotEmpty() || customerChoice.isNotEmpty() || ayosworkerChoice.isNotEmpty()){
+                && dateofBirth.isNotEmpty() && password.isNotEmpty() && retypePassword.isNotEmpty()){
                 if (password == retypePassword){
 
                     firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{
@@ -47,6 +46,13 @@ class SignupActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Fields cannot be empty.", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        binding.workerTv.setOnClickListener {
+            val url = "https://forms.gle/tCukQeDBLT8eb62E8"
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
+            startActivity(intent)
         }
 
         /* binding.signupBtn.setOnClickListener {

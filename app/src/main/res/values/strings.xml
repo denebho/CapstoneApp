@@ -15,7 +15,8 @@
     <!-- Signup Page -->
     <string name="backButton">Back Button</string>
     <string name="signup">SIGN UP</string>
-    <string name="supportSignUp">Sign up to get started with Ayos!</string>
+    <string name="supportSignUp">Sign up as a customer to get started with Ayos!</string>
+    <string name="workerSignUp">SIGN UP here as an Ayos! worker</string>
     <string name="createAccount">Create Account</string>
     <string name="emailaddHint">Email Address</string>
     <string name="lastnameHint">Last Name</string>
