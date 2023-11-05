@@ -47,6 +47,7 @@
                             android:layout_marginTop="20dp"
                             android:paddingStart="20dp"
                             android:hint="@string/emailaddHint"
+                            android:imeOptions="actionNext"
                             android:inputType="textEmailAddress"
                             android:textColor="@color/black"
                             android:drawablePadding="8dp"/>
@@ -60,6 +61,7 @@
                             android:layout_marginTop="20dp"
                             android:paddingStart="20dp"
                             android:hint="@string/firstnameHint"
+                            android:imeOptions="actionNext"
                             android:textColor="@color/black"
                             android:drawablePadding="8dp"/>
 
@@ -71,6 +73,7 @@
                             android:layout_marginTop="20dp"
                             android:paddingStart="20dp"
                             android:hint="@string/lastnameHint"
+                            android:imeOptions="actionNext"
                             android:textColor="@color/black"
                             android:drawablePadding="8dp"/>
 
@@ -82,6 +85,7 @@
                             android:layout_marginTop="20dp"
                             android:paddingStart="20dp"
                             android:hint="@string/mobilnoHint"
+                            android:imeOptions="actionNext"
                             android:inputType="phone"
                             android:textColor="@color/black"
                             android:drawablePadding="8dp"/>
@@ -94,6 +98,7 @@
                             android:layout_marginTop="20dp"
                             android:paddingStart="20dp"
                             android:hint="@string/dateofbirthHint"
+                            android:imeOptions="actionNext"
                             android:inputType="date"
                             android:textColor="@color/black"
                             android:drawablePadding="8dp"/>
@@ -106,6 +111,7 @@
                             android:layout_marginTop="20dp"
                             android:paddingStart="20dp"
                             android:hint="@string/passwordHint"
+                            android:imeOptions="actionNext"
                             android:inputType="textPassword"
                             android:textColor="@color/black"
                             android:drawablePadding="8dp"/>
@@ -118,6 +124,7 @@
                             android:layout_marginTop="20dp"
                             android:paddingStart="20dp"
                             android:hint="@string/retypePassword"
+                            android:imeOptions="actionNext"
                             android:inputType="textPassword"
                             android:textColor="@color/black"
                             android:drawablePadding="8dp"/>

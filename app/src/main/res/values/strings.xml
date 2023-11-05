@@ -41,6 +41,7 @@
     <string name="saveNewPassword">RESET PASSWORD</string>
 
     <!-- Home Page -->
+    <string name="home">HOME</string>
     <string name="ayosAppliance">Ayos Appliance</string>
     <string name="ayosElectrical">Ayos Electrical</string>
     <string name="ayosPlumbing">Ayos Plumbing</string>
@@ -72,8 +73,27 @@
     <string name="paymentStatusIncomplete">Incomplete</string>
     <string name="paymentStatusOverdue">Overdue</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Personal Info Page -->
+    <string name="personalFirstName">First Name</string>
+    <string name="personalMiddleName">Middle Name</string>
+    <string name="personalLastName">Last Name</string>
+    <string name="personalMobileNumber">Mobile Number</string>
 
+    <string name="changeFirstName">Edit your first name</string>
+    <string name="changeMiddleName">Edit your middle name</string>
+    <string name="changeLastName">Edit your last name</string>
+    <string name="changeMobileNumber">Edit your mobile number</string>
+
+    <string name="cancelBtn">CANCEL</string>
+    <string name="saveBtn">SAVE</string>
+
+
+    <!-- Profile Page -->
+    <string name="aboutUsDetails"> \t\tAyos! was first created in November 2022 by a group of Benildean students—namely Deneb Ho, Samuel Noel, Abigail Magpatoc,
+        and Eucarlo Vicente—Ayos! as their thesis project. Its mission is not just to be an app, but to be a handy and accessible tool para sa masa.
+        \n\n\t\tThe app was initially introduced as a booking-app for Taft residents who were not familiar with their local community of repairmen, especially in the
+        midst of the pandemic. However, Ayos! largened its scope to the whole Metro Manila area to further assist those who are in need—without worry and without
+        ease! The Ayos! app services the following categories—Ayos Electrical, Ayos Plumbing, Ayos Appliance, and Ayos Aircon—to which registered Ayos! workers
+        can accept the booking and provide their services at the provided time and date. </string>
 
 </resources>

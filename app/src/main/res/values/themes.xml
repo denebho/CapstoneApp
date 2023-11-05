@@ -8,4 +8,11 @@
     </style>
     <style name="Theme.AyosApp" parent="Base.Theme.AyosApp" />
 
+    <style name="floating1" parent="Widget.Design.FloatingActionButton">
+        <item name="android:foreground">
+            @drawable/floating_edit_button
+        </item>
+
+    </style>
+
 </resources>

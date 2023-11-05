@@ -22,6 +22,14 @@ class ProfileFragment : Fragment() {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         firebaseAuth = FirebaseAuth.getInstance()
 
+        binding.personalInfoTv.setOnClickListener {
+            val nextFragment = PersonalinfoFragment()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.profile_container, nextFragment)
+                .addToBackStack(null)
+                .commit()
+        }
+
         binding.ayosWorkerTv.setOnClickListener {
             val url = "https://forms.gle/tCukQeDBLT8eb62E8"
             val intent = Intent(Intent.ACTION_VIEW)

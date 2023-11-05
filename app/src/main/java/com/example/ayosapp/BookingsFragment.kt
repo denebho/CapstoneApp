@@ -34,9 +34,9 @@ class BookingsFragment : Fragment() {
         val totalPriceList = doubleArrayOf(539.00, 759.00, 1059.00, 1689.00)
 
         val categoryList = arrayOf("Ayos Aircon", "Ayos Appliance", "Ayos Electrical", "Ayos Plumbing")
-        val statusList = arrayOf("Ongoing", "Cancelled", "Ongoing", "Ayos Na!")
+        val statusList = arrayOf("Ongoing", "Cancelled", "Ayos Na!", "Ayos Na!")
         val paymentList = arrayOf("Cash", "Gcash", "Cash", "Gcash")
-        val paymentStatusList = arrayOf("Unpaid", "Unpaid", "Unpaid", "Paid")
+        val paymentStatusList = arrayOf("Unpaid", "Unpaid", "Paid", "Paid")
         val workerList = arrayOf("Jane Doe", "John Doe", "Mark Angelo", "Mary Angelo")
         val addressList = arrayOf("203 Bayswater Road, Makati South Hills, Paranaque City", "192 Francisco Street, Guinhawa, Malolos City", "223b Benjamin Street, Mandaluyong City", "Unit 53, Grand Apartment, Makati City")
         val dateList = arrayOf("2023/10/20-2023/10/22", "2023/10/23-2023/10/24", "2023/11/15-2023/11/17", "2023/11/05-2023/11/06")
@@ -77,7 +77,7 @@ class BookingsFragment : Fragment() {
                         ?.replace(R.id.fragment_container, bookingsDetailedFragment)
                         ?.addToBackStack(null)
                         ?.commit()
-                }
+            }
 
         }
 
