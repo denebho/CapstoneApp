@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    android:background="@color/primary_blue"
+    android:elevation="3dp">
+
+    <ImageView
+        android:id="@+id/serviceIcon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/home_plumbing" />
+
+    <TextView
+        android:id="@+id/serviceType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="8dp"
+        android:textColor="#fff"
+        android:text="Service Type"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/serviceIcon"
+        app:layout_constraintStart_toEndOf="@+id/serviceIcon"
+        app:layout_constraintTop_toTopOf="@+id/serviceIcon" />
+
+    <TextView
+        android:id="@+id/serviceProvider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="#fff"
+        android:text="Service Provider"
+        app:layout_constraintBottom_toBottomOf="@+id/serviceType"
+        app:layout_constraintStart_toEndOf="@+id/serviceType"
+        app:layout_constraintTop_toTopOf="@+id/serviceType" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/baseline_arrow_right_24"
+        app:layout_constraintBottom_toBottomOf="@+id/serviceIcon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/serviceProvider"
+        app:layout_constraintTop_toTopOf="@+id/serviceIcon" />
+
+    <TextView
+        android:id="@+id/serviceDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Description\nLorem ipsum"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/serviceIcon"
+        app:layout_constraintTop_toBottomOf="@+id/serviceIcon"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/bookServiceBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#fff"
+        android:padding="3dp"
+        android:text="Schedule Service"
+        android:textColor="#0012B4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/serviceDescription" />
+</androidx.constraintlayout.widget.ConstraintLayout>
