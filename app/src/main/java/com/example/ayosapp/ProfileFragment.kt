@@ -15,9 +15,12 @@ class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var firebaseAuth: FirebaseAuth
 
+    lateinit var session: LoginPref
     override fun onCreateView(
+
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         firebaseAuth = FirebaseAuth.getInstance()
@@ -64,6 +67,7 @@ class ProfileFragment : Fragment() {
         builder.setMessage("Are you sure you want to log out?")
         builder.setPositiveButton("YES") { dialog, _ ->
             firebaseAuth.signOut()
+            session.LogoutUser()
             navigateToLogin()
             dialog.dismiss()
         }
