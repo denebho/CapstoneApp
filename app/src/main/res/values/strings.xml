@@ -89,8 +89,7 @@
 
 
     <!-- Profile Page -->
-    <string name="aboutUsDetails"> \t\tAyos! was first created in November 2022 by a group of Benildean students—namely Deneb Ho, Samuel Noel, Abigail Magpatoc,
-        and Eucarlo Vicente—Ayos! as their thesis project. Its mission is not just to be an app, but to be a handy and accessible tool para sa masa.
+    <string name="aboutUsDetails"> \t\tAyos! was first created in November 2022 by a group of Benildean students—namely Deneb Ho, Samuel Noel, and Abigail Magpatoc,—Ayos! as their thesis project. Its mission is not just to be an app, but to be a handy and accessible tool para sa masa.
         \n\n\t\tThe app was initially introduced as a booking-app for Taft residents who were not familiar with their local community of repairmen, especially in the
         midst of the pandemic. However, Ayos! largened its scope to the whole Metro Manila area to further assist those who are in need—without worry and without
         ease! The Ayos! app services the following categories—Ayos Electrical, Ayos Plumbing, Ayos Appliance, and Ayos Aircon—to which registered Ayos! workers
