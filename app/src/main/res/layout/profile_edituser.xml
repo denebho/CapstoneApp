@@ -30,7 +30,7 @@
             android:textColor="@color/black"/>
 
         <EditText
-            android:id="@+id/emailAdd_et"
+            android:id="@+id/emailAddEt"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/floating_edittextwhite"
@@ -112,7 +112,7 @@
             android:drawablePadding="8dp"/>
 
         <EditText
-            android:id="@+id/password_et"
+            android:id="@+id/passwordEt"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/floating_edittextwhite"
@@ -124,7 +124,7 @@
             android:drawablePadding="8dp"/>
 
         <EditText
-            android:id="@+id/retypepassword_et"
+            android:id="@+id/retypepasswordEt"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/floating_edittextwhite"

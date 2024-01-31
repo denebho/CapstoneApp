@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+
 class MainActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
+    private val fragment = ProfileFragment()
 
-    lateinit var session: LoginPref
+
+    private lateinit var session: LoginPref
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -16,13 +19,11 @@ class MainActivity : AppCompatActivity() {
         session = LoginPref(this)
         session.checkLogin()
 
-        var user: HashMap<String, String> = session.getUserDetails()
-        var email = user.get(LoginPref.KEY_EMAIL)
+        //var user: HashMap<String, String> = session.getUserDetails()
+        //var email = user.get(LoginPref.KEY_EMAIL)
 
-        //email.setText(email)
 
         bottomNavigationView = findViewById(R.id.bottom_nav)
-
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when(menuItem.itemId){
                 R.id.home -> {
@@ -49,6 +50,13 @@ class MainActivity : AppCompatActivity() {
     }
     private fun replaceFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit()
+    }
+    override fun onUserInteraction() {
+        if(!fragment.sendLoginToListener()) {
+            session.LogoutUser()
+        }
+        session.checkLogin()
+        super.onUserInteraction()
     }
 
 }

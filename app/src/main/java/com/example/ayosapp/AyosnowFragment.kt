@@ -34,8 +34,6 @@ class AyosnowFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val imageList = intArrayOf(R.drawable.home_aircon, R.drawable.home_appliance, R.drawable.home_electrical, R.drawable.home_plumbing)
-
-
         val typeList = arrayOf("Ayos Aircon", "Ayos Appliance", "Ayos Electrical", "Ayos Plumbing")
         val providerList = arrayOf("Kuya Eddie", "Kuya Wil", "Kuya Kuya", "Diko Nalam")
         val descriptionList = arrayOf("Cash", "Gcash", "Cash", "Gcash")

@@ -9,6 +9,7 @@ class LoginPref {
     lateinit var pref: SharedPreferences
     lateinit var editor:SharedPreferences.Editor
     lateinit var con:Context
+    private var isLoggedIn :Boolean = false
     var PRIVATEMODE : Int = 0
 
     constructor(con: Context){
@@ -36,6 +37,7 @@ class LoginPref {
            var i: Intent = Intent(con, LoginActivity::class.java)
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            isLoggedIn = true
             con.startActivity(i)
         }
     }
@@ -53,6 +55,7 @@ class LoginPref {
         var i : Intent = Intent(con, LoginActivity::class.java)
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        isLoggedIn = false
         con.startActivity(i)
     }
 

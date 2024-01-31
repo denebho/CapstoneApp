@@ -39,72 +39,33 @@
                             android:textSize="16sp"
                             android:textColor="@color/black"/>
 
+                        <TextView
+                            android:id="@+id/workerTv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:text="@string/workerSignUp"
+                            android:textColor="@color/primary_blue"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+
                         <EditText
-                            android:id="@+id/emailAdd_et"
+                            android:id="@+id/emailAddEt"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:background="@drawable/floating_edittextwhite"
                             android:layout_marginTop="20dp"
-                            android:paddingStart="20dp"
+                            android:background="@drawable/floating_edittextwhite"
+                            android:drawablePadding="8dp"
                             android:hint="@string/emailaddHint"
                             android:imeOptions="actionNext"
                             android:inputType="textEmailAddress"
-                            android:textColor="@color/black"
-                            android:drawablePadding="8dp"/>
-
-
-                        <EditText
-                            android:id="@+id/firstName_et"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:background="@drawable/floating_edittextwhite"
-                            android:layout_marginTop="20dp"
                             android:paddingStart="20dp"
-                            android:hint="@string/firstnameHint"
-                            android:imeOptions="actionNext"
-                            android:textColor="@color/black"
-                            android:drawablePadding="8dp"/>
+                            android:textColor="@color/black" />
 
                         <EditText
-                            android:id="@+id/lastName_et"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:background="@drawable/floating_edittextwhite"
-                            android:layout_marginTop="20dp"
-                            android:paddingStart="20dp"
-                            android:hint="@string/lastnameHint"
-                            android:imeOptions="actionNext"
-                            android:textColor="@color/black"
-                            android:drawablePadding="8dp"/>
-
-                        <EditText
-                            android:id="@+id/phoneNo_et"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:background="@drawable/floating_edittextwhite"
-                            android:layout_marginTop="20dp"
-                            android:paddingStart="20dp"
-                            android:hint="@string/mobilnoHint"
-                            android:imeOptions="actionNext"
-                            android:inputType="phone"
-                            android:textColor="@color/black"
-                            android:drawablePadding="8dp"/>
-
-                        <EditText
-                            android:id="@+id/dateofBirth_et"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:background="@drawable/floating_edittextwhite"
-                            android:layout_marginTop="20dp"
-                            android:paddingStart="20dp"
-                            android:hint="@string/dateofbirthHint"
-                            android:imeOptions="actionNext"
-                            android:inputType="date"
-                            android:textColor="@color/black"
-                            android:drawablePadding="8dp"/>
-
-                        <EditText
-                            android:id="@+id/password_et"
+                            android:id="@+id/passwordEt"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:background="@drawable/floating_edittextwhite"
@@ -117,7 +78,7 @@
                             android:drawablePadding="8dp"/>
 
                         <EditText
-                            android:id="@+id/retypepassword_et"
+                            android:id="@+id/retypepasswordEt"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:background="@drawable/floating_edittextwhite"
@@ -140,17 +101,6 @@
                             android:textColor="@color/white"
                             android:textSize="18sp"
                             android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/workerTv"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:gravity="center"
-                            android:text="@string/workerSignUp"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/primary_blue"/>
 
                 </LinearLayout>
         </ScrollView>

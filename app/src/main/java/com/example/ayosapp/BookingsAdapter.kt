@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 
 class BookingsAdapter(context: Context, dataArrayList: ArrayList<BookingsData>) :
-ArrayAdapter<BookingsData>(context, R.layout.bookings_item, dataArrayList) {
+ArrayAdapter<BookingsData>(context, R.layout.item_bookings, dataArrayList) {
 
     override fun getView(position: Int, view: View?, parent: ViewGroup): View {
         val bookingsData = getItem(position)
@@ -17,7 +17,7 @@ ArrayAdapter<BookingsData>(context, R.layout.bookings_item, dataArrayList) {
         var convertView = view
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.bookings_item, parent, false)
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_bookings, parent, false)
         }
 
         val bookingStatus = convertView!!.findViewById<TextView>(R.id.statusBar)

@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/primary_blue</item>
         <item name="colorPrimaryVariant">@color/white</item>
         <item name="android:colorBackground">@color/soft_blue</item>
+        <item name="android:textColorHint">#D3CBCB</item>
     </style>
     <style name="Theme.AyosApp" parent="Base.Theme.AyosApp" />
 

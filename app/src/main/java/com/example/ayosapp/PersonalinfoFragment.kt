@@ -17,6 +17,7 @@ class PersonalinfoFragment : Fragment() {
     private lateinit var circleImageView: CircleImageView
     private lateinit var fab: FloatingActionButton
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

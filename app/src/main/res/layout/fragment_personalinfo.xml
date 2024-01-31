@@ -120,6 +120,16 @@
                     android:background="@drawable/floating_edittextsoftblue" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/personalMobileNumber"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
             <GridLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -10,37 +10,36 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ayosapp.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.MultiFactorSession
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var firebaseAuth: FirebaseAuth
     val SHARED_PREFS = "shared_prefs"
     val EMAIL_KEY = "email_key"
-    val PASSWORD_KEY = "password_key"
+    //val PASSWORD_KEY = "password_key"
 
-    var email: String? = null
-    var password:kotlin.String? = null
+    //var email: String? = null
+    //var password:kotlin.String? = null
 
-    private lateinit var eUsername: EditText
-    private lateinit var eEmail: EditText
-    private lateinit var btnLogin: Button
-    lateinit var session: LoginPref
+    //private lateinit var eUsername: EditText
+    //private lateinit var eEmail: EditText
+    //private lateinit var btnLogin: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         var sharedpreferences: SharedPreferences? = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
         firebaseAuth = FirebaseAuth.getInstance()
+        lateinit var session: LoginPref
 
-        session = LoginPref(this)
-
+        /*
         if (session.isLoggedIn()){
             var i : Intent = Intent(applicationContext, MainActivity::class.java)
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(i)
             finish()
-        }
+        }*/
 
         // getting the data which is stored in shared preferences.
         ///sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
@@ -62,6 +61,7 @@ class LoginActivity : AppCompatActivity() {
                 firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener{
                     if (it.isSuccessful){
                         val intent = Intent(this, MainActivity::class.java)
+                        intent.putExtra("EMAIL_KEY", EMAIL_KEY)
                         session.createLoginSession(email)
                         startActivity(intent)
                     } else {

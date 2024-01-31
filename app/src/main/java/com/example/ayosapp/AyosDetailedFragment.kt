@@ -5,17 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.ayosapp.databinding.FragmentServicesBinding
+import com.example.ayosapp.databinding.ItemServicesBinding
 
 class AyosDetailedFragment : Fragment() {
 
-    private lateinit var binding: FragmentServicesBinding
+    private lateinit var binding: ItemServicesBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentServicesBinding.inflate(inflater, container, false)
+        binding = ItemServicesBinding.inflate(inflater, container, false)
         return binding.root
     }
 

@@ -10,11 +10,11 @@
     <ListView
         android:id="@+id/serviceList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="615dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        tools:listitem="@layout/fragment_services" />
+        tools:listitem="@layout/item_services" />
 
     <FrameLayout
         android:id="@+id/frame_container"

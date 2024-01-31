@@ -155,7 +155,7 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/home_item"
+                tools:listitem="@layout/item_home"
                 android:backgroundTint="@color/white" />
         </LinearLayout>
 

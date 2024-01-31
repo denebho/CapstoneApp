@@ -57,15 +57,6 @@
                 android:drawableLeft="@drawable/baseline_lock_24"
                 android:textColor="@color/black"
                 android:drawablePadding="8dp" />
-            
-            <TextView
-                android:id="@+id/forgot_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginTop="5dp"
-                android:text="@string/forgotPassword"
-                android:textColor="@color/primary_blue" />
 
             <Button
                 android:id="@+id/loginBtn"
@@ -77,6 +68,15 @@
                 android:textColor="@color/primary_blue"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/forgot_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="5dp"
+                android:text="@string/forgotPassword"
+                android:textColor="@color/primary_blue" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
