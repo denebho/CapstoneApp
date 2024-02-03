@@ -40,6 +40,21 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.homeApplianceIv.setOnClickListener{
+            //insert value
+            //gotogetlocationfrag(value)
+        }
+        binding.homeElectricIv.setOnClickListener{
+
+        }
+        binding.homePlumbingIv.setOnClickListener{
+
+        }
+        binding.homeAirconIv.setOnClickListener{
+
+        }
+
+
         imageList = arrayOf(R.drawable.home_aircon, R.drawable.home_appliance, R.drawable.home_electrical, R.drawable.home_plumbing)
 
         bookingList = arrayOf(39.00, 49.00, 59.00, 69.00)

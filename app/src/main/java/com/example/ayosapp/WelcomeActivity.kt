@@ -3,15 +3,18 @@ package com.example.ayosapp
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ayosapp.databinding.ActivityWelcomeBinding
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.database
+import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -23,14 +26,16 @@ class WelcomeActivity : AppCompatActivity() {
     private lateinit var btnDatePicker: EditText
     private val calendar = Calendar.getInstance()
     private lateinit var database: DatabaseReference
-    private lateinit var session: LoginPref
-
+    //private lateinit var session: LoginPref
+    private lateinit var firebaseAuth: FirebaseAuth
+    private val TAG: String = WelcomeActivity::class.java.name
+    private val db = FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
         database = Firebase.database.reference
-        session = LoginPref(this)
-        session.checkLogin()
+        //session = LoginPref(this)
+        //session.checkLogin()
         /*
         if(session.isLoggedIn()){
             startActivity(Intent(applicationContext, LoginActivity::class.java))
@@ -55,19 +60,37 @@ class WelcomeActivity : AppCompatActivity() {
             val dateofBirth = binding.dateofBirthEt.text.toString()
             val dob = Date(dateofBirth)
             if(firstname.isNotEmpty() && lastname.isNotEmpty() && phonenumber.isNotEmpty() && dateofBirth.isNotEmpty()){
-                //TODO
+                val user = firebaseAuth.currentUser
+                val userId = user?.uid // Provide the user ID you want to update
+                val userRef = db.collection("users").document(userId.toString())
 
-                if (user != null) {
-                    user.let {
-                        val uid = it.uid
-                        val email = it.email
-                        writeNewUser(uid, email, lastname, firstname, dob, phonenumber)
+                if (user != null){
+                user?.let {
+                    val database = FirebaseFirestore.getInstance()
+                    val userData = HashMap<String, Any>()
+                    userData["first_name"] = firstname
+                    userData["last_name"] = lastname
+                    userData["phone_number"] = phonenumber
+                    userData["birth_date"] = dob
+
+                    userRef.update(userData)
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "User data saved successfully", Toast.LENGTH_SHORT)
+                                .show()
+                            Log.d(TAG, "User data saved successfully.")
+
+                        }
+                        .addOnFailureListener { e ->
+                            Log.e(TAG, "Error saving user data: $e")
+                            Toast.makeText(this, "User data saved failed", Toast.LENGTH_SHORT)
+                                .show()
+
+                        }
                     }
-
-                } else {
-                    Toast.makeText(this, "Something Went Wrong", Toast.LENGTH_SHORT).show()
-                    //TODO
+                    val intent = Intent(this, WelcomeActivity::class.java)
+                    startActivity(intent)
                 }
+
             } else{
                 Toast.makeText(this, "Fields cannot be empty", Toast.LENGTH_SHORT).show()
 

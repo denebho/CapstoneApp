@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
     private val fragment = ProfileFragment()
 
 
-    private lateinit var session: LoginPref
+    lateinit var session: LoginPref
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity() {
         session = LoginPref(this)
         session.checkLogin()
 
-        //var user: HashMap<String, String> = session.getUserDetails()
-        //var email = user.get(LoginPref.KEY_EMAIL)
+        var user: HashMap<String, String> = session.getUserDetails()
+        var email = user.get(LoginPref.KEY_EMAIL)
 
 
         bottomNavigationView = findViewById(R.id.bottom_nav)
@@ -51,12 +51,13 @@ class MainActivity : AppCompatActivity() {
     private fun replaceFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit()
     }
+    /*
     override fun onUserInteraction() {
         if(!fragment.sendLoginToListener()) {
             session.LogoutUser()
         }
         session.checkLogin()
         super.onUserInteraction()
-    }
+    }*/
 
 }

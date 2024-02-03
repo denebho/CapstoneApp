@@ -11,17 +11,20 @@ import androidx.fragment.app.Fragment
 import com.example.ayosapp.databinding.FragmentProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 
-
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var firebaseAuth: FirebaseAuth
+    var session: LoginPref? = null
+    //TODO
+    //kotlin.UninitializedPropertyAccessException: lateinit property session has not been initialized
+
     var isLoggedIn: Boolean = true
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         firebaseAuth = FirebaseAuth.getInstance()
-        ///val bundle = arguments
-        //val message = bundle!!.getString("mText")
+        var session = (activity as MainActivity).session
+        session.checkLogin()
 
         binding.personalInfoTv.setOnClickListener {
             val nextFragment = PersonalinfoFragment()
@@ -53,6 +56,10 @@ class ProfileFragment : Fragment() {
 
         binding.logOutTv.setOnClickListener {
             logoutConfirmationDialog()
+            if(!isLoggedIn) {
+                firebaseAuth.signOut()
+                session.LogoutUser()
+            }
         }
 
         return binding.root
@@ -64,8 +71,8 @@ class ProfileFragment : Fragment() {
         builder.setMessage("Are you sure you want to log out?")
         builder.setPositiveButton("YES") { dialog, _ ->
             isLoggedIn = false
-            sendLoginToListener()
             firebaseAuth.signOut()
+            session?.LogoutUser()
             dialog.dismiss()
             navigateToLogin()
         }
@@ -76,7 +83,7 @@ class ProfileFragment : Fragment() {
         dialog.show()
     }
     private fun navigateToLogin() {
-        val intent = Intent(requireContext(), WelcomeActivity::class.java)
+        val intent = Intent(requireContext(), LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
