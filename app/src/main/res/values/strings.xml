@@ -139,4 +139,8 @@
     </string>
     <string name="title_activity_ayos_map">AyosMap</string>
 
+    <!--api-->
+    <string name="map_api_key">AIzaSyClRXgmw_ht7v6_AJ7zZ6uvWzv87CVgYBA</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

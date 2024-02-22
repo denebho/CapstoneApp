@@ -1,5 +1,6 @@
 package com.example.ayosapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,12 +8,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ayosapp.ayosPackage.AyosBookingActivity
+import com.example.ayosapp.data.BookingsData
 import com.example.ayosapp.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var newRecyclerView: RecyclerView
+    //private val fragment = AyosGetlocationFragment()
     private var newArrayList = ArrayList<BookingsData>()
 
     lateinit var imageList : Array<Int>
@@ -37,21 +41,33 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.homeApplianceIv.setOnClickListener{
-            //insert value
-            //gotogetlocationfrag(value)
+            val intent = Intent(activity, AyosBookingActivity::class.java)
+            intent.putExtra("serviceCode", "1")
+            intent.putExtra("fragmentTag", "fragment_tag_1")
+            startActivity(intent)
         }
         binding.homeElectricIv.setOnClickListener{
-
+            val intent = Intent(activity, AyosBookingActivity::class.java)
+            intent.putExtra("serviceCode", "2")
+            intent.putExtra("fragmentTag", "fragment_tag_1")
+            startActivity(intent)
         }
         binding.homePlumbingIv.setOnClickListener{
-
+            val intent = Intent(activity, AyosBookingActivity::class.java)
+            intent.putExtra("serviceCode", "3")
+            intent.putExtra("fragmentTag", "fragment_tag_1")
+            startActivity(intent)
         }
         binding.homeAirconIv.setOnClickListener{
-
+            val intent = Intent(activity, AyosBookingActivity::class.java)
+            intent.putExtra("serviceCode", "4")
+            intent.putExtra("fragmentTag", "fragment_tag_1")
+            startActivity(intent)
         }
 
 
@@ -92,4 +108,22 @@ class HomeFragment : Fragment() {
         }
         newRecyclerView.adapter = HomeAdapter(newArrayList)
     }
+
+    /*
+    fun switchToFragmentB(data: String) {
+        val fragmentB = AyosGetLocationFragment()
+
+        // Pass data using Bundle
+        val bundle = Bundle()
+        bundle.putString("key", data)
+        fragmentB.arguments = bundle
+
+        // Alternatively, you can use a constructor to pass data
+        // val fragmentB = FragmentB.newInstance(data)
+
+        val transaction = fragmentManager?.beginTransaction()
+        transaction?.replace(R.id.fragment_container, fragment)
+        transaction?.addToBackStack(null)
+        transaction?.commit()
+    }*/
 }

@@ -1,4 +1,4 @@
-package com.example.ayosapp
+package com.example.ayosapp.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.ayosapp.R
+import com.example.ayosapp.data.BookingsData
 
 class BookingsAdapter(context: Context, dataArrayList: ArrayList<BookingsData>) :
 ArrayAdapter<BookingsData>(context, R.layout.item_bookings, dataArrayList) {

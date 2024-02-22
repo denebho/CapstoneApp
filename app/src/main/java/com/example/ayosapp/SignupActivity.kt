@@ -13,8 +13,8 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
-import java.util.*
-import kotlin.collections.HashMap
+import java.util.Calendar
+import java.util.Date
 
 class SignupActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding
@@ -75,14 +75,14 @@ class SignupActivity : AppCompatActivity() {
                                 // Store additional user data in the Realtime Database
                                 user?.let {
                                     val database = FirebaseFirestore.getInstance()
-                                    val userUid = user.uid
+                                    val userId = user.uid
                                     val userData = HashMap<String, Any>()
-                                    userData["userUid"] = userUid
+                                    userData["userID"] = userId
                                     userData["email"] = email
                                     userData["password"] = password
                                     userData["create_time"] = timeNow
 
-                                    database.collection("user").add(userData)
+                                    database.collection("user").document(userId).set(userData)
                                         .addOnSuccessListener {
                                             Toast.makeText(this,"User data saved successfully",Toast.LENGTH_SHORT).show()
                                             Log.d(TAG, "User data saved successfully.")

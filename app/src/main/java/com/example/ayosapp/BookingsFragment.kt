@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.fragment.app.Fragment
+import com.example.ayosapp.adapter.BookingsAdapter
+import com.example.ayosapp.data.BookingsData
 import com.example.ayosapp.databinding.FragmentBookingsBinding
 
 class BookingsFragment : Fragment() {

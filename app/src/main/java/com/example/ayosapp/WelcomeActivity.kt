@@ -3,7 +3,6 @@ package com.example.ayosapp
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -61,11 +60,27 @@ class WelcomeActivity : AppCompatActivity() {
             val dob = Date(dateofBirth)
             if(firstname.isNotEmpty() && lastname.isNotEmpty() && phonenumber.isNotEmpty() && dateofBirth.isNotEmpty()){
                 val user = firebaseAuth.currentUser
-                val userId = user?.uid // Provide the user ID you want to update
-                val userRef = db.collection("users").document(userId.toString())
+                val userId = user!!.uid // Provide the user ID you want to update
+                val userRef = db.collection("user").document(userId)
+                val query = db.collection("user").whereEqualTo("userID", userId)
 
+                query.get().addOnSuccessListener {
+                    val updateMap = mapOf(
+                        "first_name" to firstname,
+                        "last_name" to lastname,
+                        "date_of_birth" to dateofBirth,
+                        "mobile_number" to phonenumber
+                    )
+
+                    db.collection("user").document(userId).update(updateMap)
+                    Toast.makeText(this, "Successfully edited", Toast.LENGTH_SHORT).show()
+                }.addOnFailureListener {
+                    Toast.makeText(this,"User data save failed",Toast.LENGTH_SHORT).show()
+
+                }
+/**
                 if (user != null){
-                user?.let {
+                user.let {
                     val database = FirebaseFirestore.getInstance()
                     val userData = HashMap<String, Any>()
                     userData["first_name"] = firstname
@@ -86,10 +101,10 @@ class WelcomeActivity : AppCompatActivity() {
                                 .show()
 
                         }
-                    }
+                    }*/
                     val intent = Intent(this, WelcomeActivity::class.java)
                     startActivity(intent)
-                }
+
 
             } else{
                 Toast.makeText(this, "Fields cannot be empty", Toast.LENGTH_SHORT).show()

@@ -44,7 +44,8 @@
                 android:hint="@string/emailHint"
                 android:drawableLeft="@drawable/baseline_email_24"
                 android:textColor="@color/black"
-                android:drawablePadding="8dp"/>
+                android:drawablePadding="8dp"
+                android:inputType="textEmailAddress" />
 
             <EditText
                 android:id="@+id/pword_et"

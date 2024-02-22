@@ -30,13 +30,6 @@ class AyosAdapter(context: Context, dataArrayList: ArrayList<AyosData>):
         serviceProvider.text = serviceData.serviceProvider
         serviceDescription.text = serviceData.serviceDescription
 
-        /*bookingImage.setImageResource(bookingsData!!.image)
-        bookingStatus.text = bookingsData.status.toString()
-        bookingDate.text = bookingsData.dateofService
-        bookingCategory.text = bookingsData.serviceOffered.toString()
-        bookingWorker.text = bookingsData.workerName
-        bookingTotal.text = bookingsData.totalPrice.toString()*/
-
         return convertView
 
     }

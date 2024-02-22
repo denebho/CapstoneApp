@@ -134,15 +134,15 @@
 
             <TextView
                 android:id="@+id/serviceCategory"
-                android:layout_width="120dp"
+                android:layout_width="wrap_content"
                 android:layout_height="30dp"
+                android:layout_alignTop="@id/servicedate"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="50dp"
-                android:layout_alignTop="@id/servicedate"
                 android:text="Service Category"
                 android:textColor="@color/primary_blue"
-                android:textStyle="bold"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/itemCategory"
@@ -243,7 +243,7 @@
                 android:layout_marginTop="60dp"
                 android:layout_alignTop="@id/itemBookingFee"
                 android:layout_toEndOf="@id/bookingFee"
-                android:text="extra day fee"
+                android:text="extra fee"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
@@ -334,10 +334,10 @@
                 android:id="@+id/ratingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_alignTop="@+id/paymentMethod"
                 android:layout_centerInParent="true"
-                android:layout_marginTop="40dp"
-                android:layout_alignTop="@+id/paymentMethod" />
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp" />
 
             <TextView
                 android:id="@+id/bookingId"

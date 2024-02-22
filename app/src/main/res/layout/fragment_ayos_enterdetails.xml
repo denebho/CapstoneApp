@@ -33,23 +33,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="8dp"
-        android:textColor="#fff"
         android:text="Service Type"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/serviceIcon"
         app:layout_constraintStart_toEndOf="@+id/serviceIcon"
         app:layout_constraintTop_toTopOf="@+id/serviceIcon" />
-
-    <TextView
-        android:id="@+id/serviceProvider"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:textColor="#fff"
-        android:text="Service Provider"
-        app:layout_constraintBottom_toBottomOf="@+id/serviceType"
-        app:layout_constraintStart_toEndOf="@+id/serviceType"
-        app:layout_constraintTop_toTopOf="@+id/serviceType" />
 
 
     <TextView
@@ -58,7 +46,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Description\nLorem ipsum"
-        android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/serviceIcon"
         app:layout_constraintTop_toBottomOf="@+id/serviceIcon"
@@ -70,10 +57,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:background="#fff"
         android:padding="15dp"
         android:text="Next"
-        android:textColor="#0012B4"
+        android:background="@color/primary_blue"
+        android:textColor="#fff"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -83,8 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textColor="#fff"
-        android:text="Anything specific you'd like them to know?"
+        android:text="When would you like to schedule this service?"
         app:layout_constraintStart_toStartOf="@+id/serviceDescription"
         app:layout_constraintTop_toBottomOf="@+id/serviceDescription" />
 
@@ -93,13 +79,47 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Note to worker"
-        android:textColor="#D3CBCB"
+        android:text="Date"
+        android:textColor="@color/primary_blue"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/detailsEt"
+        android:id="@+id/dateofserviceEt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:minHeight="48dp"
+        android:hint="Enter date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Anything specific you'd like them to know?"
+        app:layout_constraintStart_toStartOf="@+id/serviceDescription"
+        app:layout_constraintTop_toBottomOf="@+id/dateofserviceEt" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Note to worker"
+        android:textColor="@color/primary_blue"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView0" />
+
+    <EditText
+        android:id="@+id/detailsEtdateofserviceEt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -112,5 +132,5 @@
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 </androidx.constraintlayout.widget.ConstraintLayout>
