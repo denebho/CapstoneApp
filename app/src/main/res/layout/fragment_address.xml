@@ -10,8 +10,10 @@
         android:id="@+id/addAddressbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="85dp"
         android:text="+ Add Address"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,23 +22,29 @@
         android:id="@+id/fragmentContainerAddress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="200dp"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/addAddressbtn">
+        app:layout_constraintTop_toBottomOf="@id/addAddressbtn"
+        app:layout_constraintVertical_bias="1.0">
 
 
         <ListView
             android:id="@+id/addressList"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="512dp"
             android:layout_marginTop="10dp"
-            android:padding="10dp"
-            tools:listitem="@layout/item_address"
+            android:background="#FFFFFF"
+            android:cacheColorHint="#FFFFFF"
             android:dividerHeight="10.0sp"
+            android:foregroundTint="#FFFFFF"
+            android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:listitem="@layout/item_address" />
     </FrameLayout>
 
 
