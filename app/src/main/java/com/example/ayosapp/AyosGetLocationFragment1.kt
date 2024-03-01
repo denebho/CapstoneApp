@@ -1,17 +1,14 @@
 package com.example.ayosapp
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.ayosapp.ayosPackage.AddressFragment
 import com.example.ayosapp.ayosPackage.AyosBookingActivity
 import com.example.ayosapp.ayosPackage.AyosEnterDetailsFragment
 import com.example.ayosapp.databinding.FragmentAyosGetLocationBinding
-
-
-
 
 
 class AyosGetLocationFragment1 : Fragment() {
@@ -28,8 +25,6 @@ class AyosGetLocationFragment1 : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_ayos_get_location, container, false)
         binding = FragmentAyosGetLocationBinding.inflate(inflater, container, false)
         return binding.root
 
@@ -38,29 +33,33 @@ class AyosGetLocationFragment1 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val bundle = arguments
-        val value = bundle?.getInt("addressId").toString()
-        binding.addressGroup.setOnClickListener{
+        val addressID = bundle?.getString("addressid","").toString()
+        val addressline = bundle?.getString("address","").toString()
+        binding.addressGroup.setOnClickListener {
             val nextFragment = AddressFragment()
+
             parentFragmentManager.beginTransaction()
-                .replace(R.id.frame_container_ayos, nextFragment)
+                .replace(R.id.frame_container_ayos, nextFragment, "getLocationFrag")
                 .addToBackStack(null)
                 .commit()
-
-            //addFragmentOnTop(nextFragment)
         }
-        if (value.isNotEmpty() && value.isNotBlank()) {
-            binding.addressEt.setText(value)
+        if (addressline.isNotEmpty()) {
+            //binding.addressEt.setText(value)
+        } else {
+            //binding.addressEt.text.clear()
         }
 
-        binding.bookServiceBtn.setOnClickListener{
-            arguments = Bundle().apply {
-                putString("addressId", value)
-                putString("addressString", "address")
-                val nextFragment = AyosEnterDetailsFragment()
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.frame_container_ayos, nextFragment)
-                    .addToBackStack(null)
-                    .commit()
+        binding.bookServiceBtn.setOnClickListener {
+            if (binding.addressEt.text.isNotEmpty()) {
+                arguments = Bundle().apply {
+                    putString("addressid", addressID)
+                    putString("addressString", addressline)
+                    val nextFragment = AyosEnterDetailsFragment()
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.frame_container_ayos, nextFragment)
+                        .addToBackStack(null)
+                        .commit()
+                }
             }
         }
     }

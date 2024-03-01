@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import com.example.ayosapp.R
@@ -12,14 +15,10 @@ import com.example.ayosapp.databinding.FragmentAyosEnterdetailsBinding
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
+
 class AyosEnterDetailsFragment : Fragment() {
 
 private var _binding: FragmentAyosEnterdetailsBinding? = null
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
     private val calendar = Calendar.getInstance()
     private lateinit var btnDatePicker: EditText
@@ -28,11 +27,8 @@ private var _binding: FragmentAyosEnterdetailsBinding? = null
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-
       _binding = FragmentAyosEnterdetailsBinding.inflate(inflater, container, false)
       return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,7 +36,7 @@ private var _binding: FragmentAyosEnterdetailsBinding? = null
         val bundle = arguments
         val value = bundle?.getString("addressId")
 
-        btnDatePicker= view.findViewById(R.id.dateofserviceEt)
+        btnDatePicker = view.findViewById(R.id.dateofserviceEt)
         btnDatePicker.keyListener = null
         btnDatePicker.setOnClickListener {
             // Show the DatePicker dialog
@@ -54,6 +50,37 @@ private var _binding: FragmentAyosEnterdetailsBinding? = null
                 .replace(R.id.frame_container_ayos, nextFragment)
                 .addToBackStack(null)
                 .commit()
+        }
+
+        val timeSlots = mutableListOf<String>()
+        val initialTime = Calendar.getInstance()
+
+        for (i in 8 until 23) {
+            val time = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(initialTime.time)
+            timeSlots.add(time)
+            initialTime.add(Calendar.HOUR_OF_DAY, 1)
+        }
+        val adapter =
+            ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item, timeSlots)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        val timeSlotSpinner: AutoCompleteTextView = view.findViewById(R.id.timeSlotSpinner)
+        timeSlotSpinner.setAdapter(adapter)
+
+        timeSlotSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val selectedTime = timeSlots[position]
+                // Handle selected time
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
         }
     }
 
@@ -78,9 +105,10 @@ private var _binding: FragmentAyosEnterdetailsBinding? = null
             calendar.get(Calendar.MONTH),
             calendar.get(Calendar.DAY_OF_MONTH)
         )
-        // Show the DatePicker dialog
         datePickerDialog.show()
     }
+
+    //private fun timeSlotPicker
     /*
     override fun onDestroyView() {
         super.onDestroyView()

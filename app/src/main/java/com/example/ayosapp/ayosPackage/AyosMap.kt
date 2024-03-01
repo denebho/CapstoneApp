@@ -4,7 +4,10 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
+import android.location.LocationManager
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,11 +23,11 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.libraries.places.api.Places
-import java.io.IOException
 import java.util.Locale
 
+@Suppress("DEPRECATION")
 class AyosMap : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
@@ -36,47 +39,63 @@ class AyosMap : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var  currentLocation: Location
     private lateinit var geocoder: Geocoder
     private lateinit var selectedLocation: LatLng
+    private lateinit var locationManager: LocationManager
+    var currentMarker:Marker? = null
+    private val confirmButton: Button? = null
+    private val REQUEST_CODE =101
+    private var addressid:String? = null
+    private var instructions:String? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initializeLocation()
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+
         getLastLocation()
 
         binding = ActivityAyosMapBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Places.initialize(applicationContext, "AIzaSyClRXgmw_ht7v6_AJ7zZ6uvWzv87CVgYBA")
+        //Places.initialize(applicationContext, "AIzaSyClRXgmw_ht7v6_AJ7zZ6uvWzv87CVgYBA")
 
-
-        val confirmButton: Button = findViewById(R.id.confirmBtn)
+        val confirmButton: Button = findViewById(R.id.confirmBtnMap)
         confirmButton.setOnClickListener {
-            val location = getAddress(selectedLocation).toString()
+            val location = getAddress(currentLocation.latitude, currentLocation.longitude)
             val bundle = Bundle()
-            bundle.putString("location", location)
+            bundle.putString("location", location.toString())
+            bundle.putDouble("latitude", currentLocation.latitude)
+            bundle.putDouble("longitude", currentLocation.longitude)
+            bundle.putString("addressid", addressid)
+            bundle.putString("instructions",instructions)
 
+            val mFragmentManager = supportFragmentManager
+            val mFragmentTransaction = mFragmentManager.beginTransaction()
             val fragmentB = addAddressFragment()
             fragmentB.arguments = bundle
-            addFragmentOnTop(fragmentB)
+            mFragmentTransaction.add(R.id.map, fragmentB).commit()
+//            replaceFragment(fragmentB)
 
-            //val intent = Intent(this, AyosBookingActivity::class.java)
-            //intent.putExtra("location", location)
-            //startActivity(intent)
-
+            //updateButtonVisibility()
         }
 
         geocoder = Geocoder(this, Locale.getDefault())
 
     }
+
+
     private fun initializeLocation() {
         // Perform location initialization here
         currentLocation = Location("dummy")
-        currentLocation.latitude = 0.0
-        currentLocation.longitude = 0.0
+        instructions = intent.getStringExtra("instructions")
+        addressid = intent.getStringExtra("addressid")
+        currentLocation.latitude = intent.getDoubleExtra("latitude",0.0)
+        currentLocation.longitude = intent.getDoubleExtra("longitude",0.0)
         marker = MarkerOptions()
-            .position(LatLng(0.0, 0.0)) // Default position
-            .title("Dummy Marker") // Default title
-            .snippet("This is a dummy marker")
+            .position(LatLng(currentLocation.latitude, currentLocation.longitude)) // Default position
+            //.title("Dummy Marker") // Default title
+            //.snippet("This is a dummy marker")
     }
     private fun getLastLocation() {
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
@@ -88,6 +107,7 @@ class AyosMap : AppCompatActivity(), OnMapReadyCallback {
             .addOnSuccessListener {location ->
                 currentLocation.latitude = location.latitude
                 currentLocation.longitude = location.longitude
+
                 // Obtain the SupportMapFragment and get notified when the map is ready to be used.
                 val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
                 mapFragment.getMapAsync(this)
@@ -98,25 +118,60 @@ class AyosMap : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
         // Add a marker in current location and move the camera
         val curLoc = LatLng(currentLocation.latitude, currentLocation.longitude)
-        mMap.addMarker(MarkerOptions().position(curLoc).title("Current location"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(curLoc))
+        mMap.addMarker(MarkerOptions().position(curLoc))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(currentLocation.latitude, currentLocation.longitude),16.0f))
 
         mMap.uiSettings.isZoomControlsEnabled = true
         mMap.setOnMapClickListener { latLng ->
+            Log.d("DEBUG", "old location: {${currentLocation.latitude} ${currentLocation.longitude}}")
             // Clear previous markers
             mMap.clear()
             // Add new marker
-
-            mMap.addMarker(MarkerOptions().position(latLng).title("Selected Location"))
+            mMap.addMarker(MarkerOptions().position(latLng))
+            currentLocation.longitude=latLng.longitude
+            currentLocation.latitude=latLng.latitude
+            Log.d("DEBUG", "new location: {${currentLocation.latitude} ${currentLocation.longitude}}")
+            moveToCurrentLocation(LatLng(currentLocation.latitude,currentLocation.longitude))
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(curLoc))
+            val zoomLevel = 16.0f
+            val cameraUpdate = CameraUpdateFactory.newLatLngZoom(LatLng(currentLocation.latitude, currentLocation.longitude), zoomLevel)
+            mMap.moveCamera(cameraUpdate)
         }
-
+        /**
         mMap.setOnCameraMoveListener {
             // Update marker position to stay in the middle of the screen
             val target = mMap.cameraPosition.target
             marker.position(target)
-        }
-    }
+        }*/
 
+//        mMap.setOnMarkerDragListener(object: GoogleMap.OnMarkerDragListener{
+//            override fun onMarkerDrag(p0: Marker) {
+//
+//            }
+//            override fun onMarkerDragEnd(p0: Marker) {
+//                Log.d("DEBUG", "old location: {${currentLocation.latitude} ${currentLocation.longitude}}")
+//                if(currentMarker!=null)
+//                    currentMarker?.remove()
+//
+//                val newLatLng =LatLng(p0?.position!!.latitude, p0?.position!!.latitude)
+//                drawMarker(newLatLng)
+//                currentLocation.longitude=newLatLng.longitude
+//                currentLocation.latitude=newLatLng.latitude
+//                Log.d("DEBUG", "new location: {${currentLocation.latitude} ${currentLocation.longitude}}")
+//            }
+//
+//            override fun onMarkerDragStart(p0: Marker) {
+//
+//            }
+//        })
+    }
+    private fun moveToCurrentLocation(currentLocation: LatLng) {
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f))
+        // Zoom in, animating the camera.
+        mMap.animateCamera(CameraUpdateFactory.zoomIn())
+        // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(15f), 2000, null)
+    }
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -131,15 +186,8 @@ class AyosMap : AppCompatActivity(), OnMapReadyCallback {
             }
         }
     }
-    private fun getAddress(latLng: LatLng) {
-        try {
-            val addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
-            if (addresses!!.isNotEmpty()) {
-                val address = addresses!![0].getAddressLine(0)
-            }
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
+    private fun replaceFragment(fragment: Fragment){
+        supportFragmentManager.beginTransaction().replace(R.id.map, fragment).commit()
     }
 
     fun addFragmentOnTop(fragment: Fragment) {
@@ -149,6 +197,51 @@ class AyosMap : AppCompatActivity(), OnMapReadyCallback {
         fragmentTransaction.addToBackStack(null) // This line allows you to go back to the previous fragment when pressing the back button
         fragmentTransaction.commit()
     }
+
+    private fun getAddress(lat: Double, lon: Double): String?{
+        val geocoder = Geocoder(this, Locale.getDefault())
+        val address = geocoder.getFromLocation(lat, lon,1)
+        return address?.get(0)?.getAddressLine(0).toString()
+    }
+
+    private fun drawMarker(latlong: LatLng){
+        MarkerOptions().position(latlong)
+            .snippet(getAddress(latlong.latitude, latlong.longitude)).draggable(true)
+
+        mMap.animateCamera(CameraUpdateFactory.newLatLng(latlong))
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlong,15f))
+        currentMarker=mMap.addMarker(marker)
+        currentMarker?.showInfoWindow()
+        currentLocation.latitude = latlong.latitude
+        currentLocation.longitude = latlong.longitude
+    }
+    fun hideButton() {
+        confirmButton?.visibility = View.GONE
+    }
+    fun showButton() {
+        confirmButton?.visibility = View.VISIBLE
+    }
+    /*
+    fun getCurrentFragment(): Fragment? {
+        val fragmentManager: FragmentManager = supportFragmentManager
+        val fragments = fragmentManager.fragments
+        for (fragment in fragments) {
+            if (fragment != null && fragment.isVisible) {
+                return fragment
+            }
+        }
+        return null
+    }
+
+    // Function to update button visibility based on the active fragment
+    fun updateButtonVisibility() {
+        val currentFragment = getCurrentFragment()
+        if (currentFragment is MapFragment) {
+            showButton()
+        } else {
+            hideButton()
+        }
+    }*/
 
     companion object {
         private const val REQUEST_CODE = 100

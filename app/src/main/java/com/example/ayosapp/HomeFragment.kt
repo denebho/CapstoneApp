@@ -8,9 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ayosapp.adapter.HomeAdapter
 import com.example.ayosapp.ayosPackage.AyosBookingActivity
 import com.example.ayosapp.data.BookingsData
 import com.example.ayosapp.databinding.FragmentHomeBinding
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
+
 
 class HomeFragment : Fragment() {
 
@@ -18,6 +22,9 @@ class HomeFragment : Fragment() {
     private lateinit var newRecyclerView: RecyclerView
     //private val fragment = AyosGetlocationFragment()
     private var newArrayList = ArrayList<BookingsData>()
+    private var arrayList = ArrayList<BookingsData>()
+
+    private var db = Firebase.firestore
 
     lateinit var imageList : Array<Int>
     lateinit var bookingList : Array<Double>
@@ -47,25 +54,25 @@ class HomeFragment : Fragment() {
 
         binding.homeApplianceIv.setOnClickListener{
             val intent = Intent(activity, AyosBookingActivity::class.java)
-            intent.putExtra("serviceCode", "1")
+            intent.putExtra("serviceCode", "appliance")
             intent.putExtra("fragmentTag", "fragment_tag_1")
             startActivity(intent)
         }
         binding.homeElectricIv.setOnClickListener{
             val intent = Intent(activity, AyosBookingActivity::class.java)
-            intent.putExtra("serviceCode", "2")
+            intent.putExtra("serviceCode", "electrical")
             intent.putExtra("fragmentTag", "fragment_tag_1")
             startActivity(intent)
         }
         binding.homePlumbingIv.setOnClickListener{
             val intent = Intent(activity, AyosBookingActivity::class.java)
-            intent.putExtra("serviceCode", "3")
+            intent.putExtra("serviceCode", "plumbing")
             intent.putExtra("fragmentTag", "fragment_tag_1")
             startActivity(intent)
         }
         binding.homeAirconIv.setOnClickListener{
             val intent = Intent(activity, AyosBookingActivity::class.java)
-            intent.putExtra("serviceCode", "4")
+            intent.putExtra("serviceCode", "aircon")
             intent.putExtra("fragmentTag", "fragment_tag_1")
             startActivity(intent)
         }

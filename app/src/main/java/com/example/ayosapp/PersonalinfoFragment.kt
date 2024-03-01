@@ -92,16 +92,16 @@ class PersonalinfoFragment : Fragment() {
         }
 
         binding.saveBtn.setOnClickListener{
-            val query = db.collection("user").whereEqualTo("userID", userId)
+            val profilequery = db.collection("user").whereEqualTo("userID", userId)
             val timeNow = Calendar.getInstance().time
 
-            query.get().addOnSuccessListener {
+            profilequery.get().addOnSuccessListener {
                 val updateMap = mapOf(
                     "first_name" to firstName.text.toString(),
                     "last_name" to lastName.text.toString(),
                     "date_of_birth" to dateOfBirth.text.toString(),
                     "mobile_number" to mobileNumber.text.toString(),
-                    "update_time" to timeNow,
+                    "update_time" to timeNow
                 )
 
                 db.collection("user").document(userId).update(updateMap)

@@ -1,4 +1,12 @@
 package com.example.ayosapp.data
 
-class AddressData(val address1 : String, val address2 : String, val fullName : String, val number : String) {
+class AddressData(
+    val UID: String? = null,
+    val addressID: String? = null,
+    val address : String? = null,
+    val address_details : String? = null,
+    val instructions: String? = null,
+    val latitude: Double? = null,
+    val longitude: Double?= null,
+) {
 }
