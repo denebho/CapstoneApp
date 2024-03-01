@@ -6,7 +6,8 @@ android:layout_height="match_parent"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 android:layout_margin="10dp"
 android:elevation="3dp"
-tools:context=".AyosGetLocationFragment1">
+tools:context=".AyosGetLocationFragment1"
+    android:background="@color/white">
 
 <ImageView
     android:id="@+id/backButton"
@@ -104,7 +105,8 @@ tools:context=".AyosGetLocationFragment1">
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
             android:layout_marginTop="6dp"
-            android:hint="Choose from address book" />
+            android:hint="Choose from address book"
+            android:inputType="none"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

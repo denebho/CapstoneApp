@@ -1,10 +1,11 @@
-package com.example.ayosapp
+package com.example.ayosapp.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ayosapp.R
 import com.example.ayosapp.data.BookingsData
 import com.google.android.material.imageview.ShapeableImageView
 
@@ -12,7 +13,8 @@ class HomeAdapter(private val homeList : ArrayList<BookingsData>) :
     RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_home,
+        val itemView = LayoutInflater.from(parent.context).inflate(
+            R.layout.item_home,
             parent, false)
         return MyViewHolder(itemView)
     }

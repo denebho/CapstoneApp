@@ -13,7 +13,7 @@
         tools:layout="@layout/fragment_map" />
 
     <Button
-        android:id="@+id/confirmBtn"
+        android:id="@+id/confirmBtnMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Confirm Location"

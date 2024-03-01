@@ -1,36 +1,84 @@
 package com.example.ayosapp.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.TextView
-import com.example.ayosapp.R
+import androidx.recyclerview.widget.RecyclerView
+import com.example.ayosapp.ayosPackage.AyosMap
 import com.example.ayosapp.data.AddressData
+import com.example.ayosapp.databinding.ItemAddressBinding
 
 
-class AddressAdapter(context: Context, dataArrayList: ArrayList<AddressData>):
-    ArrayAdapter<AddressData>(context, R.layout.fragment_address, dataArrayList) {
-    override fun getView(position: Int, view: View?, parent: ViewGroup): View {
-        val addressData = getItem(position)
+class AddressAdapter(
+    private val dataArrayList: ArrayList<AddressData>,
+    private val context: Context
+    //,private val itemClickListener: OnItemClickListener
+):
+        RecyclerView.Adapter<AddressAdapter.AddressViewHolder>(){
+    private var listener: View.OnClickListener? = null
+    inner class AddressViewHolder(val binding: ItemAddressBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+    }
 
-        var convertView = view
+//    class AddressViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+//        val addressLine: TextView = itemView.findViewById(R.id.itemAddress1)
+//        val addressDetails: TextView = itemView.findViewById(R.id.itemAddress2)
+//        val addressID: String = ""
+//    }
 
-        if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_address, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AddressViewHolder {
+        return AddressViewHolder(
+            ItemAddressBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        )
+
+//        val itemView=
+//            LayoutInflater.from(parent.context).inflate(R.layout.item_address,parent, false)
+//        return AddressViewHolder(itemView)
+    }
+
+    override fun getItemCount(): Int {
+        return dataArrayList.size
+    }
+
+    override fun onBindViewHolder(holder: AddressViewHolder, position: Int) {
+        if(dataArrayList.isNotEmpty()) {
+            val currentAddress = dataArrayList[position]
+
+            holder.binding.apply {
+                itemAddress1.text = dataArrayList[position].address
+                itemAddress2.text = dataArrayList[position].address_details
+            }
+            holder.binding.editBtn.setOnClickListener(){
+                val intent = Intent(context, AyosMap::class.java)
+                intent.putExtra("address",currentAddress.address)
+                intent.putExtra("addressdetails",currentAddress.address_details)
+                intent.putExtra("uid",currentAddress.UID)
+                intent.putExtra("addressid",currentAddress.addressID)
+                intent.putExtra("latitude",currentAddress.latitude)
+                intent.putExtra("instructions",currentAddress.instructions)
+                intent.putExtra("longitude",currentAddress.longitude)
+                context.startActivity(intent)
+            }
+            holder.binding.addressCard.setOnClickListener(){
+
+            }
+
+
+
+//            holder.addressLine.text = dataArrayList[position].address
+//            holder.addressDetails.text = dataArrayList[position].address_details
+//            holder.binding.a
+//                .setOnClickListener {listener?.onItemClick(item)}
         }
-        val serviceIcon = convertView!!.findViewById<ImageView>(R.id.serviceIcon)
-        val address1 = convertView.findViewById<TextView>(R.id.itemAddress1)
-        val address2 = convertView.findViewById<TextView>(R.id.itemAddress2)
-        val fullName = convertView.findViewById<TextView>(R.id.itemName)
-
-        address1.text = addressData?.address1
-        address2.text = addressData?.address2
-        fullName.text = addressData?.fullName
-
-        return convertView
 
     }
+
+//    fun setOnClickListener(listener: View.OnClickListener) {
+//        this.listener = listener
+//    }
+//    interface OnItemClickListener {
+//        fun onItemClick(data: AddressData)
+//    }
 }
