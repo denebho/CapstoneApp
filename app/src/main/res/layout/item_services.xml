@@ -1,81 +1,285 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:background="@color/primary_blue"
-    android:elevation="3dp">
+    android:background="@color/blueish_white"
+    android:elevation="3dp"
+    android:paddingLeft="8dp"
+    android:paddingTop="8dp"
+    android:paddingRight="8dp"
+    android:paddingBottom="8dp">
 
     <ImageView
-        android:id="@+id/serviceIcon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/serviceIconPlumbing"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/home_plumbing" />
+        android:src="@drawable/home_plumbing"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/serviceType"
+        android:id="@+id/serviceTypePlumbing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="8dp"
-        android:textColor="#fff"
-        android:text="Service Type"
+        android:text="Plumbing Service"
+        android:textColor="@color/primary_blue"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/serviceIcon"
-        app:layout_constraintStart_toEndOf="@+id/serviceIcon"
-        app:layout_constraintTop_toTopOf="@+id/serviceIcon" />
-
-    <TextView
-        android:id="@+id/serviceProvider"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:textColor="#fff"
-        android:text="Service Provider"
-        app:layout_constraintBottom_toBottomOf="@+id/serviceType"
-        app:layout_constraintStart_toEndOf="@+id/serviceType"
-        app:layout_constraintTop_toTopOf="@+id/serviceType" />
+        app:layout_constraintBottom_toBottomOf="@+id/serviceIconPlumbing"
+        app:layout_constraintStart_toEndOf="@+id/serviceIconPlumbing"
+        app:layout_constraintTop_toTopOf="@+id/serviceIconPlumbing"
+        tools:ignore="DuplicateIds" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imageView4Plumbing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/baseline_arrow_right_24"
-        app:layout_constraintBottom_toBottomOf="@+id/serviceIcon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/serviceProvider"
-        app:layout_constraintTop_toTopOf="@+id/serviceIcon" />
+        app:layout_constraintBottom_toBottomOf="@+id/serviceIconPlumbing"
+        app:tint="@color/primary_blue"
+        tools:layout_editor_absoluteX="352dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/serviceDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Description\nLorem ipsum"
-        android:textColor="#fff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/serviceIcon"
-        app:layout_constraintTop_toBottomOf="@+id/serviceIcon"
-        app:layout_constraintVertical_bias="0.0" />
+        android:id="@+id/textView7"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:text="Our plumbing service provides a wide choice of solutions to your household issues such as clogged drains and toilets, leaky faucets and pipes, water heater issues, low water pressure, and a running toilet."
+        android:textColor="@color/black"
+        android:textSize="11dp"
+        app:layout_constraintTop_toBottomOf="@+id/serviceDescriptionPlumbing"
+        tools:ignore="MissingConstraints,TextSizeCheck"
+        tools:layout_editor_absoluteX="19dp" />
 
     <TextView
-        android:id="@+id/bookServiceBtn"
+        android:id="@+id/serviceDescriptionPlumbing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Service Details"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/serviceIconPlumbing"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="19dp" />
+
+    <TextView
+        android:id="@+id/bookServiceBtnPlumbing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="#fff"
-        android:padding="3dp"
-        android:text="Schedule Service"
-        android:textColor="#0012B4"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/serviceDescription" />
+        android:background="@color/primary_blue"
+        android:padding="5dp"
+        android:text="Schedule Plumbing Service"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        tools:ignore="DuplicateIds,MissingConstraints"
+        tools:layout_editor_absoluteX="204dp" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:text="The air conditioning unit has to be cleaned every two months, did you know that? Make an appointment with Ayos!  for cleaning so that your air conditioner is properly maintained."
+        android:textColor="@color/black"
+        android:textSize="11dp"
+        tools:ignore="MissingConstraints,TextSizeCheck"
+        tools:layout_editor_absoluteX="19dp"
+        tools:layout_editor_absoluteY="259dp" />
+
+    <TextView
+        android:id="@+id/serviceDescriptionAirconditioning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Service Details"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/serviceIconAirconditioning"
+        tools:layout_editor_absoluteX="19dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/serviceIconAirconditioning"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/home_aircon"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="185dp" />
+
+    <TextView
+        android:id="@+id/serviceTypeAirconditioning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Airconditioning Service"
+        android:textColor="@color/primary_blue"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/serviceIconAirconditioning"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="68dp" />
+
+    <TextView
+        android:id="@+id/bookServiceBtnAirconditioning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/primary_blue"
+        android:padding="5dp"
+        android:text="Schedule Airconditioning Service"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        tools:ignore="MissingConstraints,TextSizeCheck"
+        tools:layout_editor_absoluteX="168dp" />
+
+    <ImageView
+        android:id="@+id/imageView4Airconditioning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/baseline_arrow_right_24"
+        app:layout_constraintBottom_toBottomOf="@+id/serviceIconAirconditioning"
+        app:tint="@color/primary_blue"
+        tools:layout_editor_absoluteX="352dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/serviceTypeElectrical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Electrical Wiring Service"
+        android:textColor="@color/primary_blue"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/serviceIconElectrical"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="76dp" />
+
+    <TextView
+        android:id="@+id/serviceTypeAppliances"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Appliances Repair Service"
+        android:textColor="@color/primary_blue"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/serviceIconAppliances"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="65dp" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:text="Ayos! technicians are experts who are capable of installing and repairing home wiring. Book now for electrical wiring services at reasonable prices!  "
+        android:textColor="@color/black"
+        android:textSize="11dp"
+        app:layout_constraintTop_toBottomOf="@+id/serviceDescriptionElectrical"
+        tools:ignore="MissingConstraints,TextSizeCheck"
+        tools:layout_editor_absoluteX="27dp" />
+
+    <TextView
+        android:id="@+id/serviceDescriptionElectrical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Service Details"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/serviceIconElectrical"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="27dp" />
+
+    <ImageView
+        android:id="@+id/imageView4Electrical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/baseline_arrow_right_24"
+        app:layout_constraintBottom_toBottomOf="@+id/serviceIconElectrical"
+        app:tint="@color/primary_blue"
+        tools:layout_editor_absoluteX="352dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView4Appliances"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/baseline_arrow_right_24"
+        app:layout_constraintBottom_toBottomOf="@+id/serviceIconAppliances"
+        app:tint="@color/primary_blue"
+        tools:layout_editor_absoluteX="352dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/serviceIconElectrical"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/home_electrical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="360dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/bookServiceBtnElectrical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/primary_blue"
+        android:padding="5dp"
+        android:text="Schedule Electrical Wiring Service"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        tools:ignore="MissingConstraints,TextSizeCheck"
+        tools:layout_editor_absoluteX="165dp" />
+
+    <TextView
+        android:id="@+id/bookServiceBtnAppliances"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/primary_blue"
+        android:padding="5dp"
+        android:text="Schedule Appliances Repair Service"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView14"
+        tools:ignore="MissingConstraints,TextSizeCheck"
+        tools:layout_editor_absoluteX="162dp" />
+
+    <ImageView
+        android:id="@+id/serviceIconAppliances"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/home_appliance"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="536dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/serviceDescriptionAppliances"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Service Details"
+        android:textColor="@color/black"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="586dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:text="Have a broken washing machine? television? or rice cooker? We got you covered! Our skilled appliance technicians will help you maintain and repair your appliances. "
+        android:textColor="@color/black"
+        android:textSize="11dp"
+        app:layout_constraintTop_toBottomOf="@+id/serviceDescriptionAppliances"
+        tools:ignore="MissingConstraints,TextSizeCheck"
+        tools:layout_editor_absoluteX="32dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
