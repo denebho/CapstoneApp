@@ -29,10 +29,10 @@ class AyosDetailedFragment : Fragment() {
             val servicedescription = args.getString("description", "Lorem ipsum")
 
             // Update the UI with detailed information
-            binding.serviceIcon.setImageResource(image)
-            binding.serviceType.text = servicetype
-            binding.serviceProvider.text = serviceprovider
-            binding.serviceDescription.text = servicedescription
+//            binding.serviceIcon.setImageResource(image)
+//            binding.serviceType.text = servicetype
+//            binding.serviceProvider.text = serviceprovider
+//            binding.serviceDescription.text = servicedescription
         }
     }
 }

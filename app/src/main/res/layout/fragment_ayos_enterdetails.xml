@@ -71,6 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="When would you like to schedule this service?"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/serviceDescription"
         app:layout_constraintTop_toBottomOf="@+id/serviceDescription" />
 
@@ -86,27 +87,61 @@
 
     <EditText
         android:id="@+id/dateofserviceEt"
+        android:inputType="none"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
         android:gravity="start|top"
-        android:minHeight="48dp"
         android:hint="Enter date"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
-        android:id="@+id/textView0"
+        android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Anything specific you'd like them to know?"
-        app:layout_constraintStart_toStartOf="@+id/serviceDescription"
+        android:text="Time Slot"
+        android:textColor="@color/primary_blue"
+        app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/dateofserviceEt" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/timeSlotSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:hint="Select time slot"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" >
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textView0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:inputType="datetime"
+        android:text="Anything specific you'd like them to know?"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/serviceDescription"
+        app:layout_constraintTop_toBottomOf="@+id/timeSlotSpinner" />
 
     <TextView
         android:id="@+id/textView3"
@@ -123,7 +158,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
         android:gravity="start|top"

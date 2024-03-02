@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.ayosapp.databinding.ActivitySignupBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import java.util.Calendar
@@ -61,7 +62,6 @@ class SignupActivity : AppCompatActivity() {
         if (email.isNotEmpty() && password.isNotEmpty() && retypePassword.isNotEmpty()) {
             if (password == retypePassword) {
                 if (isValidPassword(password.trim())) {
-
                     firebaseAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener {
                             if (it.isSuccessful) {
@@ -72,9 +72,11 @@ class SignupActivity : AppCompatActivity() {
                                 ).show()
                                 // Sign in success, update UI with the signed-in user's information
                                 val user = firebaseAuth.currentUser
-                                // Store additional user data in the Realtime Database
+                                // Store user data in the Firestore Database
                                 user?.let {
                                     val database = FirebaseFirestore.getInstance()
+                                    val dbreal = FirebaseDatabase.getInstance()
+                                    val realtime = dbreal.getReference("user")
                                     val userId = user.uid
                                     val userData = HashMap<String, Any>()
                                     userData["userID"] = userId
@@ -84,19 +86,18 @@ class SignupActivity : AppCompatActivity() {
 
                                     database.collection("user").document(userId).set(userData)
                                         .addOnSuccessListener {
+                                            // Store additional user data in the Realtime Database
+                                            realtime.child(userId).setValue(UserInfo(userId,email))
                                             Toast.makeText(this,"User data saved successfully",Toast.LENGTH_SHORT).show()
                                             Log.d(TAG, "User data saved successfully.")
-
                                         }
                                         .addOnFailureListener { e ->
                                             Log.e(TAG, "Error saving user data: $e")
                                             Toast.makeText(this,"User data saved failed",Toast.LENGTH_SHORT).show()
-
                                         }
                                     val intent = Intent(this, WelcomeActivity::class.java)
                                     startActivity(intent)
                                 }
-
                             } else {
                                 Toast.makeText(
                                     this,
@@ -134,6 +135,10 @@ class SignupActivity : AppCompatActivity() {
 
     fun writeNewUser(userId: String, email: String, password: String, create_time: Date) {
         val customer = User(userId, email, password, create_time)
-
     }
+
+    data class UserInfo(
+        val uid: String? = null,
+        val email: String? = null
+    )
 }

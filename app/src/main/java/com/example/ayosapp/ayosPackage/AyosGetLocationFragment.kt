@@ -1,17 +1,15 @@
-package com.example.ayosapp
+package com.example.ayosapp.ayosPackage
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.ayosapp.ayosPackage.AddressFragment
-import com.example.ayosapp.ayosPackage.AyosBookingActivity
-import com.example.ayosapp.ayosPackage.AyosEnterDetailsFragment
+import com.example.ayosapp.R
 import com.example.ayosapp.databinding.FragmentAyosGetLocationBinding
 
 
-class AyosGetLocationFragment1 : Fragment() {
+class AyosGetLocationFragment : Fragment() {
 
     private lateinit var binding: FragmentAyosGetLocationBinding
 

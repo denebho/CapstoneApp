@@ -6,15 +6,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.ayosapp.databinding.FragmentProfileBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var firebaseAuth: FirebaseAuth
-    var session: LoginPref? = null
+    //var session: LoginPref? = null
     //TODO
     //kotlin.UninitializedPropertyAccessException: lateinit property session has not been initialized
 
@@ -23,8 +25,25 @@ class ProfileFragment : Fragment() {
     ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         firebaseAuth = FirebaseAuth.getInstance()
-        var session = (activity as MainActivity).session
-        session.checkLogin()
+        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+        val database = FirebaseDatabase.getInstance()
+        val userRef = database.getReference("user").child(userId)
+        val nametxt = view?.findViewById<TextView>(R.id.profileName)
+        val emailtxt = view?.findViewById<TextView>(R.id.profileEmail)
+//        userRef.get().addOnSuccessListener {
+//
+//        }
+        userRef.get().addOnSuccessListener {dataSnapshot ->
+            if (dataSnapshot.exists()) {
+
+                val userData = dataSnapshot.getValue(userinfo::class.java)
+                binding.profileName.text = "${userData?.name}"
+                binding.profileEmail.text = "${userData?.email}"
+                //Log.w("Chat Fragment", "${userData?.name}")
+            } else {
+                    // Document doesn't exist for the current user's UID
+            }
+        }
 
         binding.personalInfoTv.setOnClickListener {
             val nextFragment = PersonalinfoFragment()
@@ -58,7 +77,7 @@ class ProfileFragment : Fragment() {
             logoutConfirmationDialog()
             if(!isLoggedIn) {
                 firebaseAuth.signOut()
-                session.LogoutUser()
+                //session.LogoutUser()
             }
         }
 
@@ -71,8 +90,8 @@ class ProfileFragment : Fragment() {
         builder.setMessage("Are you sure you want to log out?")
         builder.setPositiveButton("YES") { dialog, _ ->
             isLoggedIn = false
+            //session!!.LogoutUser()
             firebaseAuth.signOut()
-            session?.LogoutUser()
             dialog.dismiss()
             navigateToLogin()
         }
@@ -89,15 +108,7 @@ class ProfileFragment : Fragment() {
     }
 
 
-
-    fun sendLoginToListener(): Boolean {
-        var listener: ((isLoggedIn: Boolean) -> Unit)? = null
-        listener?.invoke(isLoggedIn)
-        return isLoggedIn
-
-    }
-    private fun logoutSession(){
-        val bundle = Bundle()
-        bundle.putString("isLoggedIn", "false")
-    }
+data class userinfo (
+    val name: String?=null,
+    val email: String?=null)
 }

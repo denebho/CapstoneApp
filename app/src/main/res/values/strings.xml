@@ -95,9 +95,17 @@
         ease! The Ayos! app services the following categories—Ayos Electrical, Ayos Plumbing, Ayos Appliance, and Ayos Aircon—to which registered Ayos! workers
         can accept the booking and provide their services at the provided time and date. </string>
     <string name="title_activity_ayos_booking">AyosBookingActivity</string>
+<!--    Service Page-->
+    <string name="plumbingdesc">Our plumbing service provides a wide choice of solutions to your household issues such as clogged drains and toilets,leaky faucets and pipes, water heater issues, low water pressure, and a running toilet.</string>
+    <string name="aircondesc">The air conditioning unit has to be cleaned every two months, did you know that? Make an appointment with Ayos\! for cleaning so that your air conditioner is properly maintained.</string>
+    <string name="electricaldesc">Ayos\! technicians are experts who are capable of installing and repairing home wiring. Book now for electrical wiring services at reasonable prices!  </string>
+    <string name="appliancedesc">Have a broken washing machine? television? or rice cooker? We got you covered\! Our skilled appliance technicians will help you maintain and repair your appliances. </string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="first_fragment_label">Location Fragment</string>
+    <string name="second_fragment_label">Address Fragment</string>
+    <string name="third_fragment_label">Details Fragment</string>
+    <string name="fourth_fragment_label">Review Fragment</string>
+
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 

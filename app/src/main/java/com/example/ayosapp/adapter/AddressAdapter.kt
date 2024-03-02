@@ -2,10 +2,12 @@ package com.example.ayosapp.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ayosapp.ayosPackage.AyosGetLocationFragment
 import com.example.ayosapp.ayosPackage.AyosMap
 import com.example.ayosapp.data.AddressData
 import com.example.ayosapp.databinding.ItemAddressBinding
@@ -32,10 +34,6 @@ class AddressAdapter(
         return AddressViewHolder(
             ItemAddressBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         )
-
-//        val itemView=
-//            LayoutInflater.from(parent.context).inflate(R.layout.item_address,parent, false)
-//        return AddressViewHolder(itemView)
     }
 
     override fun getItemCount(): Int {
@@ -62,7 +60,14 @@ class AddressAdapter(
                 context.startActivity(intent)
             }
             holder.binding.addressCard.setOnClickListener(){
-
+//                val action = AddressFragmentDirections.actionMyFragmentToNextFragment(currentAddress.address, currentAddress.addressID)
+//                navController.navigate(action)
+                val intent = Intent(context, AyosGetLocationFragment::class.java)
+                intent.putExtra("address",currentAddress.address)
+                intent.putExtra("addressdetails",currentAddress.address_details)
+                intent.putExtra("addressid",currentAddress.addressID)
+                context.startActivity(intent)
+                Log.d("addressadapter debug", "card clicked")
             }
 
 
@@ -74,11 +79,9 @@ class AddressAdapter(
         }
 
     }
-
-//    fun setOnClickListener(listener: View.OnClickListener) {
-//        this.listener = listener
-//    }
-//    interface OnItemClickListener {
-//        fun onItemClick(data: AddressData)
-//    }
+    class MyViewHolder(val binding: ItemAddressBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: AddressData) {
+            // Bind data to views
+        }
+    }
 }

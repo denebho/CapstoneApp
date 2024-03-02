@@ -50,7 +50,7 @@
         android:id="@+id/textView7"
         android:layout_width="350dp"
         android:layout_height="60dp"
-        android:text="Our plumbing service provides a wide choice of solutions to your household issues such as clogged drains and toilets, leaky faucets and pipes, water heater issues, low water pressure, and a running toilet."
+        android:text="@string/plumbingdesc"
         android:textColor="@color/black"
         android:textSize="11dp"
         app:layout_constraintTop_toBottomOf="@+id/serviceDescriptionPlumbing"
@@ -85,12 +85,12 @@
         android:id="@+id/textView9"
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:text="The air conditioning unit has to be cleaned every two months, did you know that? Make an appointment with Ayos!  for cleaning so that your air conditioner is properly maintained."
+        android:text="@string/aircondesc"
         android:textColor="@color/black"
         android:textSize="11dp"
         tools:ignore="MissingConstraints,TextSizeCheck"
-        tools:layout_editor_absoluteX="19dp"
-        tools:layout_editor_absoluteY="259dp" />
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="267dp" />
 
     <TextView
         android:id="@+id/serviceDescriptionAirconditioning"
@@ -176,7 +176,7 @@
         android:id="@+id/textView10"
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:text="Ayos! technicians are experts who are capable of installing and repairing home wiring. Book now for electrical wiring services at reasonable prices!  "
+        android:text="@string/electricaldesc"
         android:textColor="@color/black"
         android:textSize="11dp"
         app:layout_constraintTop_toBottomOf="@+id/serviceDescriptionElectrical"
@@ -275,8 +275,8 @@
         android:id="@+id/textView14"
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:text="Have a broken washing machine? television? or rice cooker? We got you covered! Our skilled appliance technicians will help you maintain and repair your appliances. "
         android:textColor="@color/black"
+        android:text="@string/appliancedesc"
         android:textSize="11dp"
         app:layout_constraintTop_toBottomOf="@+id/serviceDescriptionAppliances"
         tools:ignore="MissingConstraints,TextSizeCheck"

@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import com.example.ayosapp.AyosGetLocationFragment1
 import com.example.ayosapp.R
 import com.example.ayosapp.databinding.ActivityAyosBookingBinding
 
@@ -33,7 +32,7 @@ private lateinit var binding: ActivityAyosBookingBinding
         } else if (fragmentTag == "fragment_tag_2") {
             displayFragment(AddressFragment())
         }*/
-        replaceFragment(AyosGetLocationFragment1())
+        replaceFragment(AyosGetLocationFragment())
 
 
     }

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:id="@+id/serviceAddress"
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:text="Service Address"
+        android:textColor="@color/primary_blue"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/itemAddressImage"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignTop="@+id/serviceAddress"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/baseline_place_24"
+        app:layout_constraintStart_toStartOf="@+id/serviceAddress"
+        app:layout_constraintTop_toBottomOf="@+id/serviceAddress" />
+
+    <TextView
+        android:id="@+id/itemAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/serviceAddress"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_toEndOf="@id/itemAddressImage"
+        android:text="203 Bayswater Road, Makati South Hills, Brgy. San Martin de Porres, Paranaque City"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/itemAddressImage"
+        app:layout_constraintTop_toTopOf="@+id/itemAddressImage" />
+
+    <TextView
+        android:id="@+id/servicedate"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignTop="@id/itemAddress"
+        android:layout_marginTop="16dp"
+        android:text="Service Date"
+        android:textColor="@color/primary_blue"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/serviceAddress"
+        app:layout_constraintTop_toBottomOf="@+id/itemAddress" />
+
+    <TextView
+        android:id="@+id/itemDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/servicedate"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="03/14/2024"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/servicedate"
+        app:layout_constraintTop_toBottomOf="@+id/servicedate" />
+
+    <TextView
+        android:id="@+id/serviceCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignTop="@id/servicedate"
+        android:layout_marginTop="16dp"
+        android:text="Service Category"
+        android:textColor="@color/primary_blue"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/serviceAddress"
+        app:layout_constraintTop_toBottomOf="@+id/itemDate" />
+
+    <TextView
+        android:id="@+id/itemCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/serviceCategory"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Category"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/serviceAddress"
+        app:layout_constraintTop_toBottomOf="@+id/serviceCategory" />
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignTop="@+id/itemCategory"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemCategory" />
+
+    <ImageView
+        android:id="@+id/itemImage"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:src="@drawable/baseline_person_24"
+        app:layout_constraintStart_toStartOf="@+id/serviceAddress"
+        app:layout_constraintTop_toBottomOf="@+id/line2" />
+
+    <ImageView
+        android:id="@+id/chatImage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/baseline_email_24"
+        app:layout_constraintStart_toStartOf="@+id/itemImage"
+        app:layout_constraintTop_toBottomOf="@+id/itemImage" />
+
+    <TextView
+        android:id="@+id/workerName"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignTop="@id/line2"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:text="Worker Name"
+        android:textColor="@color/primary_blue"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/itemImage"
+        app:layout_constraintTop_toBottomOf="@+id/line2" />
+
+    <Button
+        android:id="@+id/confirmBtnMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Confirm Ayos"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Report an issue"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/primary_blue"
+        app:itemIconSize="30dp"
+        app:itemIconTint="@drawable/bottomicon_tint"
+        app:itemTextColor="@drawable/bottomicon_tint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

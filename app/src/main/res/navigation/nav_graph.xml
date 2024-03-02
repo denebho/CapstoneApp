@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--suppress NavigationFile -->
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
-
+    app:startDestination="@id/ayosGetLocationFragment">
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.ayosapp.ayosPackage.AyosGetlocationFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_ayos_enterdetails" >
-
+        android:id="@+id/ayosGetLocationFragment"
+        android:name="com.example.ayosapp.ayosPackage.AyosGetLocationFragment"
+        android:label="fragment_ayos_get_location"
+        tools:layout="@layout/fragment_ayos_get_location" >
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_ayosGetLocationFragment_to_addressFragment"
+            app:destination="@id/addressFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
+        android:id="@+id/addressFragment"
+        android:name="com.example.ayosapp.ayosPackage.AddressFragment"
+        android:label="fragment_address"
+        tools:layout="@layout/fragment_address" >
+        <action
+            android:id="@+id/action_addressFragment_to_ayosEnterDetailsFragment2"
+            app:destination="@id/ayosEnterDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ayosEnterDetailsFragment"
         android:name="com.example.ayosapp.ayosPackage.AyosEnterDetailsFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_ayos_reviewbooking" >
-
+        android:label="AyosEnterDetailsFragment"
+        tools:layout="@layout/fragment_ayos_enterdetails">
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_ayosEnterDetailsFragment_to_ayosReviewBookingFragment"
+            app:destination="@id/ayosReviewBookingFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/ayosReviewBookingFragment"
+        android:name="com.example.ayosapp.ayosPackage.AyosReviewBookingFragment"
+        android:label="AyosReviewBookingFragment"
+        tools:layout="@layout/fragment_ayos_reviewbooking"/>
 </navigation>

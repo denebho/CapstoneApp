@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.ayosapp.chat.ChatListFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 
@@ -45,6 +46,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.profile -> {
                     replaceFragment(ProfileFragment())
+                    true
+                }
+                R.id.chat -> {
+                    replaceFragment(ChatListFragment())
                     true
                 }
                 else -> false

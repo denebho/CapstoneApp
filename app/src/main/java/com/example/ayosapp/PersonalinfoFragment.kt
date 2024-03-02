@@ -46,6 +46,7 @@ class PersonalinfoFragment : Fragment() {
         val userRef = db.collection("user")
         val query = db.collection("user").whereEqualTo("userID", userId)
 
+
         val firstName = binding.personalfirstnameEt
         val lastName = binding.personallastnameEt
         val dateOfBirth = binding.personaldobEt
@@ -89,6 +90,7 @@ class PersonalinfoFragment : Fragment() {
 
         binding.cancelBtn.setOnClickListener {
             //TODO go back to profilefragment
+            //requireActivity().onBackPressed()
         }
 
         binding.saveBtn.setOnClickListener{
