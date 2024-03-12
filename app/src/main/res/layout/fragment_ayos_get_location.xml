@@ -20,7 +20,7 @@ tools:context=".ayosPackage.AyosGetLocationFragment"
     app:layout_constraintTop_toTopOf="parent" />
 
 <ImageView
-    android:id="@+id/serviceIcon"
+    android:id="@+id/serviceIconAyos"
     android:layout_width="50dp"
     android:layout_height="50dp"
     android:layout_marginStart="8dp"
@@ -38,9 +38,9 @@ tools:context=".ayosPackage.AyosGetLocationFragment"
     android:text="Service Type"
     android:textColor="@color/primary_blue"
     android:textStyle="bold"
-    app:layout_constraintBottom_toBottomOf="@+id/serviceIcon"
-    app:layout_constraintStart_toEndOf="@+id/serviceIcon"
-    app:layout_constraintTop_toTopOf="@+id/serviceIcon" />
+    app:layout_constraintBottom_toBottomOf="@+id/serviceIconAyos"
+    app:layout_constraintStart_toEndOf="@+id/serviceIconAyos"
+    app:layout_constraintTop_toTopOf="@+id/serviceIconAyos" />
 
 
 <TextView
@@ -50,8 +50,8 @@ tools:context=".ayosPackage.AyosGetLocationFragment"
     android:layout_marginStart="16dp"
     android:text="Description"
     app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintStart_toStartOf="@+id/serviceIcon"
-    app:layout_constraintTop_toBottomOf="@+id/serviceIcon"
+    app:layout_constraintStart_toStartOf="@+id/serviceIconAyos"
+    app:layout_constraintTop_toBottomOf="@+id/serviceIconAyos"
     app:layout_constraintVertical_bias="0.0" />
 
     <TextView

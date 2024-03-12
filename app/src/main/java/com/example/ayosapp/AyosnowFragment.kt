@@ -1,13 +1,11 @@
 package com.example.ayosapp
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.Button
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.ayosapp.adapter.AyosAdapter
 import com.example.ayosapp.data.AyosData
@@ -32,16 +30,17 @@ class AyosnowFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val aircondesc = getString(R.string.aircondesc)
+        val appliancedesc = getString(R.string.appliancedesc)
+        val electricaldesc = getString(R.string.electricaldesc)
+        val plumbingdesc = getString(R.string.plumbingdesc)
         val imageList = intArrayOf(R.drawable.home_aircon, R.drawable.home_appliance, R.drawable.home_electrical, R.drawable.home_plumbing)
-        val typeList = arrayOf("Ayos Aircon", "Ayos Appliance", "Ayos Electrical", "Ayos Plumbing")
-        val providerList = arrayOf("Kuya Eddie", "Kuya Wil", "Kuya Kuya", "Diko Nalam")
-        val descriptionList = arrayOf("Cash", "Gcash", "Cash", "Gcash")
-
+        val typeList = arrayOf("Air Conditioning Service", "Appliance Repair Service", "Electrical Wiring Service", "Plumbing Service")
+        val descriptionList = arrayOf(aircondesc, appliancedesc, electricaldesc, plumbingdesc)
 
         for (i in imageList.indices) {
             serviceData = AyosData(
-                imageList[i], typeList[i], providerList[i], descriptionList[i])
+                imageList[i], typeList[i], descriptionList[i])
             serviceData?.let { dataArrayList.add(it) }
         }
 
@@ -55,7 +54,6 @@ class AyosnowFragment : Fragment() {
                     arguments = Bundle().apply {
                         putInt("image", imageList[i])
                         putString("service type", typeList[i])
-                        putString("service provider", providerList[i])
                         putString("description", descriptionList[i])
                     }
                 }
@@ -73,5 +71,4 @@ class AyosnowFragment : Fragment() {
         //fragmentManager = supportFragmentManager
         fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
     }
-
 }

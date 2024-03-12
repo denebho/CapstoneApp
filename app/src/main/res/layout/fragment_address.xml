@@ -7,7 +7,7 @@
     tools:context=".ayosPackage.AddressFragment">
 
     <Button
-        android:id="@+id/addAddressbtn"
+        android:id="@+id/addAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -25,7 +25,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addAddressbtn"
+        app:layout_constraintTop_toBottomOf="@+id/addAddress"
         tools:listitem="@layout/item_address" />
 
 

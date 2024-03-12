@@ -1,4 +1,7 @@
 package com.example.ayosapp.data
 
-class AyosData (val image : Int, val serviceType : String, val serviceProvider : String, val serviceDescription : String){
+class AyosData (
+    val image : Int,
+    val serviceType : String,
+    val serviceDescription : String){
 }

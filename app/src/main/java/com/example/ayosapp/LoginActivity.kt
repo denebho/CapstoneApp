@@ -13,36 +13,13 @@ class LoginActivity : AppCompatActivity() {
     //private lateinit var session: LoginPref
 
     var email: String? = null
-    var password:kotlin.String? = null
+    var password: kotlin.String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //val SHARED_PREFS = "shared_prefs"
-        //val EMAIL_KEY = "email_key"
-        //var sharedpreferences: SharedPreferences? = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
         firebaseAuth = FirebaseAuth.getInstance()
-        //lateinit var session: LoginPref
-        //session = LoginPref(this)
-/*
-        if (session.isLoggedIn()){
-            var i : Intent = Intent(applicationContext, MainActivity::class.java)
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(i)
-            finish()
-        }*/
-
-        // getting the data which is stored in shared preferences.
-        ///sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
-
-        // in shared prefs inside get string method
-        // we are passing key value as EMAIL_KEY and
-        // default value is
-        // set to null if not present.
-        //email = sharedpreferences?.getString("EMAIL_KEY", null)
-        //password = sharedpreferences?.getString("PASSWORD_KEY", null)
-
 
         binding.loginBtn.setOnClickListener {
             val email = binding.emailEt.text.toString()
@@ -59,6 +36,8 @@ class LoginActivity : AppCompatActivity() {
                     } else {
                         Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
                     }
+                }.addOnFailureListener{
+                    Toast.makeText(this, "Invalid login credentials, please try again", Toast.LENGTH_SHORT).show()
                 }
             } else {
                 Toast.makeText(this, "Fields cannot be empty.", Toast.LENGTH_SHORT).show()

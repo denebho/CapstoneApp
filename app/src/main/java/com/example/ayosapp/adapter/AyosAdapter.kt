@@ -20,14 +20,12 @@ class AyosAdapter(context: Context, dataArrayList: ArrayList<AyosData>):
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_services, parent, false)
         }
-        val serviceIcon = convertView!!.findViewById<ImageView>(R.id.serviceIcon)
-        val serviceType = convertView.findViewById<TextView>(R.id.serviceType)
-        val serviceProvider = convertView.findViewById<TextView>(R.id.serviceProvider)
-        val serviceDescription = convertView.findViewById<TextView>(R.id.serviceDescription)
+        val serviceIcon = convertView!!.findViewById<ImageView>(R.id.serviceIconAyos)
+        val serviceType = convertView.findViewById<TextView>(R.id.serviceTypeAyos)
+        val serviceDescription = convertView.findViewById<TextView>(R.id.serviceDetailsAyos)
 
         serviceIcon.setImageResource(serviceData!!.image)
         serviceType.text = serviceData.serviceType
-        serviceProvider.text = serviceData.serviceProvider
         serviceDescription.text = serviceData.serviceDescription
 
         return convertView

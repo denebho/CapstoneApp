@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -105,6 +106,8 @@ class ChatFragment : Fragment() {
                             .setValue(messageObject)
                     }
                 messageBox.setText("")
+            }else{
+                Toast.makeText(requireActivity(), "Message is empty", Toast.LENGTH_SHORT).show()
             }
         }
 

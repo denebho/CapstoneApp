@@ -7,18 +7,15 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.ayosapp.R
 import com.example.ayosapp.databinding.FragmentAddAddressBinding
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.firestore
 import java.util.Calendar
 
 class addAddressFragment : Fragment() {
     private lateinit var binding: FragmentAddAddressBinding
-    private lateinit var firebaseAuth: FirebaseAuth
-    private var one : Button? = null
-    private var db = Firebase.firestore
+    private var addbtn : Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -47,11 +44,16 @@ class addAddressFragment : Fragment() {
         // Assuming you have a collection reference to your documents
         val collectionRef = db.collection("address")
         // Create a new document with an automatically generated ID
-
+        addbtn = view.findViewById(R.id.addAddressbtn)
 
         binding.locationTxt.text = location
         if(!addressdetails.isNullOrBlank()){
             binding.detailsEt.setText(addressdetails)
+            val btnstring = getString(R.string.editaddress)
+            addbtn?.text = btnstring
+        }else{
+            val btnstring = getString(R.string.addaddress)
+            addbtn?.text = btnstring
         }
         if (!instruction.isNullOrBlank()) {
             binding.instructionsEt.setText(instruction)
@@ -122,8 +124,12 @@ class addAddressFragment : Fragment() {
                         Toast.makeText(requireActivity(), "Successfully edited", Toast.LENGTH_SHORT)
                             .show()
                         requireActivity().finish()
-                    }.addOnFailureListener() {
-
+                    }.addOnFailureListener {
+                        Toast.makeText(
+                            requireActivity(),
+                            "Something happened, please try again later",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }else{
                     Toast.makeText(

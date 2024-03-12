@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.text.isDigitsOnly
 import androidx.fragment.app.Fragment
 import com.example.ayosapp.databinding.FragmentPersonalinfoBinding
 import com.github.dhaval2404.imagepicker.ImagePicker
@@ -97,21 +98,28 @@ class PersonalinfoFragment : Fragment() {
             val profilequery = db.collection("user").whereEqualTo("userID", userId)
             val timeNow = Calendar.getInstance().time
 
-            profilequery.get().addOnSuccessListener {
-                val updateMap = mapOf(
-                    "first_name" to firstName.text.toString(),
-                    "last_name" to lastName.text.toString(),
-                    "date_of_birth" to dateOfBirth.text.toString(),
-                    "mobile_number" to mobileNumber.text.toString(),
-                    "update_time" to timeNow
-                )
+            if(firstName.text.isNotEmpty() && lastName.text.isNotEmpty() && dateOfBirth.text.isNotEmpty() && mobileNumber.text.isNotEmpty()) {
+                if (mobileNumber.text.trim().isDigitsOnly()) {
+                    profilequery.get().addOnSuccessListener {
+                        val updateMap = mapOf(
+                            "first_name" to firstName.text.toString(),
+                            "last_name" to lastName.text.toString(),
+                            "date_of_birth" to dateOfBirth.text.toString(),
+                            "mobile_number" to mobileNumber.text.toString().trim(),
+                            "update_time" to timeNow
+                        )
 
-                db.collection("user").document(userId).update(updateMap)
+                        db.collection("user").document(userId).update(updateMap)
 
-                Toast.makeText(requireActivity(), "Successfully edited", Toast.LENGTH_SHORT).show()
-            }.addOnFailureListener {
-                Toast.makeText(requireActivity(),"User data save failed",Toast.LENGTH_SHORT).show()
-
+                        Toast.makeText(requireActivity(), "Successfully edited", Toast.LENGTH_SHORT).show()
+                    }.addOnFailureListener {
+                        Toast.makeText(requireActivity(),"User data save failed",Toast.LENGTH_SHORT).show()
+                    }
+                }else{
+                    Toast.makeText(requireActivity(),"Mobile number must contain the digits only ",Toast.LENGTH_SHORT).show()
+                }
+            }else{
+                Toast.makeText(requireActivity(),"Fields cannot be empty",Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -46,6 +46,7 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
     implementation ("com.github.paymaya:paymaya-android-sdk-v2:v2.2.0")
+//    implementation ("com.paymaya.sdk:paymaya-sdk:2.8.0")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")

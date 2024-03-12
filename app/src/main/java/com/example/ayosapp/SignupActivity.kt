@@ -88,26 +88,27 @@ class SignupActivity : AppCompatActivity() {
                                         .addOnSuccessListener {
                                             // Store additional user data in the Realtime Database
                                             realtime.child(userId).setValue(UserInfo(userId,email))
-                                            Toast.makeText(this,"User data saved successfully",Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(this,"Registered successfully",Toast.LENGTH_SHORT).show()
                                             Log.d(TAG, "User data saved successfully.")
+                                            val intent = Intent(this, WelcomeActivity::class.java)
+                                            startActivity(intent)
                                         }
                                         .addOnFailureListener { e ->
                                             Log.e(TAG, "Error saving user data: $e")
-                                            Toast.makeText(this,"User data saved failed",Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(this,"Registration failed, please try again",Toast.LENGTH_SHORT).show()
                                         }
-                                    val intent = Intent(this, WelcomeActivity::class.java)
-                                    startActivity(intent)
                                 }
                             } else {
                                 Toast.makeText(
                                     this,
-                                    it.exception.toString(),
+                                    "Registration failed, please try again",
                                     Toast.LENGTH_SHORT
                                 ).show()
+                                Log.e(TAG,it.exception.toString())
                             }
                         }
                 } else {
-                    Toast.makeText(this, "Password must contain a ...", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Password must be 8 characters, have an uppercase, a lowercase, a number, and a special character", Toast.LENGTH_SHORT).show()
                 }
             }else {
                 Toast.makeText(this, "Password does not match.", Toast.LENGTH_SHORT).show()
