@@ -21,11 +21,10 @@ class ProfileFragment : Fragment() {
         firebaseAuth = FirebaseAuth.getInstance()
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
         val database = FirebaseDatabase.getInstance()
-        val userRef = database.getReference("user").child(userId)
+        val userRef = database.getReference("customers").child(userId)
 
         userRef.get().addOnSuccessListener {dataSnapshot ->
             if (dataSnapshot.exists()) {
-
                 val userData = dataSnapshot.getValue(userinfo::class.java)
                 binding.profileName.text = "${userData?.name}"
                 binding.profileEmail.text = "${userData?.email}"

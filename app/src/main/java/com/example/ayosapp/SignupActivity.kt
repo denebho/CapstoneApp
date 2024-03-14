@@ -14,8 +14,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
+import java.security.MessageDigest
 import java.util.Calendar
-import java.util.Date
 
 class SignupActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding
@@ -79,12 +79,12 @@ class SignupActivity : AppCompatActivity() {
                                     val realtime = dbreal.getReference("user")
                                     val userId = user.uid
                                     val userData = HashMap<String, Any>()
-                                    userData["userID"] = userId
+                                    userData["user_id"] = userId
                                     userData["email"] = email
-                                    userData["password"] = password
+                                    userData["password"] = hashPassword(password)
                                     userData["create_time"] = timeNow
 
-                                    database.collection("user").document(userId).set(userData)
+                                    database.collection("customers").document(userId).set(userData)
                                         .addOnSuccessListener {
                                             // Store additional user data in the Realtime Database
                                             realtime.child(userId).setValue(UserInfo(userId,email))
@@ -127,15 +127,10 @@ class SignupActivity : AppCompatActivity() {
         return true
     }
 
-
-
-    data class User(val userID: String?, val email: String? = null,val password: String?,val create_time: Date = Date()) {
-        // Null default values create a no-argument default constructor, which is needed
-        // for deserialization from a DataSnapshot.
-    }
-
-    fun writeNewUser(userId: String, email: String, password: String, create_time: Date) {
-        val customer = User(userId, email, password, create_time)
+    fun hashPassword(password: String): String {
+        val digest = MessageDigest.getInstance("SHA-256")
+        val hashBytes = digest.digest(password.toByteArray(Charsets.UTF_8))
+        return hashBytes.joinToString("") { "%02x".format(it) }
     }
 
     data class UserInfo(

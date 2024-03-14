@@ -43,7 +43,7 @@ class PersonalinfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
-        val userRef = db.collection("user")
+        val userRef = db.collection("customers")
 
 
         val firstName = binding.personalfirstnameEt
@@ -51,7 +51,7 @@ class PersonalinfoFragment : Fragment() {
         val dateOfBirth = binding.personaldobEt
         val mobileNumber = binding.personalmobilenumberEt
 
-        userRef.whereEqualTo("userID", userId).get().addOnSuccessListener{documents ->
+        userRef.whereEqualTo("user_id", userId).get().addOnSuccessListener{documents ->
             for (document in documents) {
                 // Access data from the document
                 val data = document.data
@@ -92,7 +92,7 @@ class PersonalinfoFragment : Fragment() {
         }
 
         binding.saveBtn.setOnClickListener{
-            val profilequery = db.collection("user").whereEqualTo("userID", userId)
+            val profilequery = db.collection("customers").whereEqualTo("user_id", userId)
             val timeNow = Calendar.getInstance().time
 
             if(firstName.text.isNotEmpty() && lastName.text.isNotEmpty() && dateOfBirth.text.isNotEmpty() && mobileNumber.text.isNotEmpty()) {
@@ -106,7 +106,7 @@ class PersonalinfoFragment : Fragment() {
                             "update_time" to timeNow
                         )
 
-                        db.collection("user").document(userId).update(updateMap)
+                        db.collection("customers").document(userId).update(updateMap)
 
                         Toast.makeText(requireActivity(), "Successfully edited", Toast.LENGTH_SHORT).show()
                     }.addOnFailureListener {
