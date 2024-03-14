@@ -10,11 +10,12 @@
 
     <ImageView
         android:id="@+id/backButton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/baseline_arrow_back_24"
+        android:src="@drawable/navigate_before"
+        android:background="@drawable/background_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,18 +23,17 @@
         android:id="@+id/serviceIconAyos"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="40dp"
         android:src="@drawable/home_plumbing"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButton" />
-
+        app:layout_constraintStart_toEndOf="@+id/backButton"
+        app:layout_constraintTop_toTopOf="@+id/backButton" />
 
     <TextView
-        android:id="@+id/serviceProvider"
+        android:id="@+id/serviceType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="8dp"
         android:text="Service Type"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/serviceIconAyos"
@@ -41,17 +41,16 @@
         app:layout_constraintTop_toTopOf="@+id/serviceIconAyos" />
 
 
-    <TextView
-        android:id="@+id/serviceDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Description\nLorem ipsum"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/serviceIconAyos"
-        app:layout_constraintTop_toBottomOf="@+id/serviceIconAyos"
-        app:layout_constraintVertical_bias="0.0" />
+    <!--    <TextView
+            android:id="@+id/serviceDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Description\nLorem ipsum"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/serviceIconAyos"
+            app:layout_constraintTop_toBottomOf="@+id/serviceIconAyos"
+            app:layout_constraintVertical_bias="0.0" />-->
 
     <TextView
         android:id="@+id/bookServiceBtn"
@@ -87,11 +86,12 @@
         android:id="@+id/textViewLoc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="Job Location"
         android:textColor="#706D6D"
-        app:layout_constraintStart_toStartOf="@+id/serviceDescription"
-        app:layout_constraintTop_toBottomOf="@+id/serviceDescription" />
+        app:layout_constraintStart_toStartOf="@+id/backButton"
+        app:layout_constraintTop_toBottomOf="@+id/backButton" />
 
     <EditText
         android:id="@+id/joblocation"
@@ -101,12 +101,37 @@
         android:layout_marginEnd="32dp"
         android:ems="10"
         android:gravity="start|top"
-        android:inputType="textMultiLine"
+        android:inputType="none"
+        android:editable="false"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewLoc" />
 
+    <TextView
+        android:id="@+id/textViewSched"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Scheduled Time"
+        android:textColor="#706D6D"
+        app:layout_constraintStart_toStartOf="@+id/textViewLoc"
+        app:layout_constraintTop_toBottomOf="@+id/joblocation" />
+
+    <EditText
+        android:id="@+id/timeScheduled"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="none"
+        android:editable="false"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textViewSched"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSched" />
     <TextView
         android:id="@+id/textviewPrice"
         android:layout_width="wrap_content"
@@ -114,19 +139,19 @@
         android:layout_marginTop="8dp"
         android:text="Note to worker"
         android:textColor="#706D6D"
-        app:layout_constraintStart_toStartOf="@+id/serviceDescription"
-        app:layout_constraintTop_toBottomOf="@+id/joblocation" />
+        app:layout_constraintStart_toStartOf="@+id/textViewLoc"
+        app:layout_constraintTop_toBottomOf="@+id/timeScheduled" />
 
     <EditText
-        android:id="@+id/price"
+        android:id="@+id/noteToWorker"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
         android:gravity="start|top"
-
-        android:inputType="textMultiLine"
+        android:inputType="none"
+        android:editable="false"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -138,24 +163,55 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Total service price"
+        android:text="Initial service price"
         android:textColor="#706D6D"
-        app:layout_constraintStart_toStartOf="@+id/serviceDescription"
-        app:layout_constraintTop_toBottomOf="@+id/price" />
+        app:layout_constraintStart_toStartOf="@+id/textViewLoc"
+        app:layout_constraintTop_toBottomOf="@+id/noteToWorker" />
+
+
 
     <EditText
-        android:id="@+id/price2"
+        android:id="@+id/initalPrice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
         android:gravity="start|top"
-
-        android:inputType="textMultiLine"
+        android:inputType="none"
+        android:editable="false"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textviewPrice2" />
+    <TextView
+        android:id="@+id/textviewPrice3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Payment Method"
+        android:textColor="#706D6D"
+        app:layout_constraintStart_toStartOf="@+id/textViewLoc"
+        app:layout_constraintTop_toBottomOf="@+id/initalPrice" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/paymentMethodSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textviewPrice3">
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Choose Method"
+            android:inputType="none"/>
+    </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

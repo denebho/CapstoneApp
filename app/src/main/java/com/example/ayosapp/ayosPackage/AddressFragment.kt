@@ -7,36 +7,28 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ayosapp.R
 import com.example.ayosapp.adapter.AddressAdapter
+import com.example.ayosapp.adapter.AddressAdapter.OnItemClickListener
 import com.example.ayosapp.data.AddressData
 import com.example.ayosapp.databinding.FragmentAddressBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-interface DataPassListener {
-    fun onDataPassed(data: String)
-}
-class AddressFragment : Fragment(), AdapterView.OnItemClickListener {
+
+class AddressFragment : Fragment(), OnItemClickListener {
     private lateinit var binding: FragmentAddressBinding
-    private lateinit var addressAdapter: AddressAdapter
     private var dataArrayList = ArrayList<AddressData>()
-    private lateinit var addressData: AddressData
     private lateinit var recyclerView: RecyclerView
-    private var dataPassListener: DataPassListener? = null
-    private lateinit var db: FirebaseFirestore
-    //private var db = Firebase.firestore
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         binding = FragmentAddressBinding.inflate(inflater, container, false)
         return binding.root
-
-
 
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,64 +38,48 @@ class AddressFragment : Fragment(), AdapterView.OnItemClickListener {
         val layoutManager = LinearLayoutManager(requireActivity())
         recyclerView.layoutManager = layoutManager
         dataArrayList = arrayListOf()
-//        var addressAdapter = AddressAdapter(dataArrayList, object :
-//            AddressAdapter.OnItemClickListener {
-//            override fun onItemClick(data: AddressData) {
-//                // Handle item click event
-//            }
-//        })
-        //recyclerView.adapter = addressAdapter
+        val bundle = arguments
+        val service = bundle?.getString("serviceCode","").toString()
 
-        fetchDataFromFirestore()
+        fetchDataFromFirestore(service)
 
-        binding.addAddressbtn.setOnClickListener(){
+        binding.addAddress.setOnClickListener(){
             val intent = Intent(activity, AyosMap::class.java)
             startActivity(intent)
         }
-
-
-//        binding.addressList.setOnItemClickListener(){parent, view, position, id ->
-//            val selectedItem = list.getItemAtPosition(position) as String
-//        }
-
-
-//
     }
-    fun setDataPassListener(listener: DataPassListener) {
-        this.dataPassListener = listener
-    }
-
-    private fun fetchDataFromFirestore() {
+    private fun fetchDataFromFirestore(service: String) {
         val db = FirebaseFirestore.getInstance()
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
         val addressRef = db.collection("address")
-
+        val bundle = arguments
         addressRef.whereEqualTo("UID", userId).get()
             .addOnSuccessListener { result ->
                 for (document in result) {
                     dataArrayList.add(document.toObject(AddressData::class.java))
                 }
-                val adapter = AddressAdapter(dataArrayList, requireActivity())
+                val adapter = AddressAdapter(dataArrayList, requireActivity(), service)
                 recyclerView.adapter = adapter
             }
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents.", exception)
             }
+    }
 
-
+    override fun onItemClick(position: Int) {
+        // Navigate to another fragment using FragmentTransaction
+        val fragment = AyosGetLocationFragment()
+        // Pass data if needed
+        // fragment.arguments = bundle
+        Log.d("addressfrag","onitemclick pass")
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.frame_container_main, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
 
 
-
-    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-
-        requireActivity().supportFragmentManager.popBackStack()
-//        val previousFragment = requireActivity().supportFragmentManager.findFragmentByTag("getLocationFrag") as? PreviousFragment
-//        previousFragment?.setData(dataArrayList)
-//        requireActivity().supportFragmentManager.popBackStack()
-
-    }
 
 //    fun EventChangeListener(){
 //        db = FirebaseFirestore.getInstance()

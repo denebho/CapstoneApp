@@ -40,6 +40,7 @@ class addAddressFragment : Fragment() {
         val instruction = bundle?.getString("instructions")
         val addressid = bundle?.getString("addressid")
         val addressdetails = bundle?.getString("addressdetails")
+
         val db = FirebaseFirestore.getInstance()
         // Assuming you have a collection reference to your documents
         val collectionRef = db.collection("address")
@@ -62,7 +63,7 @@ class addAddressFragment : Fragment() {
         //(activity as AyosMap?)?.updateButtonVisibility()
 
         binding.backButton.setOnClickListener{
-
+            parentFragmentManager.popBackStack()
         }
 
         binding.addAddressbtn.setOnClickListener {

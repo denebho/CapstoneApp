@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.ayosapp.databinding.FragmentProfileBinding
@@ -16,11 +15,6 @@ import com.google.firebase.database.FirebaseDatabase
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var firebaseAuth: FirebaseAuth
-    //var session: LoginPref? = null
-    //TODO
-    //kotlin.UninitializedPropertyAccessException: lateinit property session has not been initialized
-
-    var isLoggedIn: Boolean = true
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
@@ -28,11 +22,7 @@ class ProfileFragment : Fragment() {
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
         val database = FirebaseDatabase.getInstance()
         val userRef = database.getReference("user").child(userId)
-        val nametxt = view?.findViewById<TextView>(R.id.profileName)
-        val emailtxt = view?.findViewById<TextView>(R.id.profileEmail)
-//        userRef.get().addOnSuccessListener {
-//
-//        }
+
         userRef.get().addOnSuccessListener {dataSnapshot ->
             if (dataSnapshot.exists()) {
 
@@ -75,10 +65,6 @@ class ProfileFragment : Fragment() {
 
         binding.logOutTv.setOnClickListener {
             logoutConfirmationDialog()
-            if(!isLoggedIn) {
-                firebaseAuth.signOut()
-                //session.LogoutUser()
-            }
         }
 
         return binding.root
@@ -89,7 +75,7 @@ class ProfileFragment : Fragment() {
         builder.setTitle("LOG OUT")
         builder.setMessage("Are you sure you want to log out?")
         builder.setPositiveButton("YES") { dialog, _ ->
-            isLoggedIn = false
+            //isLoggedIn = false
             //session!!.LogoutUser()
             firebaseAuth.signOut()
             dialog.dismiss()

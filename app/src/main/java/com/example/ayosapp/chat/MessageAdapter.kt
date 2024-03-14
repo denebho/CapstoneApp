@@ -8,15 +8,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ayosapp.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 class MessageAdapter(
     val context: Context,
-    val messageList: ArrayList<Message>):
+    private val messageList: ArrayList<Message>):
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    val ITEM_RECEIVE = 1
-    val ITEM_SENT = 2
-
+    private val ITEM_RECEIVE = 1
+    private val ITEM_SENT = 2
+    val firebaseUser: FirebaseUser? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if(viewType==1){
             val view: View = LayoutInflater.from(context).inflate(R.layout.item_receive, parent, false)
@@ -29,6 +30,9 @@ class MessageAdapter(
 
     override fun getItemCount(): Int {
         return messageList.size
+    }
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
+
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

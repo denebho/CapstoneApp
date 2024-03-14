@@ -11,48 +11,51 @@ tools:context=".ayosPackage.AyosGetLocationFragment"
 
 <ImageView
     android:id="@+id/backButton"
-    android:layout_width="30dp"
-    android:layout_height="30dp"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
     android:layout_marginStart="8dp"
     android:layout_marginTop="16dp"
-    android:src="@drawable/baseline_arrow_back_24"
+    android:background="@drawable/background_button"
+    android:src="@drawable/navigate_before"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
 
-<ImageView
-    android:id="@+id/serviceIconAyos"
-    android:layout_width="50dp"
-    android:layout_height="50dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="16dp"
-    android:src="@drawable/home_plumbing"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/backButton" />
-
-<TextView
-    android:id="@+id/serviceType"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
-    android:layout_marginBottom="8dp"
-    android:text="Service Type"
-    android:textColor="@color/primary_blue"
-    android:textStyle="bold"
-    app:layout_constraintBottom_toBottomOf="@+id/serviceIconAyos"
-    app:layout_constraintStart_toEndOf="@+id/serviceIconAyos"
-    app:layout_constraintTop_toTopOf="@+id/serviceIconAyos" />
+    <ImageView
+        android:id="@+id/serviceIconAyos"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:src="@drawable/home_plumbing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serviceType" />
 
 
-<TextView
-    android:id="@+id/serviceDescription"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:text="Description"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintStart_toStartOf="@+id/serviceIconAyos"
-    app:layout_constraintTop_toBottomOf="@+id/serviceIconAyos"
-    app:layout_constraintVertical_bias="0.0" />
+    <TextView
+        android:id="@+id/serviceType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Service Type"
+        android:textColor="@color/primary_blue"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backButton"
+        android:textSize="30dp"/>
+
+    <TextView
+        android:id="@+id/serviceDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="40dp"
+        android:text="Description"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serviceIconAyos"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/bookServiceBtn"
@@ -71,21 +74,26 @@ tools:context=".ayosPackage.AyosGetLocationFragment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-<TextView
-    android:id="@+id/textView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    android:text="Where will the job be?"
-    app:layout_constraintStart_toStartOf="@+id/serviceDescription"
-    app:layout_constraintTop_toBottomOf="@+id/serviceDescription" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Where will the job be?"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serviceDescription" />
 
     <LinearLayout
         android:id="@+id/addressGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="16dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -106,7 +114,8 @@ tools:context=".ayosPackage.AyosGetLocationFragment"
             android:layout_marginStart="0dp"
             android:layout_marginTop="6dp"
             android:hint="Choose from address book"
-            android:inputType="none"/>
+            android:inputType="none"
+            android:editable="false" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

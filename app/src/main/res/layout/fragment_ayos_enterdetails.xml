@@ -9,11 +9,12 @@
 
     <ImageView
         android:id="@+id/backButton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/baseline_arrow_back_24"
+        android:src="@drawable/navigate_before"
+        android:background="@drawable/background_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,11 +22,10 @@
         android:id="@+id/serviceIconAyos"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="40dp"
         android:src="@drawable/home_plumbing"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButton" />
+        app:layout_constraintStart_toEndOf="@+id/backButton"
+        app:layout_constraintTop_toTopOf="@+id/backButton" />
 
     <TextView
         android:id="@+id/serviceType"
@@ -39,17 +39,6 @@
         app:layout_constraintStart_toEndOf="@+id/serviceIconAyos"
         app:layout_constraintTop_toTopOf="@+id/serviceIconAyos" />
 
-
-    <TextView
-        android:id="@+id/serviceDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Description\nLorem ipsum"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/serviceIconAyos"
-        app:layout_constraintTop_toBottomOf="@+id/serviceIconAyos"
-        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/bookServiceBtn"
@@ -69,11 +58,12 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="When would you like to schedule this service?"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/serviceDescription"
-        app:layout_constraintTop_toBottomOf="@+id/serviceDescription" />
+        app:layout_constraintStart_toStartOf="@+id/backButton"
+        app:layout_constraintTop_toBottomOf="@+id/serviceIconAyos" />
 
     <TextView
         android:id="@+id/textView2"
@@ -140,9 +130,8 @@
         android:inputType="datetime"
         android:text="Anything specific you'd like them to know?"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/serviceDescription"
+        app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/timeSlotSpinner" />
-
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -154,7 +143,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView0" />
 
     <EditText
-        android:id="@+id/detailsEtdateofserviceEt"
+        android:id="@+id/detailsEt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"

@@ -33,20 +33,54 @@ class AyosGetLocationFragment : Fragment() {
         val bundle = arguments
         val addressID = bundle?.getString("addressid","").toString()
         val addressline = bundle?.getString("address","").toString()
-        binding.addressGroup.setOnClickListener {
-            val nextFragment = AddressFragment()
+        val service = bundle?.getString("serviceCode","").toString()
 
+        val description = binding.serviceDescription
+        val type = binding.serviceType
+        val icon = binding.serviceIconAyos
+        if(service != ""){
+            when (service) {
+                "Appliance"->{
+                    icon.setImageResource(R.drawable.home_appliance)
+                    type.setText(R.string.ayosAppliance)
+                    description.setText(R.string.appliancedesc)
+                }
+                "Electrical"->{
+                    icon.setImageResource(R.drawable.home_electrical)
+                    type.setText(R.string.ayosElectrical)
+                    description.setText(R.string.electricaldesc)
+                }
+                "Plumbing"->{
+                    icon.setImageResource(R.drawable.home_plumbing)
+                    type.setText(R.string.ayosPlumbing)
+                    description.setText(R.string.plumbingdesc)
+                }
+                "Aircon"->{
+                    icon.setImageResource(R.drawable.home_appliance)
+                    type.setText(R.string.ayosAircon)
+                    description.setText(R.string.aircondesc)
+                }
+            }
+        }
+
+        binding.addressicon.setOnClickListener {
+            val nextFragment = AddressFragment()
+            bundle?.putString("serviceCode", service)
+            nextFragment.arguments = bundle
             parentFragmentManager.beginTransaction()
-                .replace(R.id.frame_container_ayos, nextFragment, "getLocationFrag")
+                .replace(R.id.frame_container_main, nextFragment, "getLocationFrag")
                 .addToBackStack(null)
                 .commit()
         }
-        if (addressline.isNotEmpty()) {
-            //binding.addressEt.setText(value)
-        } else {
-            //binding.addressEt.text.clear()
+        binding.addressEt.setOnClickListener {
+            val nextFragment = AddressFragment()
+            bundle?.putString("serviceCode", service)
+            nextFragment.arguments = bundle
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.frame_container_main, nextFragment, "getLocationFrag")
+                .addToBackStack(null)
+                .commit()
         }
-
         binding.bookServiceBtn.setOnClickListener {
             if (binding.addressEt.text.isNotEmpty()) {
                 arguments = Bundle().apply {

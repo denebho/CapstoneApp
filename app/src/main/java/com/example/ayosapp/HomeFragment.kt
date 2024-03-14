@@ -1,6 +1,5 @@
 package com.example.ayosapp
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ayosapp.adapter.HomeAdapter
-import com.example.ayosapp.ayosPackage.AyosBookingActivity
+import com.example.ayosapp.ayosPackage.AyosGetLocationFragment
 import com.example.ayosapp.data.BookingsData
 import com.example.ayosapp.databinding.FragmentHomeBinding
 import com.google.firebase.Firebase
@@ -51,30 +50,43 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val bundle = Bundle()
 
         binding.homeApplianceIv.setOnClickListener{
-            val intent = Intent(activity, AyosBookingActivity::class.java)
-            intent.putExtra("serviceCode", "appliance")
-            intent.putExtra("fragmentTag", "fragment_tag_1")
-            startActivity(intent)
+            val nextFragment = AyosGetLocationFragment()
+            bundle.putString("serviceCode", "Appliance")
+            nextFragment.arguments = bundle
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.frame_container_main, nextFragment, "getLocationFrag")
+                .addToBackStack(null)
+                .commit()
         }
         binding.homeElectricIv.setOnClickListener{
-            val intent = Intent(activity, AyosBookingActivity::class.java)
-            intent.putExtra("serviceCode", "electrical")
-            intent.putExtra("fragmentTag", "fragment_tag_1")
-            startActivity(intent)
+            val nextFragment = AyosGetLocationFragment()
+            bundle.putString("serviceCode", "Electrical")
+            nextFragment.arguments = bundle
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.frame_container_main, nextFragment, "getLocationFrag")
+                .addToBackStack(null)
+                .commit()
         }
         binding.homePlumbingIv.setOnClickListener{
-            val intent = Intent(activity, AyosBookingActivity::class.java)
-            intent.putExtra("serviceCode", "plumbing")
-            intent.putExtra("fragmentTag", "fragment_tag_1")
-            startActivity(intent)
+            val nextFragment = AyosGetLocationFragment()
+            bundle.putString("serviceCode", "Plumbing")
+            nextFragment.arguments = bundle
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.frame_container_main, nextFragment, "getLocationFrag")
+                .addToBackStack(null)
+                .commit()
         }
         binding.homeAirconIv.setOnClickListener{
-            val intent = Intent(activity, AyosBookingActivity::class.java)
-            intent.putExtra("serviceCode", "aircon")
-            intent.putExtra("fragmentTag", "fragment_tag_1")
-            startActivity(intent)
+            val nextFragment = AyosGetLocationFragment()
+            bundle.putString("serviceCode", "Aircon")
+            nextFragment.arguments = bundle
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.frame_container_main, nextFragment, "getLocationFrag")
+                .addToBackStack(null)
+                .commit()
         }
 
 

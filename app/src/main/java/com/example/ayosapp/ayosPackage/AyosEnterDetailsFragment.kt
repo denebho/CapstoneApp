@@ -2,6 +2,7 @@ package com.example.ayosapp.ayosPackage
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,7 @@ private var _binding: FragmentAyosEnterdetailsBinding? = null
     private val binding get() = _binding!!
     private val calendar = Calendar.getInstance()
     private lateinit var btnDatePicker: EditText
+    private var timepicked : Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,28 +36,68 @@ private var _binding: FragmentAyosEnterdetailsBinding? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val bundle = arguments
-        val value = bundle?.getString("addressId")
+        val service = bundle?.getString("serviceCode")
+        val addressid = bundle?.getString("addressid")
+        val addressline = bundle?.getString("addressline")
+        var selectedTime:String? = null
+
+        val icon = binding.serviceIconAyos
+        val type = binding.serviceType
+        when (service) {
+            "Appliance" -> {
+                icon.setImageResource(R.drawable.home_appliance)
+                type.setText(R.string.ayosAppliance)
+            }
+            "Electrical"->{
+                icon.setImageResource(R.drawable.home_electrical)
+                type.setText(R.string.ayosElectrical)
+            }
+            "Plumbing"->{
+                icon.setImageResource(R.drawable.home_plumbing)
+                type.setText(R.string.ayosPlumbing)
+            }
+            "Aircon"->{
+                icon.setImageResource(R.drawable.home_appliance)
+                type.setText(R.string.ayosAircon)
+            }
+        }
 
         btnDatePicker = view.findViewById(R.id.dateofserviceEt)
         btnDatePicker.keyListener = null
         btnDatePicker.setOnClickListener {
-            // Show the DatePicker dialog
             showDatePicker()
         }
 
         binding.bookServiceBtn.setOnClickListener {
-
-            val nextFragment = AyosReviewBookingFragment()
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.frame_container_ayos, nextFragment)
-                .addToBackStack(null)
-                .commit()
+            //if (binding.dateofserviceEt.text.isNotEmpty() && binding.autoCompleteID.text.isNotEmpty()){
+                val nextFragment = AyosReviewBookingFragment()
+                bundle?.putString("serviceCode", service)
+                bundle?.putString("addressid",addressid )
+                bundle?.putString("addressline",addressline )
+                bundle?.putString("time", binding.autoCompleteID.text.toString())
+                Log.d("timepicker", binding.autoCompleteID.text.toString())
+                bundle?.putString("date", binding.dateofserviceEt.text.toString())
+                Log.d("timepicker", binding.dateofserviceEt.text.toString())
+                bundle?.putString("details", binding.detailsEt.text.toString())
+                nextFragment.arguments = bundle
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.frame_container_ayos, nextFragment)
+                    .addToBackStack(null)
+                    .commit()
+            //}else{
+            //    Toast.makeText(requireActivity(), "Please select a time and date to proceed.", Toast.LENGTH_SHORT).show()
+            //}
         }
 
         val timeSlots = mutableListOf<String>()
-        val initialTime = Calendar.getInstance()
+        val initialTime = Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, 8)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
 
-        for (i in 8 until 23) {
+        for (i in 1 until 16) {
             val time = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(initialTime.time)
             timeSlots.add(time)
             initialTime.add(Calendar.HOUR_OF_DAY, 1)
@@ -64,7 +106,7 @@ private var _binding: FragmentAyosEnterdetailsBinding? = null
             ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item, timeSlots)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
-        val timeSlotSpinner: AutoCompleteTextView = view.findViewById(R.id.timeSlotSpinner)
+        val timeSlotSpinner: AutoCompleteTextView = view.findViewById(R.id.autoCompleteID)
         timeSlotSpinner.setAdapter(adapter)
 
         timeSlotSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -74,12 +116,12 @@ private var _binding: FragmentAyosEnterdetailsBinding? = null
                 position: Int,
                 id: Long
             ) {
-                val selectedTime = timeSlots[position]
-                // Handle selected time
+                selectedTime = timeSlots[position]
+                timepicked = true
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("Not yet implemented")
+                timepicked = false
             }
         }
     }

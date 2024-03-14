@@ -17,24 +17,21 @@ private lateinit var binding: ActivityAyosBookingBinding
 
         binding = ActivityAyosBookingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val data = intent.getStringExtra("serviceCode")
-        val receivedIntent = intent
-        // Retrieve the fragment tag from the intent
-        val fragmentTag = intent.getStringExtra("fragmentTag")
+        val service = intent.getStringExtra("serviceCode")
+        val addressid = intent.getStringExtra("addressid")
+        val addressline = intent.getStringExtra("addressline")
+
         val bundle = Bundle().apply {
-            putString("key", "value")
+            putString("serviceCode", service)
+            putString("addressid", addressid)
+            putString("addressline",addressline)
         }
 
-        // Display the appropriate fragment based on the fragment tag
-        /*
-        if (fragmentTag == "fragment_tag_1") {
-            displayFragment(AyosGetLocationFragment1())
-        } else if (fragmentTag == "fragment_tag_2") {
-            displayFragment(AddressFragment())
-        }*/
-        replaceFragment(AyosGetLocationFragment())
-
-
+        val fragment = AyosEnterDetailsFragment()
+        fragment.arguments = bundle
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.frame_container_ayos, fragment)
+            .commit()
     }
     private fun replaceFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction().replace(R.id.frame_container_ayos, fragment).commit()

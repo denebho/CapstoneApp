@@ -43,9 +43,7 @@ class PersonalinfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
-        val ref = db.collection("user").document(userId)
         val userRef = db.collection("user")
-        val query = db.collection("user").whereEqualTo("userID", userId)
 
 
         val firstName = binding.personalfirstnameEt
@@ -90,8 +88,7 @@ class PersonalinfoFragment : Fragment() {
         }
 
         binding.cancelBtn.setOnClickListener {
-            //TODO go back to profilefragment
-            //requireActivity().onBackPressed()
+            parentFragmentManager.popBackStack()
         }
 
         binding.saveBtn.setOnClickListener{
@@ -132,9 +129,9 @@ class PersonalinfoFragment : Fragment() {
     private fun showDatePicker() {
         val timeNow = Calendar.getInstance().time
         val datePickerDialog = DatePickerDialog(
-            requireActivity(), {DatePicker, year: Int, monthOfYear: Int, dayOfMonth: Int ->
+            requireActivity(), {datePicker, year: Int, monthOfYear: Int, dayOfMonth: Int ->
                 // Create a new Calendar instance to hold the selected date
-                DatePicker.minDate = System.currentTimeMillis() - 1000
+                datePicker.minDate = System.currentTimeMillis() - 1000
                 val selectedDate = Calendar.getInstance()
                 // Set the selected date using the values received from the DatePicker dialog
                 selectedDate.set(year, monthOfYear, dayOfMonth)

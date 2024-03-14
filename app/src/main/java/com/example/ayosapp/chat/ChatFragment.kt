@@ -1,6 +1,7 @@
 package com.example.ayosapp.chat
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,12 +36,12 @@ class ChatFragment : Fragment() {
     var senderRoom: String? = null
     var currentTime: Date = Calendar.getInstance().getTime()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-
-        }
-    }
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        arguments?.let {
+//
+//        }
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -78,18 +79,15 @@ class ChatFragment : Fragment() {
         mDbRef.child("chats").child(senderRoom!!).child("messages")
             .addValueEventListener(object: ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-
                     messageList.clear()
-
                     for(postSnapshot in snapshot.children){
                         val message = postSnapshot.getValue(Message::class.java)
                         messageList.add(message!!)
                     }
                     messageAdapter.notifyDataSetChanged()
                 }
-
                 override fun onCancelled(error: DatabaseError) {
-
+                    Log.d(tag, "$error")
                 }
 
             })
