@@ -21,7 +21,7 @@ class ProfileFragment : Fragment() {
         firebaseAuth = FirebaseAuth.getInstance()
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
         val database = FirebaseDatabase.getInstance()
-        val userRef = database.getReference("customers").child(userId)
+        val userRef = database.getReference("user").child(userId)
 
         userRef.get().addOnSuccessListener {dataSnapshot ->
             if (dataSnapshot.exists()) {

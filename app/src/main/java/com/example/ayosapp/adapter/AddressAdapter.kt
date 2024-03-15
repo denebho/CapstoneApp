@@ -16,7 +16,6 @@ class AddressAdapter(
     private val dataArrayList: ArrayList<AddressData>,
     private val context: Context,
     private val bundle: String
-    //,private val itemClickListener: OnItemClickListener
 ):
         RecyclerView.Adapter<AddressAdapter.AddressViewHolder>(){
     inner class AddressViewHolder(val binding: ItemAddressBinding) :
@@ -56,8 +55,6 @@ class AddressAdapter(
             }
             holder.binding.addressCard.setOnClickListener(){
                 val intent = Intent(context, AyosBookingActivity::class.java)
-                //listener?.onItemClick(position)
-                //val bundle = Bundle()
                 intent.putExtra("addressline",currentAddress.address)
                 intent.putExtra("addressid",currentAddress.addressID)
                 intent.putExtra("serviceCode", bundle)
@@ -68,9 +65,4 @@ class AddressAdapter(
         }
 
     }
-//    class MyViewHolder(val binding: ItemAddressBinding) : RecyclerView.ViewHolder(binding.root) {
-//        fun bind(item: AddressData) {
-//            // Bind data to views
-//        }
-//    }
 }

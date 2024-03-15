@@ -48,6 +48,7 @@ class AyosReviewBookingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        firebaseAuth = FirebaseAuth.getInstance()
         val bundle = arguments
         val service = bundle?.getString("serviceCode")
         val addressline = bundle?.getString("addressline")
@@ -141,11 +142,11 @@ class AyosReviewBookingFragment : Fragment() {
                 )
                 db.collection("booking").document().set(bookingData)
                     .addOnSuccessListener {
-                        Toast.makeText(activity, "Service Booked", Toast.LENGTH_SHORT)
-                            .show()
                         val intent = Intent(requireActivity(), MainActivity::class.java)
                         startActivity(intent)
                         requireActivity().finish()
+                        Toast.makeText(activity, "Service Booked!", Toast.LENGTH_SHORT)
+                            .show()
                     }
                     .addOnFailureListener { e ->
                         Toast.makeText(activity, "Something went wrong. Please try again", Toast.LENGTH_SHORT)
