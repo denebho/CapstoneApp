@@ -8,6 +8,7 @@
         <item name="android:textColorHint">#D3CBCB</item>
         <item name="android:fontFamily">@font/readexpro</item>
     </style>
+
     <style name="Theme.AyosApp" parent="Base.Theme.AyosApp" />
 
 

@@ -57,7 +57,7 @@ private var _binding: FragmentAyosEnterdetailsBinding? = null
                 type.setText(R.string.ayosPlumbing)
             }
             "Aircon"->{
-                icon.setImageResource(R.drawable.home_appliance)
+                icon.setImageResource(R.drawable.home_aircon)
                 type.setText(R.string.ayosAircon)
             }
         }
@@ -129,6 +129,12 @@ private var _binding: FragmentAyosEnterdetailsBinding? = null
 
 
     private fun showDatePicker() {
+        // Get tomorrow's date
+        val tomorrowCalendar = Calendar.getInstance()
+        tomorrowCalendar.add(Calendar.DAY_OF_MONTH, 1)
+        val tomorrowYear = tomorrowCalendar.get(Calendar.YEAR)
+        val tomorrowMonth = tomorrowCalendar.get(Calendar.MONTH)
+        val tomorrowDay = tomorrowCalendar.get(Calendar.DAY_OF_MONTH)
         // Create a DatePickerDialog
         val datePickerDialog = DatePickerDialog(
             requireActivity(), { DatePicker, year: Int, monthOfYear: Int, dayOfMonth: Int ->
@@ -137,23 +143,16 @@ private var _binding: FragmentAyosEnterdetailsBinding? = null
                 // Set the selected date using the values received from the DatePicker dialog
                 selectedDate.set(year, monthOfYear, dayOfMonth)
                 // Create a SimpleDateFormat to format the date as "dd/MM/yyyy"
-                val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
                 // Format the selected date into a string
                 val formattedDate = dateFormat.format(selectedDate.time)
                 // Update the TextView to display the selected date with the "Selected Date: " prefix
                 btnDatePicker.setText(formattedDate)
             },
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH)
+            tomorrowYear, tomorrowMonth, tomorrowDay
         )
+        datePickerDialog.datePicker.minDate = tomorrowCalendar.timeInMillis
         datePickerDialog.show()
     }
 
-    //private fun timeSlotPicker
-    /*
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }*/
 }

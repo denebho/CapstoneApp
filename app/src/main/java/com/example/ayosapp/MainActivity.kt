@@ -7,7 +7,8 @@ import androidx.fragment.app.Fragment
 import com.example.ayosapp.chat.ChatListFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-
+import com.google.firebase.firestore.auth.Token
+import com.google.firebase.messaging.FirebaseMessaging
 
 class MainActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
@@ -18,15 +19,19 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sharedpreferences: SharedPreferences
     private var email: String? = null
     private var password: String? = null
+    lateinit var token: Token
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         //val currentUser = firebaseAuth.currentUser
         //session = LoginPref(this)
         //session.checkLogin()
 
         //var user: HashMap<String, String> = session.getUserDetails()
         //var email = user.get(LoginPref.KEY_EMAIL)
+
+        FirebaseMessaging.getInstance().token
 
 
         bottomNavigationView = findViewById(R.id.bottom_nav)

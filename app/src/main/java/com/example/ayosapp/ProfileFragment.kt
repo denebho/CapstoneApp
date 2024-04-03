@@ -49,9 +49,14 @@ class ProfileFragment : Fragment() {
         }
 
         binding.contactUsTv.setOnClickListener {
-            val contactUsIntent = Intent(Intent.ACTION_SENDTO,
-                Uri.fromParts("mailto", "contactayos@gmail.com", null))
-            startActivity(Intent.createChooser(contactUsIntent, "Send email...."))
+            val nextFragment = ContactUsFragment()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.profile_container, nextFragment)
+                .addToBackStack(null)
+                .commit()
+//            val contactUsIntent = Intent(Intent.ACTION_SENDTO,
+//                Uri.fromParts("mailto", "contactayos@gmail.com", null))
+//            startActivity(Intent.createChooser(contactUsIntent, "Send email...."))
         }
 
         binding.aboutUsTv.setOnClickListener {

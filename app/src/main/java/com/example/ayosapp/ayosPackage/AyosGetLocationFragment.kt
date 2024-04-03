@@ -56,7 +56,7 @@ class AyosGetLocationFragment : Fragment() {
                     description.setText(R.string.plumbingdesc)
                 }
                 "Aircon"->{
-                    icon.setImageResource(R.drawable.home_appliance)
+                    icon.setImageResource(R.drawable.home_aircon)
                     type.setText(R.string.ayosAircon)
                     description.setText(R.string.aircondesc)
                 }

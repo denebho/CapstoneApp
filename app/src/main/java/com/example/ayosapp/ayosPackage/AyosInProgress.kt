@@ -15,7 +15,6 @@ import com.paymaya.sdk.android.paywithpaymaya.PayWithPayMaya
 import com.paymaya.sdk.android.paywithpaymaya.models.SinglePaymentRequest
 import org.json.JSONObject
 
-//import com.paymaya.sdk.android.paywithpaymaya.PayWithPayMayaResult
 
 class AyosInProgress: Fragment() {
     lateinit var redirectUrl: RedirectUrl
@@ -44,7 +43,7 @@ class AyosInProgress: Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //var singlePaymentResult = SinglePaymentResult();
+        //var singlePaymentResult = SinglePaymentResult()
         val payWithPayMayaClient = PayWithPayMaya.newBuilder()
             .clientPublicKey(CLIENT_KEY)
             .environment(PayMayaEnvironment.SANDBOX)
@@ -58,5 +57,11 @@ class AyosInProgress: Fragment() {
             redirectUrl,
             metadata
         )
+        RedirectUrl(
+            success = "http://success.com",
+            failure = "http://failure.com",
+            cancel = "http://cancel.com"
+        )
+        //payMayaCheckoutClient.startSinglePaymentActivityForResult(this, request)
     }
 }

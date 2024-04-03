@@ -79,7 +79,7 @@ class AyosReviewBookingFragment : Fragment() {
                 type.setText(com.example.ayosapp.R.string.ayosPlumbing)
             }
             "Aircon"->{
-                icon.setImageResource(com.example.ayosapp.R.drawable.home_appliance)
+                icon.setImageResource(com.example.ayosapp.R.drawable.home_aircon)
                 type.setText(com.example.ayosapp.R.string.ayosAircon)
             }
         }
@@ -115,17 +115,11 @@ class AyosReviewBookingFragment : Fragment() {
             }
         }
         binding.bookServiceBtn.setOnClickListener {
-            //TODO pass data from here to database
-            // pass booking id, price, address, details, userid, time
             val user = firebaseAuth.currentUser
             val userId = user?.uid
-            val bookingRef = db.collection("booking").document()
 
             user?.let {
-                val database = FirebaseFirestore.getInstance()
-                //get from database
                 val iPrice = binding.initalPrice.text.toString()
-                val sFee = null
 
                 val bookingData = hashMapOf(
                     "UID" to userId,
@@ -162,7 +156,7 @@ class AyosReviewBookingFragment : Fragment() {
     }
 
     fun dateTimeStringToTimestamp(dateTimeString: String): Timestamp {
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("dd MMMM yyyy hh:mm a", Locale.getDefault())
         val date = dateFormat.parse(dateTimeString)
         return Timestamp(date)
     }

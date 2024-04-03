@@ -16,7 +16,9 @@
     <string name="backButton">Back Button</string>
     <string name="signup">SIGN UP</string>
     <string name="supportSignUp">Sign up as a customer to get started with Ayos!</string>
+    <string name="supportWorkerSignUp">Sign up as a worker to partner with Ayos!</string>
     <string name="workerSignUp">SIGN UP here as an Ayos! worker</string>
+    <string name="userSignUp">SIGN UP here as an Ayos! user</string>
     <string name="createAccount">Create Account</string>
     <string name="emailaddHint">Email Address</string>
     <string name="lastnameHint">Last Name</string>
@@ -73,6 +75,8 @@
     <string name="paymentStatusIncomplete">Incomplete</string>
     <string name="paymentStatusOverdue">Overdue</string>
 
+    <string name="matchingworker">Matching Worker</string>
+
     <!-- Personal Info Page -->
     <string name="personalFirstName">First Name</string>
     <string name="personalMiddleName">Middle Name</string>
@@ -95,7 +99,7 @@
         ease! The Ayos! app services the following categories—Ayos Electrical, Ayos Plumbing, Ayos Appliance, and Ayos Aircon—to which registered Ayos! workers
         can accept the booking and provide their services at the provided time and date. </string>
     <string name="title_activity_ayos_booking">AyosBookingActivity</string>
-<!--    Service Page-->
+    <!--    Service Page-->
     <string name="plumbingdesc">Our plumbing service provides a wide choice of solutions to your household issues such as clogged drains and toilets,leaky faucets and pipes, water heater issues, low water pressure, and a running toilet.</string>
     <string name="aircondesc">The air conditioning unit has to be cleaned every two months, did you know that? Make an appointment with Ayos\! for cleaning so that your air conditioner is properly maintained.</string>
     <string name="electricaldesc">Ayos\! technicians are experts who are capable of installing and repairing home wiring. Book now for electrical wiring services at reasonable prices!  </string>
@@ -106,7 +110,7 @@
     <string name="third_fragment_label">Details Fragment</string>
     <string name="fourth_fragment_label">Review Fragment</string>
 
-<!--    add address -->
+    <!--    add address -->
     <string name="addaddress">+ Add Address</string>
     <string name="editaddress">Edit Address</string>
 
@@ -156,6 +160,7 @@
     <string name="map_api_key">AIzaSyClRXgmw_ht7v6_AJ7zZ6uvWzv87CVgYBA</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_signup_worker">SignupWorkerActivity</string>
     <string name="scheduled_time">Scheduled Time</string>
     <string name="choose_method">Choose Method</string>
 </resources>

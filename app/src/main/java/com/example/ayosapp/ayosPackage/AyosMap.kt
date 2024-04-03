@@ -13,7 +13,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
-import androidx.fragment.app.Fragment
 import com.example.ayosapp.R
 import com.example.ayosapp.databinding.ActivityAyosMapBinding
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -27,7 +26,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import java.util.Locale
 
-@Suppress("DEPRECATION")
+
 class AyosMap : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
@@ -54,7 +53,6 @@ class AyosMap : AppCompatActivity(), OnMapReadyCallback {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
         getLastLocation()
-
         binding = ActivityAyosMapBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -86,17 +84,17 @@ class AyosMap : AppCompatActivity(), OnMapReadyCallback {
 
 
     private fun initializeLocation() {
-        // Perform location initialization here
         currentLocation = Location("dummy")
         instructions = intent.getStringExtra("instructions")
         addressid = intent.getStringExtra("addressid")
         currentLocation.latitude = intent.getDoubleExtra("latitude",0.0)
         currentLocation.longitude = intent.getDoubleExtra("longitude",0.0)
+
         marker = MarkerOptions()
-            .position(LatLng(currentLocation.latitude, currentLocation.longitude)) // Default position
-            //.title("Dummy Marker") // Default title
-            //.snippet("This is a dummy marker")
+            .position(LatLng(currentLocation.latitude, currentLocation.longitude))
+
     }
+
     private fun getLastLocation() {
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
             && ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION)!= PackageManager.PERMISSION_GRANTED ){
@@ -117,14 +115,16 @@ class AyosMap : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         // Add a marker in current location and move the camera
+        currentLocation.latitude = intent.getDoubleExtra("latitude",0.0)
+        currentLocation.longitude = intent.getDoubleExtra("longitude",0.0)
         val curLoc = LatLng(currentLocation.latitude, currentLocation.longitude)
         mMap.addMarker(MarkerOptions().position(curLoc))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(currentLocation.latitude, currentLocation.longitude),16.0f))
-
+        //drawMarker(curLoc)
         mMap.uiSettings.isZoomControlsEnabled = true
         mMap.setOnMapClickListener { latLng ->
             Log.d("DEBUG", "old location: {${currentLocation.latitude} ${currentLocation.longitude}}")
-            // Clear previous markers
+            // Clear previous marker
             mMap.clear()
             // Add new marker
             mMap.addMarker(MarkerOptions().position(latLng))
@@ -137,33 +137,6 @@ class AyosMap : AppCompatActivity(), OnMapReadyCallback {
             val cameraUpdate = CameraUpdateFactory.newLatLngZoom(LatLng(currentLocation.latitude, currentLocation.longitude), zoomLevel)
             mMap.moveCamera(cameraUpdate)
         }
-        /**
-        mMap.setOnCameraMoveListener {
-            // Update marker position to stay in the middle of the screen
-            val target = mMap.cameraPosition.target
-            marker.position(target)
-        }*/
-
-//        mMap.setOnMarkerDragListener(object: GoogleMap.OnMarkerDragListener{
-//            override fun onMarkerDrag(p0: Marker) {
-//
-//            }
-//            override fun onMarkerDragEnd(p0: Marker) {
-//                Log.d("DEBUG", "old location: {${currentLocation.latitude} ${currentLocation.longitude}}")
-//                if(currentMarker!=null)
-//                    currentMarker?.remove()
-//
-//                val newLatLng =LatLng(p0?.position!!.latitude, p0?.position!!.latitude)
-//                drawMarker(newLatLng)
-//                currentLocation.longitude=newLatLng.longitude
-//                currentLocation.latitude=newLatLng.latitude
-//                Log.d("DEBUG", "new location: {${currentLocation.latitude} ${currentLocation.longitude}}")
-//            }
-//
-//            override fun onMarkerDragStart(p0: Marker) {
-//
-//            }
-//        })
     }
     private fun moveToCurrentLocation(currentLocation: LatLng) {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f))
@@ -185,17 +158,6 @@ class AyosMap : AppCompatActivity(), OnMapReadyCallback {
                 Toast.makeText(this, "Location permission is denied, please allow the permission", Toast.LENGTH_SHORT).show()
             }
         }
-    }
-    private fun replaceFragment(fragment: Fragment){
-        supportFragmentManager.beginTransaction().replace(R.id.map, fragment).commit()
-    }
-
-    fun addFragmentOnTop(fragment: Fragment) {
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.map, fragment)
-        fragmentTransaction.addToBackStack(null) // This line allows you to go back to the previous fragment when pressing the back button
-        fragmentTransaction.commit()
     }
 
     private fun getAddress(lat: Double, lon: Double): String?{

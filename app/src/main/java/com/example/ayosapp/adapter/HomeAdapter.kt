@@ -1,39 +1,55 @@
 package com.example.ayosapp.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ayosapp.R
 import com.example.ayosapp.data.BookingsData
-import com.google.android.material.imageview.ShapeableImageView
+import com.example.ayosapp.databinding.ItemHomeBinding
+import java.text.SimpleDateFormat
+import java.util.Locale
 
-class HomeAdapter(private val homeList : ArrayList<BookingsData>) :
-    RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
+class HomeAdapter(
+    private val context: Context,
+    private val homeList : ArrayList<BookingsData>) :
+    RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.item_home,
-            parent, false)
-        return MyViewHolder(itemView)
+    inner class HomeViewHolder(val binding: ItemHomeBinding):
+        RecyclerView.ViewHolder(binding.root){
+
+        }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
+        return HomeViewHolder(
+            ItemHomeBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        )
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         val currentItem = homeList[position]
-        holder.homeImage.setImageResource(currentItem.image)
-        holder.homeStatus.text = currentItem.status
-        holder.homeDate.text = currentItem.dateofService
+        holder.binding.apply {
+            val time = timestampToString(currentItem.timeScheduled)
+            when (currentItem.service) {
+                "Appliance" -> itemImage.setImageResource(R.drawable.home_appliance)
+                "Electrical" -> itemImage.setImageResource(R.drawable.home_electrical)
+                "Aircon" -> itemImage.setImageResource(R.drawable.home_aircon)
+                "Plumbing" -> itemImage.setImageResource(R.drawable.home_plumbing)
+            }
+            itemDate.text = time
+            statusBar.text = currentItem.status
+        }
     }
 
     override fun getItemCount(): Int {
         return homeList.size
     }
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val homeImage : ShapeableImageView = itemView.findViewById(R.id.itemImage)
-        val homeStatus : TextView = itemView.findViewById(R.id.statusBar)
-        val homeDate : TextView = itemView.findViewById(R.id.itemDate)
-    }
+        fun timestampToString(timestamp: com.google.firebase.Timestamp?): String {
+            val date = timestamp?.toDate()
+            val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
+            val dateString = dateFormat.format(date)
+            return "$dateString"
+        }
 
 }

@@ -31,9 +31,6 @@ class MessageAdapter(
     override fun getItemCount(): Int {
         return messageList.size
     }
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
-
-    }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
