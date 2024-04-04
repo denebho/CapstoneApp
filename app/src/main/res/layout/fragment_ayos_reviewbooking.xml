@@ -13,11 +13,12 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/navigate_before"
+        android:layout_marginTop="32dp"
         android:background="@drawable/background_button"
+        android:src="@drawable/navigate_before"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/highlight_blue" />
 
     <ImageView
         android:id="@+id/serviceIconAyos"
@@ -54,30 +55,34 @@
 
     <TextView
         android:id="@+id/bookServiceBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="170dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="24dp"
         android:background="#0012B4"
         android:elevation="5dp"
         android:padding="15dp"
         android:text="Review Booking"
+        android:textAlignment="center"
         android:textColor="#fff"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/cancelServiceBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="170dp"
+        android:layout_height="50dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="24dp"
         android:background="#B40024"
         android:elevation="3dp"
         android:padding="15dp"
         android:text="Cancel Booking"
+        android:textAlignment="center"
         android:textColor="#fff"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -113,7 +118,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Scheduled Time"
+        android:text="@string/scheduled_time"
         android:textColor="#706D6D"
         app:layout_constraintStart_toStartOf="@+id/textViewLoc"
         app:layout_constraintTop_toBottomOf="@+id/joblocation" />
@@ -156,7 +161,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textviewPrice" />
+        app:layout_constraintTop_toBottomOf="@+id/textviewPrice"
+        android:autofillHints=""
+        android:contentDescription=""/>
 
     <TextView
         android:id="@+id/textviewPrice2"
@@ -184,7 +191,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textviewPrice2" />
+        app:layout_constraintTop_toBottomOf="@+id/textviewPrice2"
+        android:autofillHints=""
+        tools:ignore="LabelFor" />
     <TextView
         android:id="@+id/textviewPrice3"
         android:layout_width="wrap_content"
@@ -207,11 +216,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textviewPrice3">
+
         <AutoCompleteTextView
             android:id="@+id/autoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Choose Method"
-            android:inputType="none"/>
+            android:hint="@string/choose_method"
+            android:inputType="none"
+             />
     </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
