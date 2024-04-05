@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
+    android:layout_margin="0dp"
     android:background="@color/white"
     android:elevation="5dp">
 
@@ -12,8 +12,8 @@
         android:id="@+id/backButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/background_button"
         android:src="@drawable/navigate_before"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,10 +104,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:editable="false"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="none"
-        android:editable="false"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -129,14 +129,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:editable="false"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="none"
-        android:editable="false"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textViewSched"
         app:layout_constraintTop_toBottomOf="@+id/textViewSched" />
+
     <TextView
         android:id="@+id/textviewPrice"
         android:layout_width="wrap_content"
@@ -153,17 +154,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:autofillHints=""
+        android:contentDescription=""
+        android:editable="false"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="none"
-        android:editable="false"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textviewPrice"
-        android:autofillHints=""
-        android:contentDescription=""/>
+        app:layout_constraintTop_toBottomOf="@+id/textviewPrice" />
 
     <TextView
         android:id="@+id/textviewPrice2"
@@ -176,24 +177,24 @@
         app:layout_constraintTop_toBottomOf="@+id/noteToWorker" />
 
 
-
     <EditText
         android:id="@+id/initalPrice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:autofillHints=""
+        android:editable="false"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="none"
-        android:editable="false"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textviewPrice2"
-        android:autofillHints=""
         tools:ignore="LabelFor" />
+
     <TextView
         android:id="@+id/textviewPrice3"
         android:layout_width="wrap_content"
@@ -206,13 +207,13 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/paymentMethodSpinner"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
 
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textviewPrice3">
@@ -222,7 +223,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/choose_method"
-            android:inputType="none"
-             />
+            android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
