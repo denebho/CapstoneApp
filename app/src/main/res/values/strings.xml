@@ -100,10 +100,43 @@
         can accept the booking and provide their services at the provided time and date. </string>
     <string name="title_activity_ayos_booking">AyosBookingActivity</string>
     <!--    Service Page-->
-    <string name="plumbingdesc">Our plumbing service provides a wide choice of solutions to your household issues such as clogged drains and toilets,leaky faucets and pipes, water heater issues, low water pressure, and a running toilet.</string>
-    <string name="aircondesc">The air conditioning unit has to be cleaned every two months, did you know that? Make an appointment with Ayos\! for cleaning so that your air conditioner is properly maintained.</string>
-    <string name="electricaldesc">Ayos\! technicians are experts who are capable of installing and repairing home wiring. Book now for electrical wiring services at reasonable prices!  </string>
-    <string name="appliancedesc">Have a broken washing machine? television? or rice cooker? We got you covered\! Our skilled appliance technicians will help you maintain and repair your appliances. </string>
+    <string name="plumbingdesc">Our plumbing service provides a wide choice of solutions to your household issues such as clogged drains and toilets,leaky faucets and pipes, water heater issues, low water pressure, and a running toilet.
+         \n \n<b>SERVICE DETAILS</b>
+        \n <b>Ayos\!</b> offers services for <i> multiple plumbing unit installation and assembly and plumbing repair for your sink and toilets at home</i>
+        \n \n <b>TAGA-AYOS</b>
+        \n <i>Taga-Ayos</i> or Ayos\! worker got you covered as they are professional, skilled and certified TESDA Graduates.
+        \n \n <b>REMINDERS</b>
+        \n -Please check all your details if correct.
+        \n -The projected price does not include any additional services that the client requests that are not covered by the agreement.
+        \n -Don\'t forget to give us your feedbacks after the transaction.</string>
+    <string name="aircondesc">The air conditioning unit has to be cleaned every two months, did you know that? Make an appointment with Ayos\! for cleaning so that your air conditioner is properly maintained.
+        \n \n<b>SERVICE DETAILS</b>
+        \n <b>Ayos\!</b> offers services for <i> the installation, troubleshooting, and maintenance of Air Conditioning Units such as Central Air Conditioner, Ductless Mini-Split, Window Air Conditioner, Portable Air Condition and other type of aircon perfect for household.</i>
+        \n \n <b>TAGA-AYOS</b>
+        \n <i>Taga-Ayos</i> or Ayos\! worker got you covered as they are professional, skilled and certified TESDA Graduates.
+        \n \n <b>REMINDERS</b>
+        \n -Please check all your details if correct.
+        \n -The projected price does not include any additional services that the client requests that are not covered by the agreement.
+        \n -Don\'t forget to give us your feedbacks after the transaction.</string>
+    <string name="electricaldesc">Ayos\! technicians are experts who are capable of installing and repairing home wiring. Book now for electrical wiring services at reasonable prices!
+        \n \n<b>SERVICE DETAILS</b>
+        \n <b>Ayos\!</b> offers services for <i> residential wiring and cabling works for single-phase distribution, electrical protective devices for distribution and power-lighting protecting and grounding systems. </i>
+        \n \n <b>TAGA-AYOS</b>
+        \n <i>Taga-Ayos</i> or Ayos\! worker got you covered as they are professional, skilled and certified TESDA Graduates.
+        \n \n <b>REMINDERS</b>
+        \n -Please check all your details if correct.
+        \n -The projected price does not include any additional services that the client requests that are not covered by the agreement.
+        \n -Don\'t forget to give us your feedbacks after the transaction.</string>
+    <string name="appliancedesc">Have a broken washing machine? television? or rice cooker? We got you covered\! Our skilled appliance technicians will help you maintain and repair your appliances.
+        \n \n<b>SERVICE DETAILS</b>
+        \n <b>Ayos\!</b> offers service <i> repair for handling electronically controlled domestic appliances such as washing machines, televisions, rice cookers, water heaters, fans, toaster ovens and speakers. </i>
+        \n \n <b>TAGA-AYOS</b>
+        \n <i>Taga-Ayos</i> or Ayos\! worker got you covered as they are professional, skilled and certified TESDA Graduates.
+        \n \n <b>REMINDERS</b>
+        \n -Please check all your details if correct.
+        \n -The projected price does not include any additional services that the client requests that are not covered by the agreement.
+        \n -Don\'t forget to give us your feedbacks after the transaction.</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">Location Fragment</string>
     <string name="second_fragment_label">Address Fragment</string>
