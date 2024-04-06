@@ -33,6 +33,7 @@ class addAddressFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.findViewById<View>(R.id.confirmBtnMap)?.visibility = View.GONE
         val bundle = arguments
         val location = bundle?.getString("location")
         val lat = bundle?.getDouble("latitude")

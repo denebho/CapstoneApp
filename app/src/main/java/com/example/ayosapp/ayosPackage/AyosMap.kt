@@ -2,6 +2,7 @@ package com.example.ayosapp.ayosPackage
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
@@ -9,6 +10,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -24,12 +26,14 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import java.io.IOException
 import java.util.Locale
 
 
 class AyosMap : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
+    private lateinit var mapSearchView: SearchView
     private lateinit var marker: MarkerOptions
     private lateinit var binding: ActivityAyosMapBinding
     private val FINE_PERMISSION_CODE = 1
@@ -57,6 +61,51 @@ class AyosMap : AppCompatActivity(), OnMapReadyCallback {
         setContentView(binding.root)
 
         //Places.initialize(applicationContext, "AIzaSyClRXgmw_ht7v6_AJ7zZ6uvWzv87CVgYBA")
+        mapSearchView = findViewById(R.id.mapSearch)
+        mapSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                // on below line we are getting the
+                // location name from search view.
+                val location = mapSearchView.query.toString()
+
+                // below line is to create a list of address
+                // where we will store the list of all address.
+                var addressList: List<Address>? = null
+
+                // checking if the entered location is null or not.
+                if (location.isNotEmpty()) {
+                    // on below line we are creating and initializing a geo coder.
+                    val geocoder = Geocoder(this@AyosMap)
+                    try {
+                        // on below line we are getting location from the
+                        // location name and adding that location to address list.
+                        addressList = geocoder.getFromLocationName(location, 1)
+                        mMap.clear()    
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+                    // on below line we are getting the location
+                    // from our list a first position.
+                    val address = addressList?.get(0)
+
+                    // on below line we are creating a variable for our location
+                    // where we will add our locations latitude and longitude.
+                    val latLng = LatLng(address?.latitude ?: 0.0, address?.longitude ?: 0.0)
+
+                    // on below line we are adding marker to that position.
+                    mMap.addMarker(MarkerOptions().position(latLng).title(location))
+
+                    // below line is to animate camera to that position.
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13F))
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                return false
+            }
+        })
+
 
         val confirmButton: Button = findViewById(R.id.confirmBtnMap)
         confirmButton.setOnClickListener {
@@ -119,7 +168,7 @@ class AyosMap : AppCompatActivity(), OnMapReadyCallback {
         currentLocation.longitude = intent.getDoubleExtra("longitude",0.0)
         val curLoc = LatLng(currentLocation.latitude, currentLocation.longitude)
         mMap.addMarker(MarkerOptions().position(curLoc))
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(currentLocation.latitude, currentLocation.longitude),16.0f))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(currentLocation.latitude, currentLocation.longitude),13.0f))
         //drawMarker(curLoc)
         mMap.uiSettings.isZoomControlsEnabled = true
         mMap.setOnMapClickListener { latLng ->
@@ -133,17 +182,17 @@ class AyosMap : AppCompatActivity(), OnMapReadyCallback {
             Log.d("DEBUG", "new location: {${currentLocation.latitude} ${currentLocation.longitude}}")
             moveToCurrentLocation(LatLng(currentLocation.latitude,currentLocation.longitude))
             mMap.moveCamera(CameraUpdateFactory.newLatLng(curLoc))
-            val zoomLevel = 16.0f
+            val zoomLevel = 13f
             val cameraUpdate = CameraUpdateFactory.newLatLngZoom(LatLng(currentLocation.latitude, currentLocation.longitude), zoomLevel)
             mMap.moveCamera(cameraUpdate)
         }
     }
     private fun moveToCurrentLocation(currentLocation: LatLng) {
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 13f))
         // Zoom in, animating the camera.
         mMap.animateCamera(CameraUpdateFactory.zoomIn())
         // Zoom out to zoom level 10, animating with a duration of 2 seconds.
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(15f), 2000, null)
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(13f), 2000, null)
     }
     override fun onRequestPermissionsResult(
         requestCode: Int,

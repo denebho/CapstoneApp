@@ -1,7 +1,6 @@
 package com.example.ayosapp
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -47,10 +46,12 @@ class SignupActivity : AppCompatActivity() {
             registerUser()
         }
             binding.workerTv.setOnClickListener {
-                val url = "https://forms.gle/tCukQeDBLT8eb62E8"
-                val intent = Intent(Intent.ACTION_VIEW)
-                intent.data = Uri.parse(url)
+                val intent = Intent(this, SignupWorkerActivity::class.java)
                 startActivity(intent)
+//                val url = "https://forms.gle/tCukQeDBLT8eb62E8"
+//                val intent = Intent(Intent.ACTION_VIEW)
+//                intent.data = Uri.parse(url)
+//                startActivity(intent)
             }
 
             binding.backButton.setOnClickListener {

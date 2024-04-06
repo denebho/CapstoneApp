@@ -58,7 +58,7 @@ class AddressFragment : Fragment(), OnItemClickListener {
                 for (document in result) {
                     dataArrayList.add(document.toObject(AddressData::class.java))
                 }
-                val adapter = AddressAdapter(dataArrayList, requireActivity(), service)
+                val adapter = AddressAdapter(dataArrayList, requireActivity(), service, db)
                 recyclerView.adapter = adapter
             }
             .addOnFailureListener { exception ->

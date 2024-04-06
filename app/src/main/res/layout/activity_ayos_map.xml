@@ -12,6 +12,20 @@
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_map" />
 
+
+    <android.widget.SearchView
+        android:id="@+id/mapSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:queryHint="Enter location"
+        android:iconifiedByDefault="false"
+        android:elevation="5dp"
+        android:background="@drawable/bg_map_searchview"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/confirmBtnMap"
         android:layout_width="wrap_content"

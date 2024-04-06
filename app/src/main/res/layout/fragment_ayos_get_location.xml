@@ -64,24 +64,24 @@
         app:layout_constraintTop_toBottomOf="@+id/serviceIconAyos"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/bookServiceBtn"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
-        android:background="@color/light_blue"
-        android:paddingLeft="30dp"
-        android:paddingTop="15dp"
-        android:paddingRight="30dp"
-        android:paddingBottom="15dp"
-        android:text="Next"
-        android:textAlignment="center"
-        android:textColor="#fff"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+<!--    <TextView-->
+<!--        android:id="@+id/bookServiceBtn"-->
+<!--        android:layout_width="120dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:layout_marginBottom="32dp"-->
+<!--        android:background="@color/light_blue"-->
+<!--        android:paddingLeft="30dp"-->
+<!--        android:paddingTop="15dp"-->
+<!--        android:paddingRight="30dp"-->
+<!--        android:paddingBottom="15dp"-->
+<!--        android:text="Next"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="#fff"-->
+<!--        android:textSize="16sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
 
     <TextView
         android:id="@+id/textView"

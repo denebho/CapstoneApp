@@ -158,16 +158,14 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/floating_edittextwhite"
                 android:drawablePadding="8dp"
-                android:hint="What services do you want to work in? "
+                android:hint="What services do you want to work in?"
                 android:imeOptions="actionNext"
-                android:inputType="text"
+                android:inputType="none"
+                android:editable="false"
                 android:paddingStart="20dp"
-                android:textColor="@color/black" />
-            <CheckBox xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/checkBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"/>
+                android:textColor="@color/black"
+                android:drawableEnd="@android:drawable/arrow_down_float"/>
+
             <ImageView
                 android:id="@+id/ivImage"
                 android:layout_width="match_parent"
@@ -183,7 +181,8 @@
                 android:drawablePadding="8dp"
                 android:hint="Barangay clearance/National ID"
                 android:imeOptions="actionNext"
-                android:inputType="text"
+                android:inputType="none"
+                android:editable="false"
                 android:paddingStart="20dp"
                 android:textColor="@color/black" />
 

@@ -3,6 +3,7 @@ package com.example.ayosapp
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +29,7 @@ class ProfileFragment : Fragment() {
                 val userData = dataSnapshot.getValue(userinfo::class.java)
                 binding.profileName.text = "${userData?.name}"
                 binding.profileEmail.text = "${userData?.email}"
-                //Log.w("Chat Fragment", "${userData?.name}")
+                Log.w("Profile Fragment", "${userData?.name}")
             } else {
                     // Document doesn't exist for the current user's UID
             }

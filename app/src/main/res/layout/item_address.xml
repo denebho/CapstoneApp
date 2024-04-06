@@ -14,7 +14,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -25,9 +25,10 @@
                 android:id="@+id/itemImage"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/pin_icon" />
 
@@ -36,8 +37,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_alignTop="@+id/itemImage"
+                android:layout_alignParentEnd="true"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="95dp"
                 android:layout_toEndOf="@+id/itemImage"
                 android:text="Full Address 1"
                 android:textColor="@color/black"
@@ -50,7 +53,7 @@
                 android:layout_below="@id/itemAddress1"
                 android:layout_alignStart="@+id/itemAddress1"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="80dp"
+                android:layout_marginEnd="95dp"
                 android:layout_marginBottom="10dp"
                 android:text="Full Address 2"
                 android:textColor="@color/black"
@@ -73,6 +76,20 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/deleteBtn"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/editBtn"
+                android:layout_alignStart="@+id/editBtn"
+                android:layout_alignEnd="@+id/editBtn"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/floating_textred"
+                android:gravity="center"
+                android:text="Delete"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 

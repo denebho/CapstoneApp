@@ -81,19 +81,6 @@ class AyosGetLocationFragment : Fragment() {
                 .addToBackStack(null)
                 .commit()
         }
-        binding.bookServiceBtn.setOnClickListener {
-            if (binding.addressEt.text.isNotEmpty()) {
-                arguments = Bundle().apply {
-                    putString("addressid", addressID)
-                    putString("addressString", addressline)
-                    val nextFragment = AyosEnterDetailsFragment()
-                    parentFragmentManager.beginTransaction()
-                        .replace(R.id.frame_container_ayos, nextFragment)
-                        .addToBackStack(null)
-                        .commit()
-                }
-            }
-        }
     }
 
     private fun addFragmentOnTop(fragment: Fragment) {
