@@ -196,5 +196,4 @@
     <string name="title_activity_signup_worker">SignupWorkerActivity</string>
     <string name="scheduled_time">Scheduled Time</string>
     <string name="choose_method">Choose Method</string>
-    <string name="required">Required</string>
 </resources>

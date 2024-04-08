@@ -111,9 +111,10 @@
                 android:drawablePadding="8dp"
                 android:hint="Last Name"
                 android:imeOptions="actionNext"
-                android:inputType="text"
+                android:inputType="textCapWords"
                 android:paddingStart="20dp"
                 android:textColor="@color/black" />
+
             <EditText
                 android:id="@+id/phonenumberEt"
                 android:layout_width="match_parent"
@@ -169,7 +170,7 @@
             <ImageView
                 android:id="@+id/ivImage"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <EditText

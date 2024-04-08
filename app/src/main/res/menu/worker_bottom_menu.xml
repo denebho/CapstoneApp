@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:icon="@drawable/baseline_home_24" />
+
+    <item
+        android:id="@+id/bookings"
+        android:title="Schedule"
+        android:icon="@drawable/baseline_bookings_24" />
+
+    <item
+        android:id="@+id/ayosnow"
+        android:title="Bookings"
+        android:icon="@drawable/baseline_ayosnow_24" />
+    <item
+        android:id="@+id/chat"
+        android:title="Chat"
+        android:icon="@drawable/baseline_email_24" />
+
+    <item
+        android:id="@+id/profile"
+        android:title="Profile"
+        android:icon="@drawable/baseline_person_24" />
+</menu>

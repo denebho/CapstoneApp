@@ -18,6 +18,9 @@
         android:theme="@style/Theme.AyosApp"
         tools:targetApi="31">
         <activity
+            android:name=".worker.WorkerMainActivity"
+            android:exported="false" />
+        <activity
             android:name=".SignupWorkerActivity"
             android:exported="false"
             android:label="@string/title_activity_signup_worker"
