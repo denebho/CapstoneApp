@@ -95,6 +95,7 @@
         android:layout_marginTop="16dp"
         android:text="Job Location"
         android:textColor="#706D6D"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/backButton"
         app:layout_constraintTop_toBottomOf="@+id/backButton" />
 
@@ -117,9 +118,10 @@
         android:id="@+id/textViewSched"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/scheduled_time"
         android:textColor="#706D6D"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textViewLoc"
         app:layout_constraintTop_toBottomOf="@+id/joblocation" />
 
@@ -142,9 +144,10 @@
         android:id="@+id/textviewPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="What needs to be fixed"
         android:textColor="#706D6D"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textViewLoc"
         app:layout_constraintTop_toBottomOf="@+id/timeScheduled" />
 
@@ -170,9 +173,10 @@
         android:id="@+id/textviewPrice2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Initial service price"
         android:textColor="#706D6D"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textViewLoc"
         app:layout_constraintTop_toBottomOf="@+id/noteToWorker" />
 
@@ -199,7 +203,7 @@
         android:id="@+id/textviewPrice3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Payment Method"
         android:textColor="#706D6D"
         app:layout_constraintStart_toStartOf="@+id/textViewLoc"
@@ -225,4 +229,14 @@
             android:hint="@string/choose_method"
             android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="360dp"
+        android:text=" * "
+        android:textColor="#FF5252"
+        app:layout_constraintStart_toEndOf="@+id/textviewPrice3"
+        app:layout_constraintTop_toTopOf="@+id/textViewLoc" />
 </androidx.constraintlayout.widget.ConstraintLayout>
