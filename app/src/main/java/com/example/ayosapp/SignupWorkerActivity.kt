@@ -50,6 +50,15 @@ class SignupWorkerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignupWorkerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        emailAddEt = findViewById(R.id.emailAddEt)
+        passwordEt = findViewById(R.id.passwordEt)
+        retypepasswordEt = findViewById(R.id.retypepasswordEt)
+        firstnameEt = findViewById(R.id.firstnameEt)
+        lastNameEt = findViewById(R.id.lastnameEt)
+        phonenumberEt = findViewById(R.id.phonenumberEt)
+        addressEt = findViewById(R.id.addressEt)
+        cityEt = findViewById(R.id.cityEt)
+        serviceEt = findViewById(R.id.serviceEt)
 
         selectedService = BooleanArray(serviceOptions.size)
 
@@ -213,6 +222,9 @@ class SignupWorkerActivity : AppCompatActivity() {
                 // User data saved successfully
                 Toast.makeText(this, "User registration successful", Toast.LENGTH_SHORT).show()
                 // Navigate to next screen or perform any other actions
+                firebaseAuth.signOut()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
             }
             .addOnFailureListener { exception ->
                 // User data save failed
@@ -220,21 +232,6 @@ class SignupWorkerActivity : AppCompatActivity() {
             }
     }
 
-    //    private fun uploadImageToStorage(filename: String) = CoroutineScope(Dispatchers.IO).launch {
-//        try {
-//            curFile?.let {
-//                imageRef.child("images/$filename").putFile(it).await()
-//                withContext(Dispatchers.Main) {
-//                    Toast.makeText(this@SignupWorkerActivity, "Successfully uploaded image",
-//                        Toast.LENGTH_LONG).show()
-//                }
-//            }
-//        } catch (e: Exception) {
-//            withContext(Dispatchers.Main) {
-//                Toast.makeText(this@SignupWorkerActivity, e.message, Toast.LENGTH_LONG).show()
-//            }
-//        }
-//    }
     private fun registerWorker() {
         val timeNow = Calendar.getInstance().time
         val email = emailAddEt.text.toString()
