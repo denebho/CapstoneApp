@@ -25,7 +25,7 @@ class MapFragment : Fragment(),OnMapReadyCallback {
     ): View? {
         // Inflate the layout for this fragment
         activity?.findViewById<View>(R.id.confirmBtnMap)?.visibility = View.VISIBLE
-
+        activity?.findViewById<View>(R.id.mapSearch)?.visibility = View.VISIBLE
         return inflater.inflate(R.layout.fragment_map, container, false)
 
         //val supportFragmentManager = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment supportFragmentManager.getMapAsync(this)

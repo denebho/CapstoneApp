@@ -1,19 +1,23 @@
 package com.example.ayosapp.ayosPackage
 
-import android.R
+
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.ayosapp.MainActivity
+import com.example.ayosapp.R
 import com.example.ayosapp.databinding.FragmentAyosReviewbookingBinding
 import com.google.firebase.Firebase
 import com.google.firebase.Timestamp
@@ -67,20 +71,20 @@ class AyosReviewBookingFragment : Fragment() {
         val type = binding.serviceType
         when (service) {
             "Appliance" -> {
-                icon.setImageResource(com.example.ayosapp.R.drawable.home_appliance)
-                type.setText(com.example.ayosapp.R.string.ayosAppliance)
+                icon.setImageResource(R.drawable.home_appliance)
+                type.setText(R.string.ayosAppliance)
             }
             "Electrical"->{
-                icon.setImageResource(com.example.ayosapp.R.drawable.home_electrical)
-                type.setText(com.example.ayosapp.R.string.ayosElectrical)
+                icon.setImageResource(R.drawable.home_electrical)
+                type.setText(R.string.ayosElectrical)
             }
             "Plumbing"->{
-                icon.setImageResource(com.example.ayosapp.R.drawable.home_plumbing)
-                type.setText(com.example.ayosapp.R.string.ayosPlumbing)
+                icon.setImageResource(R.drawable.home_plumbing)
+                type.setText(R.string.ayosPlumbing)
             }
             "Aircon"->{
-                icon.setImageResource(com.example.ayosapp.R.drawable.home_aircon)
-                type.setText(com.example.ayosapp.R.string.ayosAircon)
+                icon.setImageResource(R.drawable.home_aircon)
+                type.setText(R.string.ayosAircon)
             }
         }
         val serviceRef = db.collection("service_listings")
@@ -95,10 +99,10 @@ class AyosReviewBookingFragment : Fragment() {
 
 
         val adapter =
-            ArrayAdapter(requireActivity(), R.layout.simple_spinner_item, paymentOptions)
+            ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item, paymentOptions)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         val paymentSpinner: AutoCompleteTextView = view.findViewById(
-            com.example.ayosapp.R.id.autoCompleteTextView)
+            R.id.autoCompleteTextView)
         paymentSpinner.setAdapter(adapter)
         paymentSpinner.onItemSelectedListener =  object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -136,11 +140,9 @@ class AyosReviewBookingFragment : Fragment() {
                 )
                 db.collection("booking").document().set(bookingData)
                     .addOnSuccessListener {
-                        val intent = Intent(requireActivity(), MainActivity::class.java)
-                        startActivity(intent)
-                        requireActivity().finish()
-                        Toast.makeText(activity, "Service Booked!", Toast.LENGTH_SHORT)
-                            .show()
+                        showDialog()
+//                        Toast.makeText(activity, "Service Booked!", Toast.LENGTH_SHORT)
+//                            .show()
                     }
                     .addOnFailureListener { e ->
                         Toast.makeText(activity, "Something went wrong. Please try again", Toast.LENGTH_SHORT)
@@ -155,7 +157,7 @@ class AyosReviewBookingFragment : Fragment() {
         }
     }
 
-    fun dateTimeStringToTimestamp(dateTimeString: String): Timestamp {
+    private fun dateTimeStringToTimestamp(dateTimeString: String): Timestamp {
         val dateFormat = SimpleDateFormat("dd MMMM yyyy hh:mm a", Locale.getDefault())
         val date = dateFormat.parse(dateTimeString)
         return Timestamp(date)
@@ -164,7 +166,7 @@ class AyosReviewBookingFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Cancel Booking")
         builder.setMessage("Are you sure you want to cancel booking?")
-        builder.setPositiveButton("YES") { dialog, _ ->
+        builder.setPositiveButton("YES") { _, _ ->
             val intent = Intent(requireActivity(), MainActivity::class.java)
             startActivity(intent)
             requireActivity().finish()
@@ -173,6 +175,20 @@ class AyosReviewBookingFragment : Fragment() {
             dialog.dismiss()
         }
         val dialog = builder.create()
+        dialog.show()
+    }
+    private fun showDialog() {
+        val dialog = Dialog(requireActivity())
+        dialog.requestWindowFeature (Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.ayos_custom_dialog_confirming_booking)
+        val btnOk: TextView = dialog.findViewById(R.id.OkBtnDialog)
+        btnOk.setOnClickListener {
+            val intent = Intent(requireActivity(), MainActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
+            dialog.dismiss()
+        }
         dialog.show()
     }
 }

@@ -61,7 +61,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
         replaceFragment(HomeFragment())
-
     }
     private fun replaceFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction().replace(R.id.frame_container_main, fragment).commit()

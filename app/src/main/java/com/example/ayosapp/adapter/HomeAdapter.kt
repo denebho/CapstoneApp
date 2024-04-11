@@ -16,9 +16,8 @@ class HomeAdapter(
     RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
     inner class HomeViewHolder(val binding: ItemHomeBinding):
-        RecyclerView.ViewHolder(binding.root){
+        RecyclerView.ViewHolder(binding.root)
 
-        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         return HomeViewHolder(
@@ -48,8 +47,8 @@ class HomeAdapter(
         fun timestampToString(timestamp: com.google.firebase.Timestamp?): String {
             val date = timestamp?.toDate()
             val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
-            val dateString = dateFormat.format(date)
-            return "$dateString"
+            val dateString = dateFormat.format(date!!)
+            return dateString
         }
 
 }

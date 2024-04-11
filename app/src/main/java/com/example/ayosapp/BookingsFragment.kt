@@ -45,7 +45,7 @@ class BookingsFragment : Fragment() {
     private fun fetchDataFromFirestore() {
         val db = FirebaseFirestore.getInstance()
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
-        val bookingsRef = db.collection("booking")
+        val bookingsRef = db.collection("booking").orderBy("timeScheduled")
         val bundle = arguments
         bookingsRef.whereEqualTo("UID", userId).get()
             .addOnSuccessListener { result ->
