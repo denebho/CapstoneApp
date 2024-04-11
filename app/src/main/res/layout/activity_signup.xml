@@ -10,10 +10,12 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingTop="24dp">
 
                         <ImageButton
                             android:id="@+id/backButton"
@@ -36,8 +38,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/supportSignUp"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"/>
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/workerTv"
@@ -68,27 +70,28 @@
                             android:id="@+id/passwordEt"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:background="@drawable/floating_edittextwhite"
                             android:layout_marginTop="20dp"
-                            android:paddingStart="20dp"
+                            android:background="@drawable/floating_edittextwhite"
+                            android:drawablePadding="8dp"
                             android:hint="@string/passwordHint"
                             android:imeOptions="actionNext"
                             android:inputType="textPassword"
-                            android:textColor="@color/black"
-                            android:drawablePadding="8dp"/>
+                            android:paddingStart="20dp"
+                            android:textColor="@color/black" />
 
                         <EditText
                             android:id="@+id/retypepasswordEt"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:background="@drawable/floating_edittextwhite"
                             android:layout_marginTop="20dp"
-                            android:paddingStart="20dp"
+                            android:background="@drawable/floating_edittextwhite"
+                            android:drawablePadding="8dp"
                             android:hint="@string/retypePassword"
                             android:imeOptions="actionNext"
                             android:inputType="textPassword"
-                            android:textColor="@color/black"
-                            android:drawablePadding="8dp"/>
+                            android:paddingStart="20dp"
+                            android:textColor="@color/black" />
+
                         <EditText
                             android:id="@+id/firstnameEt"
                             android:layout_width="match_parent"
@@ -101,6 +104,7 @@
                             android:inputType="textCapWords"
                             android:paddingStart="20dp"
                             android:textColor="@color/black" />
+
                         <EditText
                             android:id="@+id/lastnameEt"
                             android:layout_width="match_parent"
@@ -113,6 +117,7 @@
                             android:inputType="text"
                             android:paddingStart="20dp"
                             android:textColor="@color/black" />
+
                         <EditText
                             android:id="@+id/phonenumberEt"
                             android:layout_width="match_parent"
@@ -130,8 +135,8 @@
                             android:id="@+id/signupBtn"
                             android:layout_width="180dp"
                             android:layout_height="60dp"
-                            android:layout_marginTop="20dp"
                             android:layout_gravity="center"
+                            android:layout_marginTop="20dp"
                             android:backgroundTint="@color/primary_blue"
                             android:text="@string/signup"
                             android:textColor="@color/white"

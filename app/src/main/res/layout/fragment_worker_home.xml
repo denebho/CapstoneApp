@@ -15,17 +15,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="45dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bookings Available" />
+                android:paddingLeft="32dp"
+                android:text="Bookings Available ---"
+                android:textAllCaps="true"
+                android:textColor="@color/highlight_blue"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="250dp">
+                android:layout_height="300dp">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/bookingsAvailableRV"
@@ -38,11 +44,17 @@
                 android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bookings Scheduled" />
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="50dp"
+                android:text="Bookings Scheduled ---"
+                android:textAllCaps="true"
+                android:textColor="@color/highlight_blue"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="250dp">
+                android:layout_height="300dp">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/bookingsScheduledRV"
@@ -50,6 +62,7 @@
                     android:layout_height="wrap_content"
                     tools:listitem="@layout/item_booking_worker" />
             </ScrollView>
+
         </LinearLayout>
 
 
