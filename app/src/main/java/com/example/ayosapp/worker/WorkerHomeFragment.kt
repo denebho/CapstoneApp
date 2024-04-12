@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ayosapp.R
-import com.example.ayosapp.adapter.HomeAdapter
+import com.example.ayosapp.adapter.WorkerBookingAdapter
 import com.example.ayosapp.data.BookingsData
 import com.example.ayosapp.databinding.FragmentWorkerHomeBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -55,7 +55,7 @@ class WorkerHomeFragment : Fragment() {
                 for (document in result) {
                     dataArrayList.add(document.toObject(BookingsData::class.java))
                 }
-                val adapter = HomeAdapter(requireActivity(),dataArrayList)
+                val adapter = WorkerBookingAdapter(requireActivity(),dataArrayList, userId)
                 recyclerViewBookings.adapter = adapter
             }
             .addOnFailureListener { exception ->

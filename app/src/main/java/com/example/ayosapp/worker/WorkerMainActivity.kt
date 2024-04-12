@@ -3,7 +3,6 @@ package com.example.ayosapp.worker
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.ayosapp.HomeFragment
 import com.example.ayosapp.ProfileFragment
 import com.example.ayosapp.R
 import com.example.ayosapp.chat.ChatListFragment
@@ -46,7 +45,7 @@ class WorkerMainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-        replaceFragment(HomeFragment())
+        replaceFragment(WorkerHomeFragment())
     }
 
     private fun replaceFragment(fragment: Fragment) {
