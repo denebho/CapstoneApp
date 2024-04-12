@@ -3,7 +3,6 @@ package com.example.ayosapp.data
 import com.google.firebase.Timestamp
 
 data class BookingsData(
-    //val image : Int? = 0,
     val booking_id: String? = "",
     val UID: String? = "",
     val workerAssigned : String? = "",

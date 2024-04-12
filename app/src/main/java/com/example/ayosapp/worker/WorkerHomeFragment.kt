@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ayosapp.R
 import com.example.ayosapp.adapter.WorkerBookingAdapter
@@ -43,6 +44,9 @@ class WorkerHomeFragment : Fragment() {
         recyclerViewBookings = view.findViewById(R.id.bookingsAvailableRV)
         recyclerViewSchedule = view.findViewById(R.id.bookingsScheduledRV)
         dataArrayList = arrayListOf()
+        val layoutManager = LinearLayoutManager(requireActivity())
+        recyclerViewBookings.layoutManager = layoutManager
+        fetchDataFromFirestore()
     }
 
     private fun fetchDataFromFirestore() {
