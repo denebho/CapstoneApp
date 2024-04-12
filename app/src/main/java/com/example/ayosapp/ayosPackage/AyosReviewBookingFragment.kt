@@ -61,12 +61,16 @@ class AyosReviewBookingFragment : Fragment() {
         val dateSched = bundle?.getString("date")
         val timeSched = bundle?.getString("time")
         val details = bundle?.getString("details")
+        val db = FirebaseFirestore.getInstance()
+        // Assuming you have a collection reference to your documents
+        val collectionRef = db.collection("booking")
 
         val dateTime = "$dateSched $timeSched"
         val dateString = "$dateSched at $timeSched"  
         val timestamp = dateTimeStringToTimestamp(dateTime)
         binding.timeScheduled.setText(dateString)
         binding.joblocation.setText(addressline)
+        binding.noteToWorker.setText(details)
         val icon = binding.serviceIconAyos
         val type = binding.serviceType
         when (service) {
@@ -124,8 +128,10 @@ class AyosReviewBookingFragment : Fragment() {
 
             user?.let {
                 val iPrice = binding.initalPrice.text.toString()
-
+                val newDocRef = collectionRef.document()
+                val documentId = newDocRef.id
                 val bookingData = hashMapOf(
+                    "bookingId" to documentId,
                     "UID" to userId,
                     "service" to service,
                     "timeBooked" to timeNow,

@@ -14,6 +14,7 @@ import com.example.ayosapp.data.BookingsData
 import com.example.ayosapp.databinding.FragmentBookingsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
 class BookingsFragment : Fragment() {
 
@@ -41,13 +42,16 @@ class BookingsFragment : Fragment() {
         //val service = bundle?.getString("serviceCode","").toString()
 
         fetchDataFromFirestore()
+
+
     }
     private fun fetchDataFromFirestore() {
         val db = FirebaseFirestore.getInstance()
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
-        val bookingsRef = db.collection("booking").orderBy("timeScheduled")
-        val bundle = arguments
-        bookingsRef.whereEqualTo("UID", userId).get()
+        val addressRef = db.collection("booking")
+        addressRef.whereEqualTo("UID", userId)
+            .orderBy("timeScheduled", Query.Direction.DESCENDING)
+            .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
                     dataArrayList.add(document.toObject(BookingsData::class.java))
@@ -59,4 +63,5 @@ class BookingsFragment : Fragment() {
                 Log.w(ContentValues.TAG, "Error getting documents.", exception)
             }
     }
+
 }
