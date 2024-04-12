@@ -143,6 +143,7 @@ class AyosReviewBookingFragment : Fragment() {
                     "additionalFee" to 0.00,
                     "status" to "booked",
                     "timeUpdated" to timeNow,
+                    "workerAssigned" to ""
                 )
                 db.collection("booking").document().set(bookingData)
                     .addOnSuccessListener {
