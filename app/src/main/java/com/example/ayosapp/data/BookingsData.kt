@@ -18,5 +18,4 @@ data class BookingsData(
     val paymentStatus : String? = "",
     val status : String? = "",
     val paymentMethod : String? = "",
-    val bookingId : String? = "" ) {
-}
+    val bookingId : String? = "" )

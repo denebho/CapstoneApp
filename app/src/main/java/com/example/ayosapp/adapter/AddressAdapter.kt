@@ -58,7 +58,7 @@ class AddressAdapter(
                 context.startActivity(intent)
             }
             holder.binding.deleteBtn.setOnClickListener{
-                deleteDialog(currentAddress.addressID, currentAddress.address)
+                deleteDialog(currentAddress.addressID, currentAddress.address,position )
             }
             holder.binding.addressCard.setOnClickListener{
                 val intent = Intent(context, AyosBookingActivity::class.java)
@@ -72,23 +72,24 @@ class AddressAdapter(
         }
 
     }
-    private fun deleteItemFromFirestore(documentId: String?) {
+    private fun deleteItemFromFirestore(documentId: String?,position: Int) {
         val docRef = firestore.collection("address").document(documentId.toString())
         docRef.delete()
             .addOnSuccessListener {
-                notifyDataSetChanged()
+                notifyItemRemoved(position)
+                notifyItemRangeChanged(position, itemCount);
                 Log.d(TAG, "DocumentSnapshot successfully deleted!")
             }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error deleting document", e)
             }
     }
-    private fun deleteDialog(documentId: String?, addressLine: String?) {
+    private fun deleteDialog(documentId: String?, addressLine: String?, position: Int) {
         val builder = AlertDialog.Builder(context)
         builder.setTitle("Continue deleting address?")
         builder.setMessage("Are you sure you want to delete the following address? \n$addressLine")
         builder.setPositiveButton("YES") { _, _ ->
-            deleteItemFromFirestore(documentId)
+            deleteItemFromFirestore(documentId, position)
         }
         builder.setNegativeButton("NO") { dialog, _ ->
             dialog.dismiss()

@@ -24,6 +24,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import java.io.IOException
@@ -37,6 +38,10 @@ class AyosMap : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var marker: MarkerOptions
     private lateinit var binding: ActivityAyosMapBinding
     private val FINE_PERMISSION_CODE = 1
+    private val metroManilaBounds = LatLngBounds(
+        LatLng(14.4000, 120.9667), // Southwest bound (bottom-left)
+        LatLng(14.8000, 121.2000)  // Northeast bound (top-right)
+    )
 
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var  currentLocation: Location
@@ -163,9 +168,10 @@ class AyosMap : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        mMap.setLatLngBoundsForCameraTarget(metroManilaBounds)
         // Add a marker in current location and move the camera
-        currentLocation.latitude = intent.getDoubleExtra("latitude",0.0)
-        currentLocation.longitude = intent.getDoubleExtra("longitude",0.0)
+        currentLocation.latitude = intent.getDoubleExtra("latitude",14.5995)
+        currentLocation.longitude = intent.getDoubleExtra("longitude",120.9842)
         val curLoc = LatLng(currentLocation.latitude, currentLocation.longitude)
         mMap.addMarker(MarkerOptions().position(curLoc))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(currentLocation.latitude, currentLocation.longitude),13.0f))
@@ -179,6 +185,17 @@ class AyosMap : AppCompatActivity(), OnMapReadyCallback {
             mMap.addMarker(MarkerOptions().position(latLng))
             currentLocation.longitude=latLng.longitude
             currentLocation.latitude=latLng.latitude
+            if (!metroManilaBounds.contains(marker.position)) {
+                mMap.clear()
+                // Snap back the marker to the closest valid position within Metro Manila bounds
+                val closestValidPosition = LatLng(
+                    marker.position.latitude.coerceIn(metroManilaBounds.southwest.latitude, metroManilaBounds.northeast.latitude),
+                    marker.position.longitude.coerceIn(metroManilaBounds.southwest.longitude, metroManilaBounds.northeast.longitude)
+                )
+                currentLocation.latitude = closestValidPosition.latitude
+                currentLocation.longitude = closestValidPosition.longitude
+                mMap.addMarker(MarkerOptions().position(closestValidPosition))
+            }
             Log.d("DEBUG", "new location: {${currentLocation.latitude} ${currentLocation.longitude}}")
             moveToCurrentLocation(LatLng(currentLocation.latitude,currentLocation.longitude))
             mMap.moveCamera(CameraUpdateFactory.newLatLng(curLoc))

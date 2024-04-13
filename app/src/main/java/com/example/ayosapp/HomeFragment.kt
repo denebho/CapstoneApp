@@ -13,20 +13,16 @@ import com.example.ayosapp.adapter.HomeAdapter
 import com.example.ayosapp.ayosPackage.AyosGetLocationFragment
 import com.example.ayosapp.data.BookingsData
 import com.example.ayosapp.databinding.FragmentHomeBinding
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.Query
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var homeAdapter: HomeAdapter
     private var dataArrayList = ArrayList<BookingsData>()
-    private var bookingsData: BookingsData? = null
     private lateinit var recyclerView: RecyclerView
 
-    private var db = Firebase.firestore
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -88,8 +84,10 @@ class HomeFragment : Fragment() {
         val db = FirebaseFirestore.getInstance()
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
         val addressRef = db.collection("booking")
-        val bundle = arguments
-        addressRef.whereEqualTo("UID", userId).get()
+
+        addressRef.whereEqualTo("UID", userId)
+            .orderBy("timeScheduled", Query.Direction.DESCENDING)
+            .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
                     dataArrayList.add(document.toObject(BookingsData::class.java))
