@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ayosapp.databinding.ActivityLoginBinding
+import com.example.ayosapp.worker.WorkerMainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -83,7 +84,7 @@ class LoginActivity : AppCompatActivity() {
                         .addOnSuccessListener { documentSnapshot ->
                             if (documentSnapshot.exists() && documentSnapshot.getBoolean("verification") == true) {
                                 // Document ID equal to UID has "verification" set to true
-                                val intent = Intent(this, MainActivity::class.java)
+                                val intent = Intent(this, WorkerMainActivity::class.java)
                                 startActivity(intent)
                             } else {
                                 // Document ID equal to UID either does not exist or "verification" is not true
