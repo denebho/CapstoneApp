@@ -12,9 +12,11 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
             android:orientation="vertical">
 
             <ImageButton
@@ -38,8 +40,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/supportWorkerSignUp"
-                android:textSize="16sp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/customerTv"
@@ -59,13 +61,15 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/floating_edittextsoftblue"
+                android:backgroundTint="@color/blueish_white"
                 android:drawablePadding="8dp"
                 android:hint="@string/emailaddHint"
                 android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/primary_blue" />
 
             <EditText
                 android:id="@+id/passwordEt"
@@ -73,13 +77,15 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/floating_edittextsoftblue"
+                android:backgroundTint="@color/blueish_white"
                 android:drawablePadding="8dp"
                 android:hint="@string/passwordHint"
                 android:imeOptions="actionNext"
                 android:inputType="textPassword"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/primary_blue" />
 
             <EditText
                 android:id="@+id/retypePasswordEt"
@@ -87,13 +93,15 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/floating_edittextsoftblue"
+                android:backgroundTint="@color/blueish_white"
                 android:drawablePadding="8dp"
                 android:hint="@string/retypePassword"
                 android:imeOptions="actionNext"
                 android:inputType="textPassword"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/primary_blue" />
 
             <EditText
                 android:id="@+id/firstNameEt"
@@ -101,13 +109,15 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/floating_edittextsoftblue"
+                android:backgroundTint="@color/blueish_white"
                 android:drawablePadding="8dp"
                 android:hint="@string/firstnameHint"
                 android:imeOptions="actionNext"
                 android:inputType="textCapWords"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/primary_blue" />
 
             <EditText
                 android:id="@+id/middleNameEt"
@@ -115,13 +125,15 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/floating_edittextsoftblue"
+                android:backgroundTint="@color/blueish_white"
                 android:drawablePadding="8dp"
                 android:hint="@string/middlenameHint"
                 android:imeOptions="actionNext"
                 android:inputType="textCapWords"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/primary_blue" />
 
             <EditText
                 android:id="@+id/lastNameEt"
@@ -129,13 +141,15 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/floating_edittextsoftblue"
+                android:backgroundTint="@color/blueish_white"
                 android:drawablePadding="8dp"
                 android:hint="@string/lastnameHint"
                 android:imeOptions="actionNext"
                 android:inputType="textCapWords"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/primary_blue" />
 
             <EditText
                 android:id="@+id/birthDateEt"
@@ -143,13 +157,15 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/floating_edittextsoftblue"
+                android:backgroundTint="@color/blueish_white"
                 android:drawablePadding="8dp"
                 android:hint="@string/birthDateHint"
                 android:imeOptions="actionNext"
                 android:inputType="date"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/primary_blue" />
 
             <EditText
                 android:id="@+id/phoneNumberEt"
@@ -157,13 +173,15 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/floating_edittextsoftblue"
+                android:backgroundTint="@color/blueish_white"
                 android:drawablePadding="8dp"
                 android:hint="@string/mobilnoHint"
                 android:imeOptions="actionNext"
                 android:inputType="phone"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/primary_blue" />
 
             <EditText
                 android:id="@+id/landlineNumberEt"
@@ -171,13 +189,16 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/floating_edittextsoftblue"
+                android:backgroundTint="@color/blueish_white"
                 android:drawablePadding="8dp"
                 android:hint="@string/landlinenoHint"
                 android:imeOptions="actionNext"
                 android:inputType="phone"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/primary_blue"
+                android:textColorLink="@color/primary_blue" />
 
             <EditText
                 android:id="@+id/addressEt"
@@ -185,13 +206,15 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/floating_edittextsoftblue"
+                android:backgroundTint="@color/blueish_white"
                 android:drawablePadding="8dp"
                 android:hint="@string/addressHint"
                 android:imeOptions="actionNext"
                 android:inputType="text"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/primary_blue" />
 
             <EditText
                 android:id="@+id/cityEt"
@@ -199,13 +222,15 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/floating_edittextsoftblue"
+                android:backgroundTint="@color/blueish_white"
                 android:drawablePadding="8dp"
                 android:hint="@string/cityHint"
                 android:imeOptions="actionNext"
                 android:inputType="text"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/primary_blue" />
 
             <EditText
                 android:id="@+id/serviceEt"
@@ -213,6 +238,8 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/floating_edittextsoftblue"
+                android:backgroundTint="@color/blueish_white"
+                android:drawableEnd="@android:drawable/arrow_down_float"
                 android:drawablePadding="8dp"
                 android:hint="@string/servicesHint"
                 android:imeOptions="actionNext"
@@ -220,7 +247,7 @@
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:textColor="@color/black"
-                android:drawableEnd="@android:drawable/arrow_down_float"/>
+                android:textColorHint="@color/primary_blue" />
 
             <Button
                 android:id="@+id/clearanceBtn"
@@ -230,11 +257,11 @@
                 android:background="@drawable/floating_edittextwhite"
                 android:drawablePadding="8dp"
                 android:hint="@string/barangayClearanceHint"
-                android:textColorHint="@color/primary_blue"
                 android:imeOptions="actionNext"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:textColor="@color/black"
+                android:textColorHint="@color/primary_blue"
                 android:textStyle="bold" />
 
             <ImageView
@@ -248,8 +275,8 @@
                 android:id="@+id/signupBtn"
                 android:layout_width="180dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="20dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="20dp"
                 android:backgroundTint="@color/primary_blue"
                 android:text="@string/signup"
                 android:textColor="@color/white"
