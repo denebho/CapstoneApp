@@ -82,7 +82,7 @@
             android:background="@drawable/floating_edittextwhite"
             android:layout_marginTop="20dp"
             android:paddingLeft="20dp"
-            android:hint="@string/dateofbirthHint"
+            android:hint="@string/birthDateHint"
             android:inputType="date"
             android:textColor="@color/black"
             android:drawablePadding="8dp"/>

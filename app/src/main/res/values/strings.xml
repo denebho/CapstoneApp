@@ -18,15 +18,19 @@
     <string name="supportSignUp">Sign up as a customer to get started with Ayos!</string>
     <string name="supportWorkerSignUp">Sign up as a worker to partner with Ayos!</string>
     <string name="workerSignUp">SIGN UP here as an Ayos! worker</string>
-    <string name="userSignUp">SIGN UP here as an Ayos! user</string>
+    <string name="customerSignUp">SIGN UP here as an Ayos! customer</string>
     <string name="createAccount">Create Account</string>
     <string name="emailaddHint">Email Address</string>
     <string name="lastnameHint">Last Name</string>
     <string name="firstnameHint">First Name</string>
     <string name="middlenameHint">Middle Name</string>
-    <string name="dateofbirthHint">Date of Birth</string>
+    <string name="birthDateHint">Date of Birth</string>
     <string name="mobilnoHint">Mobile Number</string>
     <string name="landlinenoHint">Landline Number</string>
+    <string name="addressHint">Address</string>
+    <string name="cityHint">City</string>
+    <string name="servicesHint">What services do you want to work in?</string>
+    <string name="barangayClearanceHint">UPLOAD BRGY. CLEARANCE / NATIONAL ID</string>
     <string name="passwordHint">Password</string>
     <string name="retypePassword">Retype Password</string>
     <string name="choicesRg">Lastly, are you signing up as a…</string>
@@ -34,6 +38,9 @@
     <string name="ayosWorkerHint">Ayos! Worker</string>
     <string name="termsConditions">By clicking Sign Up, you agree to all the Terms and Conditions.</string>
     <string name="alreadyUser">Already have an Account? Login here.</string>
+    <string name="emailVerificationPrompt">A verification email has been sent to your inbox.</string>
+    <string name="resendVerification">Resend verification?</string>
+    <string name="backToLogin">BACK TO LOGIN</string>
 
     <!-- ForgotPassword Page -->
     <string name="supportForgotPassword">Input your email to make a new password.</string>

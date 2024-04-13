@@ -11,9 +11,9 @@
         android:id="@+id/backButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/background_button"
         android:src="@drawable/navigate_before"
         app:layout_constraintEnd_toStartOf="@+id/serviceIconAyos"
@@ -48,7 +48,7 @@
         android:layout_width="120dp"
         android:layout_height="50dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="32dp"
         android:background="@color/primary_blue"
         android:padding="15dp"
         android:text="Next"
@@ -128,7 +128,7 @@
 
     <TextView
         android:id="@+id/textView0"
-        android:layout_width="301dp"
+        android:layout_width="293dp"
         android:layout_height="29dp"
         android:layout_marginTop="24dp"
         android:inputType="datetime"
@@ -137,6 +137,7 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/timeSlotSpinner" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/jobSpecificationSpinner"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -210,5 +211,18 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/serviceDetailsAyos"
         app:layout_constraintTop_toBottomOf="@+id/dateofserviceEt"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="DuplicateIds,MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="*"
+        android:textColor="#FF5252"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textView0"
+        app:layout_constraintTop_toBottomOf="@+id/timeSlotSpinner" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

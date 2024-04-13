@@ -8,19 +8,20 @@
     tools:context=".SignupActivity">
 
         <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:paddingTop="24dp">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:orientation="vertical">
 
                         <ImageButton
                             android:id="@+id/backButton"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
                             android:background="@drawable/floating_backshapeblue"
                             android:contentDescription="@string/backButton"
                             android:src="@drawable/baseline_arrow_back_24" />
@@ -58,78 +59,146 @@
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:layout_marginTop="20dp"
-                            android:background="@drawable/floating_edittextwhite"
+                            android:background="@drawable/floating_edittextsoftblue"
+                            android:backgroundTint="@color/blueish_white"
                             android:drawablePadding="8dp"
                             android:hint="@string/emailaddHint"
                             android:imeOptions="actionNext"
                             android:inputType="textEmailAddress"
                             android:paddingStart="20dp"
-                            android:textColor="@color/black" />
+                            android:paddingEnd="20dp"
+                            android:textColor="@color/black"
+                            android:textColorHighlight="#000000"
+                            android:textColorHint="@color/primary_blue" />
 
                         <EditText
                             android:id="@+id/passwordEt"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:layout_marginTop="20dp"
-                            android:background="@drawable/floating_edittextwhite"
+                            android:background="@drawable/floating_edittextsoftblue"
+                            android:backgroundTint="@color/blueish_white"
                             android:drawablePadding="8dp"
                             android:hint="@string/passwordHint"
                             android:imeOptions="actionNext"
                             android:inputType="textPassword"
                             android:paddingStart="20dp"
-                            android:textColor="@color/black" />
+                            android:paddingEnd="20dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/primary_blue" />
 
                         <EditText
-                            android:id="@+id/retypepasswordEt"
+                            android:id="@+id/retypePasswordEt"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:layout_marginTop="20dp"
-                            android:background="@drawable/floating_edittextwhite"
+                            android:background="@drawable/floating_edittextsoftblue"
+                            android:backgroundTint="@color/blueish_white"
                             android:drawablePadding="8dp"
                             android:hint="@string/retypePassword"
                             android:imeOptions="actionNext"
                             android:inputType="textPassword"
                             android:paddingStart="20dp"
-                            android:textColor="@color/black" />
+                            android:paddingEnd="20dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/primary_blue" />
 
                         <EditText
-                            android:id="@+id/firstnameEt"
+                            android:id="@+id/firstNameEt"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:layout_marginTop="20dp"
-                            android:background="@drawable/floating_edittextwhite"
+                            android:background="@drawable/floating_edittextsoftblue"
+                            android:backgroundTint="@color/blueish_white"
                             android:drawablePadding="8dp"
-                            android:hint="First Name"
+                            android:hint="@string/firstnameHint"
                             android:imeOptions="actionNext"
                             android:inputType="textCapWords"
                             android:paddingStart="20dp"
-                            android:textColor="@color/black" />
+                            android:paddingEnd="20dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/primary_blue" />
+
+                        <EditText
+                            android:id="@+id/middleNameEt"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/floating_edittextsoftblue"
+                            android:backgroundTint="@color/blueish_white"
+                            android:drawablePadding="8dp"
+                            android:hint="@string/middlenameHint"
+                            android:imeOptions="actionNext"
+                            android:inputType="textCapWords"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/primary_blue" />
 
                         <EditText
                             android:id="@+id/lastnameEt"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:layout_marginTop="20dp"
-                            android:background="@drawable/floating_edittextwhite"
+                            android:background="@drawable/floating_edittextsoftblue"
+                            android:backgroundTint="@color/blueish_white"
                             android:drawablePadding="8dp"
-                            android:hint="Last Name"
+                            android:hint="@string/lastnameHint"
                             android:imeOptions="actionNext"
                             android:inputType="text"
                             android:paddingStart="20dp"
-                            android:textColor="@color/black" />
+                            android:paddingEnd="20dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/primary_blue" />
 
                         <EditText
-                            android:id="@+id/phonenumberEt"
+                            android:id="@+id/birthDateEt"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:layout_marginTop="20dp"
-                            android:background="@drawable/floating_edittextwhite"
+                            android:background="@drawable/floating_edittextsoftblue"
+                            android:backgroundTint="@color/blueish_white"
                             android:drawablePadding="8dp"
-                            android:hint="Phone Number"
+                            android:hint="@string/birthDateHint"
+                            android:imeOptions="actionNext"
+                            android:inputType="date"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/primary_blue" />
+
+                        <EditText
+                            android:id="@+id/phoneNumberEt"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/floating_edittextsoftblue"
+                            android:backgroundTint="@color/blueish_white"
+                            android:drawablePadding="8dp"
+                            android:hint="@string/mobilnoHint"
                             android:imeOptions="actionNext"
                             android:inputType="phone"
                             android:paddingStart="20dp"
-                            android:textColor="@color/black" />
+                            android:paddingEnd="20dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/primary_blue" />
+
+                        <EditText
+                            android:id="@+id/landlineNumberEt"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/floating_edittextsoftblue"
+                            android:backgroundTint="@color/blueish_white"
+                            android:drawablePadding="8dp"
+                            android:hint="@string/landlinenoHint"
+                            android:imeOptions="actionNext"
+                            android:inputType="phone"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/primary_blue" />
+
 
                         <Button
                             android:id="@+id/signupBtn"
@@ -145,5 +214,46 @@
 
                 </LinearLayout>
         </ScrollView>
+
+        <!-- Email verification section -->
+        <LinearLayout
+            android:id="@+id/emailVerificationLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/emailVerificationPrompt"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/resendVerificationTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:text="@string/resendVerification"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_blue"/>
+
+                <Button
+                    android:id="@+id/backToLoginBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    android:text="@string/backToLogin"
+                    android:textColor="@color/white"/>
+
+        </LinearLayout>
 
 </LinearLayout>
