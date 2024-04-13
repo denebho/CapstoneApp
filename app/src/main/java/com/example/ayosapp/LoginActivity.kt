@@ -83,15 +83,11 @@ class LoginActivity : AppCompatActivity() {
                         .addOnSuccessListener { documentSnapshot ->
                             if (documentSnapshot.exists() && documentSnapshot.getBoolean("verification") == true) {
                                 // Document ID equal to UID has "verification" set to true
-                                // TODO pass user to worker home page
+                                val intent = Intent(this, MainActivity::class.java)
+                                startActivity(intent)
                             } else {
                                 // Document ID equal to UID either does not exist or "verification" is not true
                                 Toast.makeText(this, "Your application has not yet been verified", Toast.LENGTH_SHORT).show()
-//                                try{
-//                                    firebaseAuth.signOut()
-//                                }catch (e: Exception){
-//                                    Log.d(TAG, "$e")
-//                                }
                             }
                         }
                         .addOnFailureListener { exception ->
