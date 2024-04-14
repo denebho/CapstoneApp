@@ -41,14 +41,14 @@ class ReportFragment : Fragment() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         ticketTagSpinner.adapter = adapter
 
-        binding.sendInquiryBtn.setOnClickListener {
-            val subject = binding.subjectEt.text.toString()
+        binding.sendReportBtn.setOnClickListener {
+            val title = binding.subjectEt.text.toString()
             val body = binding.bodyEt.text.toString()
             val selectedTag = ticketTagSpinner.selectedItem.toString()
 
-            if (subject.isNotEmpty() && body.isNotEmpty()) {
+            if (title.isNotEmpty() && body.isNotEmpty()) {
                 val complaint = hashMapOf(
-                    "ticket_title" to subject,
+                    "ticket_title" to title,
                     "ticket_tag" to selectedTag,
                     "ticket_body" to body
                 )
