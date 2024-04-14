@@ -23,11 +23,11 @@
             android:padding="24dp">
 
             <TextView
-                android:id="@+id/sendInquiry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="@string/sendInquiry"
+                android:gravity="center"
+                android:text="Report your concerns to us"
                 android:textSize="34sp"
                 android:textStyle="bold"
                 android:textColor="@color/primary_blue"/>
@@ -41,6 +41,13 @@
                 android:textColorHint="@color/soft_blue"
                 android:textColor="@color/black"
                 android:inputType="textMultiLine" />
+
+            <Spinner
+                android:id="@+id/ticketTagSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:entries="@array/ticket_tags" />
 
             <EditText
                 android:id="@+id/bodyEt"

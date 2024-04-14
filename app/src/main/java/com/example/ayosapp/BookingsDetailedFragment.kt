@@ -59,8 +59,5 @@ class BookingsDetailedFragment : Fragment() {
                     .addToBackStack(null)
                     .commit()
             }
-
-
-        }
     }
 }
