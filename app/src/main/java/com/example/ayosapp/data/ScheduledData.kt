@@ -1,8 +1,9 @@
 package com.example.ayosapp.data
 
 import com.google.firebase.Timestamp
+import java.io.Serializable
 
-data class BookingsData(
+data class ScheduledData(
     val UID: String? = "",
     val workerAssigned : String? = "",
     val addressID : String? = "",
@@ -16,4 +17,4 @@ data class BookingsData(
     val paymentStatus : String? = "",
     val status : String? = "",
     val paymentMethod : String? = "",
-    val bookingId : String? = "" )
+    val bookingId : String? = "" ): Serializable

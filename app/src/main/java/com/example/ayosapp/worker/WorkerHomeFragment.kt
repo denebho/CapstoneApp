@@ -11,18 +11,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ayosapp.R
 import com.example.ayosapp.adapter.WorkerBookingAdapter
+import com.example.ayosapp.adapter.WorkerScheduledAdapter
 import com.example.ayosapp.data.BookingsData
+import com.example.ayosapp.data.ScheduledData
 import com.example.ayosapp.databinding.FragmentWorkerHomeBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
 
-class WorkerHomeFragment : Fragment() {
+class WorkerHomeFragment : Fragment(),WorkerScheduledAdapter.ClickListener {
     private var dataArrayList = ArrayList<BookingsData>()
+    private var dataArrayList1 = ArrayList<ScheduledData>()
     private lateinit var binding: FragmentWorkerHomeBinding
-
     private lateinit var recyclerViewBookings: RecyclerView
     private lateinit var recyclerViewSchedule: RecyclerView
+    private lateinit var listener: WorkerScheduledAdapter.ClickListener
 
             override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,26 +39,32 @@ class WorkerHomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        listener = this
         binding = FragmentWorkerHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerViewBookings = view.findViewById(R.id.bookingsAvailableRV)
-        recyclerViewSchedule = view.findViewById(R.id.bookingsScheduledRV)
         dataArrayList = arrayListOf()
+        dataArrayList1 = arrayListOf()
+        recyclerViewBookings = view.findViewById(R.id.bookingsAvailableRV)
         val layoutManager = LinearLayoutManager(requireActivity())
         recyclerViewBookings.layoutManager = layoutManager
         fetchDataFromFirestore()
+        val layoutManager1 = LinearLayoutManager(requireActivity())
+        recyclerViewSchedule = view.findViewById(R.id.bookingsScheduledRV)
+        recyclerViewSchedule.layoutManager = layoutManager1
+        fetchScheduledDataFromFirestore()
     }
 
     private fun fetchDataFromFirestore() {
         val db = FirebaseFirestore.getInstance()
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
         val bookingRef = db.collection("booking")
-        val bundle = arguments
-        bookingRef.whereEqualTo("status", "booked").get()
+        bookingRef.whereEqualTo("status", "booked")
+            .orderBy("timeScheduled", Query.Direction.ASCENDING)
+            .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
                     dataArrayList.add(document.toObject(BookingsData::class.java))
@@ -65,5 +75,36 @@ class WorkerHomeFragment : Fragment() {
             .addOnFailureListener { exception ->
                 Log.w(ContentValues.TAG, "Error getting documents.", exception)
             }
+    }
+
+    private fun fetchScheduledDataFromFirestore() {
+        val db = FirebaseFirestore.getInstance()
+        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+        val scheduleRef = db.collection("booking")
+        scheduleRef.whereEqualTo("workerAssigned", userId)
+            .orderBy("timeScheduled", Query.Direction.ASCENDING)
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    dataArrayList1.add(document.toObject(ScheduledData::class.java))
+                }
+                val adapter = WorkerScheduledAdapter(requireActivity(),dataArrayList1,listener)
+                recyclerViewSchedule.adapter = adapter
+            }
+            .addOnFailureListener { exception ->
+                Log.w(ContentValues.TAG, "Error getting documents.", exception)
+            }
+    }
+
+    override fun onBookingListItemClick(view: View, user: ScheduledData) {
+        val nextFragment = WorkerScheduleDetailsFragment()
+        val bundle = Bundle().apply {
+            putSerializable("bookingData", user)
+        }
+        nextFragment.arguments = bundle
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.frame_container_schedule, nextFragment, "getLocationFrag")
+            .addToBackStack(null)
+            .commit()
     }
 }

@@ -2,9 +2,10 @@ package com.example.ayosapp.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ayosapp.data.BookingsData
+import com.example.ayosapp.data.ScheduledData
 import com.example.ayosapp.databinding.ItemScheduledWorkerBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
@@ -12,7 +13,8 @@ import java.util.Locale
 
 class WorkerScheduledAdapter(
     private val context: Context,
-private val bookingsList: ArrayList<BookingsData>,
+    private val bookingsList: ArrayList<ScheduledData>,
+    val clickListener:ClickListener
 ) :
 RecyclerView.Adapter<WorkerScheduledAdapter.WorkerScheduledViewHolder>() {
 
@@ -20,6 +22,9 @@ RecyclerView.Adapter<WorkerScheduledAdapter.WorkerScheduledViewHolder>() {
         RecyclerView.ViewHolder(binding.root)
 
     private val firestore = FirebaseFirestore.getInstance()
+    interface ClickListener {
+        fun onBookingListItemClick(view: View, user: ScheduledData)
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkerScheduledViewHolder {
         return WorkerScheduledViewHolder(
             ItemScheduledWorkerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -33,6 +38,7 @@ RecyclerView.Adapter<WorkerScheduledAdapter.WorkerScheduledViewHolder>() {
             firestore.collection("address").document(currentItem.addressID!!).get()
                 .addOnSuccessListener { documentSnapshot ->
                     if (documentSnapshot.exists()) {
+                        //gets address line of address to pass to textview
                         val addressline = documentSnapshot.getString("address")
                         AddressLine.text = addressline
                     } else {
@@ -49,6 +55,12 @@ RecyclerView.Adapter<WorkerScheduledAdapter.WorkerScheduledViewHolder>() {
 
             ProblemDescription.text = currentItem.details
         }
+        holder.binding.scheduleCard.setOnClickListener{
+//            val intent = Intent(context, AyosMap::class.java)
+//            context.startActivity(intent)
+            clickListener.onBookingListItemClick(it, bookingsList[position])
+
+        }
     }
 
     override fun getItemCount(): Int {
@@ -59,7 +71,10 @@ RecyclerView.Adapter<WorkerScheduledAdapter.WorkerScheduledViewHolder>() {
         val date = timestamp?.toDate()
         val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
         val dateString = dateFormat.format(date!!)
-        return dateString
+        val timeFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
+        val timeString = timeFormat.format(date)
+
+        return "$dateString\nat $timeString"
     }
 
 }

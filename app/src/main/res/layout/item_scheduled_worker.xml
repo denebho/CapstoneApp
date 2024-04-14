@@ -13,6 +13,7 @@
     app:cardElevation="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/scheduleCard"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -26,7 +27,9 @@
             android:text="date"
             android:textColor="@color/black"
             android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ServiceBookingWorker"
             app:layout_constraintStart_toEndOf="@+id/ServiceBookingWorker"
+            app:layout_constraintTop_toTopOf="@+id/ServiceBookingWorker"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="24dp" />
 
@@ -44,44 +47,34 @@
 
         <TextView
             android:id="@+id/ProblemDescription"
-            android:layout_width="218dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:text="Problem Description"
             android:textAlignment="viewStart"
             android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toBottomOf="@+id/ServiceBookingWorker" />
 
         <TextView
             android:id="@+id/AddressLine"
-            android:layout_width="218dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:layout_marginBottom="32dp"
+            android:layout_marginEnd="16dp"
             android:text="Address Line"
             android:textAlignment="viewStart"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imageView3"
-            app:layout_constraintTop_toBottomOf="@+id/ProblemDescription" />
+            app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/GetBookingBtn"-->
-<!--            android:layout_width="100dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="24dp"-->
-<!--            android:layout_marginEnd="24dp"-->
-<!--            android:background="@drawable/background_button"-->
-<!--            android:gravity="center"-->
-<!--            android:text="Book"-->
-<!--            android:textColor="@color/highlight_blue"-->
-<!--            android:textSize="15sp"-->
-<!--            android:textStyle="bold"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
         <TextView
             android:id="@+id/ServiceBookingWorker"
@@ -116,7 +109,7 @@
             android:layout_marginBottom="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/ProblemDescription"
             app:srcCompat="@drawable/baseline_place_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,11 +26,10 @@ class AyosEnterDetailsFragment : Fragment() {
     private var timepicked: Boolean = false
     private var jobpicked: Boolean = false
 
-    private val applianceOptions: List<String> = listOf("TV", "Refrigerator", "Electric Fan")
-    private val electricalOptions: List<String> =
-        listOf("Lighting", "Circuit Breaker", "Plug Socket")
-    private val airconOptions: List<String> = listOf("Cleaning", "Inspection", "Draining")
-    private val plumbingOptions: List<String> = listOf("Sink", "Shower", "Toilet")
+    private val applianceOptions: List<String> = listOf("TV", "Refrigerator", "Electric Fan", "Others")
+    private val electricalOptions: List<String> = listOf("Lighting", "Circuit Breaker", "Plug Socket", "Others")
+    private val airconOptions: List<String> = listOf("Cleaning", "Inspection", "Draining", "Others")
+    private val plumbingOptions: List<String> = listOf("Sink", "Shower", "Toilet", "Others")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -70,7 +70,10 @@ class WorkerBookingAdapter(
         val date = timestamp?.toDate()
         val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
         val dateString = dateFormat.format(date!!)
-        return dateString
+        val timeFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
+        val timeString = timeFormat.format(date)
+
+        return "$dateString\nat $timeString"
     }
     //changes values to assign booking to working
     private fun AssignBooking(documentId: String?) {

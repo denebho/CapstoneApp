@@ -70,7 +70,7 @@ class addAddressFragment : Fragment() {
 
         binding.addAddressbtn.setOnClickListener {
             //check for empty addressid, if empty passes new address details, else updates document
-            if(!addressid.isNullOrBlank()) {
+            if(addressid.isNullOrBlank()) {
                 if(binding.detailsEt.text.toString().trim().isNotBlank()) {
                     val details = binding.detailsEt.text.toString()
                     val instructions = binding.instructionsEt.text.toString()

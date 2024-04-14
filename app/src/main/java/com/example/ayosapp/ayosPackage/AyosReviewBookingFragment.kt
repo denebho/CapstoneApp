@@ -145,11 +145,9 @@ class AyosReviewBookingFragment : Fragment() {
                     "timeUpdated" to timeNow,
                     "workerAssigned" to ""
                 )
-                db.collection("booking").document().set(bookingData)
+                newDocRef.set(bookingData)
                     .addOnSuccessListener {
                         showDialog()
-//                        Toast.makeText(activity, "Service Booked!", Toast.LENGTH_SHORT)
-//                            .show()
                     }
                     .addOnFailureListener { e ->
                         Toast.makeText(activity, "Something went wrong. Please try again", Toast.LENGTH_SHORT)

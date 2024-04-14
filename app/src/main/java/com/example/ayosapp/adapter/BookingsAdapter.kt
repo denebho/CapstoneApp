@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ayosapp.R
 import com.example.ayosapp.data.BookingsData
 import com.example.ayosapp.databinding.ItemBookingsBinding
+import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -16,8 +17,10 @@ class BookingsAdapter(
 ):
     RecyclerView.Adapter<BookingsAdapter.BookingViewHolder>() {
     inner class BookingViewHolder(val binding: ItemBookingsBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-    }
+        RecyclerView.ViewHolder(binding.root)
+
+    private val firestore = FirebaseFirestore.getInstance()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookingViewHolder {
         return BookingViewHolder(
             ItemBookingsBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -49,6 +52,21 @@ class BookingsAdapter(
                 if(booking.workerAssigned.isNullOrBlank()) {
                     itemWorker.setText(R.string.matchingworker)
                 }else {
+                    firestore.collection("booking").document(booking.workerAssigned).get()
+                        .addOnSuccessListener { documentSnapshot ->
+                            if (documentSnapshot.exists()) {
+                                //gets name of worker to pass to textview
+                                val worker1 = documentSnapshot.getString("first_name")
+                                val worker2 = documentSnapshot.getString("last_name")
+                                val fullName = "$worker1 $worker2"
+                                itemWorker.text = fullName
+                            } else {
+                                // Document does not exist
+                            }
+                        }
+                        .addOnFailureListener { exception ->
+                            // Handle errors
+                        }
                     itemWorker.text = booking.workerAssigned
                 }
             }
@@ -57,10 +75,7 @@ class BookingsAdapter(
     fun timestampToString(timestamp: com.google.firebase.Timestamp?): String {
         val date = timestamp?.toDate()
         val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
-        val dateString = dateFormat.format(date)
-        val timeFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
-        val timeString = timeFormat.format(date)
-
-        return "$dateString at $timeString"
+        val dateString = dateFormat.format(date!!)
+        return dateString
     }
 }

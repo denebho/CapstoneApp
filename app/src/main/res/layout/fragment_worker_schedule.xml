@@ -7,7 +7,7 @@
     tools:context=".worker.WorkerScheduleFragment">
 
     <FrameLayout
-        android:id="@+id/frame_container"
+        android:id="@+id/frame_container_schedule"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -25,14 +25,14 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="230dp"
+            android:layout_height="550dp"
             android:layout_marginTop="73dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/bookingsScheduledRV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/item_booking_worker" />
+                tools:listitem="@layout/item_scheduled_worker" />
         </ScrollView>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView

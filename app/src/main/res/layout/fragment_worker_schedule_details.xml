@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".worker.WorkerScheduleDetailsFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="32dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/statusBar"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/itemImage"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@id/itemImage"
+                android:background="@drawable/floating_edittextblue"
+                android:gravity="center"
+                android:text="Ayos Na!"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/itemImage"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/home_electrical" />
+
+            <TextView
+                android:id="@+id/itemService"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/statusBar"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@id/itemImage"
+                android:text="Electrical"
+                android:textColor="@color/primary_blue"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/itemCustomer"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="20dp"
+                android:layout_below="@+id/itemService"
+                android:layout_toEndOf="@id/itemImage"
+                android:text="Juana dela Cruz"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <View
+                android:id="@+id/line1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/itemImage"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/serviceAddress"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/line1"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:text="Service Address"
+                android:textColor="@color/primary_blue"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/itemAddressImage"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignTop="@+id/serviceAddress"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="10dp"
+
+                android:src="@drawable/baseline_place_24" />
+
+            <TextView
+                android:id="@+id/itemAddressLine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/serviceAddress"
+                android:layout_alignEnd="@+id/line1"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@id/itemAddressImage"
+                android:text="Address Line"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/itemAddressDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/itemAddressLine"
+                android:layout_alignEnd="@+id/itemAddressLine"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@id/itemAddressImage"
+                android:text="Address Detail"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/servicedate"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/itemAddressDetail"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:text="Service Date"
+                android:textColor="@color/primary_blue"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/itemDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/servicedate"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="0dp"
+                android:gravity="center"
+                android:text="12/31/2024 at 8:00 AM"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/serviceCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@id/itemDate"
+                android:layout_marginStart="20dp"
+                android:text="Service Details"
+                android:textColor="@color/primary_blue"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/itemCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/serviceCategory"
+                android:layout_below="@+id/serviceCategory"
+                android:layout_alignEnd="@+id/line1"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="8dp"
+                android:text="Job Specification: details"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <View
+                android:id="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/itemCategory"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@android:color/darker_gray" />
+
+
+            <TextView
+                android:id="@+id/paymentStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@id/line2"
+                android:layout_alignStart="@+id/line2"
+                android:layout_marginTop="20dp"
+                android:text="STATUS"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/itemPaymentStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignTop="@+id/paymentStatus"
+                android:layout_alignEnd="@+id/line2"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="16dp"
+                android:text="Paid"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/paymentMethod"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignStart="@+id/paymentStatus"
+                android:layout_below="@id/paymentStatus"
+
+                android:text="PAYMENT METHOD"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/itemPaymentMethod"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignTop="@+id/paymentMethod"
+                android:layout_alignEnd="@+id/itemPaymentStatus"
+                android:layout_marginEnd="0dp"
+                android:text="Cash"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/bookingId"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@+id/paymentMethod"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:text="BOOKING ID: #0000000000 "
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>
