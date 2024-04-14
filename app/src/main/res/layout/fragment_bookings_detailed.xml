@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bookingDetailed_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -51,7 +52,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="35dp"
                 android:layout_toEndOf="@id/itemImage"
-                android:text="Jane Doe"
+                android:text="Name"
                 android:textColor="@color/primary_blue"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -63,7 +64,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="60dp"
                 android:layout_toEndOf="@id/itemImage"
-                android:text="Ayos Worker"
+                android:text="@string/ayosWorkerHint"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
@@ -84,7 +85,7 @@
                 android:layout_alignTop="@id/line1"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
-                android:text="Service Address"
+                android:text="@string/serviceAddress"
                 android:textColor="@color/primary_blue"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -119,7 +120,7 @@
                 android:layout_alignTop="@id/itemAddress"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="50dp"
-                android:text="Service Date"
+                android:text="@string/serviceDate"
                 android:textColor="@color/primary_blue"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -143,7 +144,7 @@
                 android:layout_alignTop="@id/servicedate"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="50dp"
-                android:text="Service Category"
+                android:text="@string/serviceCategory"
                 android:textColor="@color/primary_blue"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -156,7 +157,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:text="Category"
+                android:text="Service"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -177,7 +178,7 @@
                 android:layout_alignTop="@id/line2"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
-                android:text="Breakdown Cost"
+                android:text="@string/breakdownCost"
                 android:textColor="@color/primary_blue"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -189,7 +190,7 @@
                 android:layout_alignTop="@id/serviceBreakdown"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
-                android:text="Booking Fee"
+                android:text="Initial Price"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
@@ -229,18 +230,18 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/extraDayFee"
+                android:id="@+id/equipmentFee"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_alignTop="@id/serviceFee"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
-                android:text="Extra Day Fee"
+                android:text="Equipment Fee"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/itemExtradayFee"
+                android:id="@+id/itemEquipmentFee"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_alignTop="@id/itemBookingFee"
@@ -255,7 +256,7 @@
                 android:id="@+id/line3"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_alignTop="@+id/extraDayFee"
+                android:layout_alignTop="@+id/equipmentFee"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginRight="20dp"
@@ -269,7 +270,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:text="TOTAL"
+                android:text="@string/totalFee"
                 android:textColor="@color/primary_blue"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -295,7 +296,7 @@
                 android:layout_alignTop="@id/totalFee"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
-                android:text="STATUS"
+                android:text="@string/paymentStatus"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
@@ -318,7 +319,7 @@
                 android:layout_alignTop="@id/paymentStatus"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
-                android:text="PAYMENT METHOD"
+                android:text="@string/paymentMethod"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
@@ -334,25 +335,47 @@
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
-            <RatingBar
-                android:id="@+id/ratingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/paymentMethod"
-                android:layout_centerInParent="true"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="40dp" />
-
             <TextView
                 android:id="@+id/bookingId"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_alignTop="@id/ratingBar"
+                android:layout_alignTop="@id/paymentMethod"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="60dp"
-                android:text="BOOKING ID: #0000000000 "
-                android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp"
+                android:text="BOOKING ID"
+                android:textColor="@color/quantum_grey"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/reportBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/bookingId"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/primary_blue"
+                android:text="@string/submitReport"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            
+
+            <Button
+                android:id="@+id/cancelBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/bookingId"
+                android:layout_alignLeft="@id/reportBtn"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="190dp"
+                android:backgroundTint="@color/red"
+                android:text="@string/cancel"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 

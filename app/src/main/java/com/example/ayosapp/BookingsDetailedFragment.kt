@@ -22,6 +22,7 @@ class BookingsDetailedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        /*
         arguments?.let { args ->
             val image = args.getInt("image", R.drawable.home_electrical)
             val category = args.getString("category", "Category")
@@ -30,14 +31,13 @@ class BookingsDetailedFragment : Fragment() {
             val paymentMethod = args.getString("payment method", "Pay Method")
             val bookingFee = args.getString("booking fee", "39.00")?.toDouble() ?: 0.0
             val serviceFee = args.getString("service fee", "500.00")?.toDouble() ?: 0.0
-            val extraDayFee = args.getString("extra day fee", "100.00")?.toDouble() ?: 0.0
+            val equipmentFee = args.getString("equipment fee", "100.00")?.toDouble() ?: 0.0
             val totalFee = args.getString("total fee", "539.00")?.toDouble() ?: 0.0
             val worker = args.getString("worker", "Worker Name")
             val address = args.getString("address", "Road, Barangay, City")
             val date = args.getString("date", "XX/XX/20XX")
             val bookingId = args.getString("booking id", "#XXXXX")
 
-            // Update the UI with detailed information
             binding.itemImage.setImageResource(image)
             binding.itemCategory.text = category
             binding.itemPaymentStatus.text = paymentStatus
@@ -45,12 +45,22 @@ class BookingsDetailedFragment : Fragment() {
             binding.itemPaymentMethod.text = paymentMethod
             binding.itemBookingFee.text = bookingFee.toString()
             binding.itemServiceFee.text = serviceFee.toString()
-            binding.itemExtradayFee.text = extraDayFee.toString()
+            binding.itemEquipmentFee.text = equipmentFee.toString()
             binding.itemTotalFee.text = totalFee.toString()
             binding.itemWorker.text = worker
             binding.itemAddress.text = address
             binding.itemDate.text = date
-            binding.bookingId.text = bookingId
+            binding.bookingId.text = bookingId */
+
+            binding.reportBtn.setOnClickListener {
+                val nextFragment = ReportFragment()
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.bookingDetailed_container, nextFragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
+
+
         }
     }
 }

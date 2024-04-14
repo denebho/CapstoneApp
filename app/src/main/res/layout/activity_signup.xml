@@ -161,7 +161,7 @@
                             android:drawablePadding="8dp"
                             android:hint="@string/birthDateHint"
                             android:imeOptions="actionNext"
-                            android:inputType="date"
+                            android:inputType="none"
                             android:paddingStart="20dp"
                             android:paddingEnd="20dp"
                             android:textColor="@color/black"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ContactUsFragment">
+    tools:context=".ReportFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/sendInquiry"
@@ -23,7 +23,7 @@
             android:padding="24dp">
 
             <TextView
-                android:id="@+id/profileName"
+                android:id="@+id/sendInquiry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

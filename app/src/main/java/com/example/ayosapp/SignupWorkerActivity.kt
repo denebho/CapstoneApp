@@ -2,6 +2,7 @@ package com.example.ayosapp
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -19,7 +20,9 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.security.MessageDigest
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Locale
 
 
 private const val REQUEST_CODE_IMAGE_PICK = 0
@@ -67,7 +70,7 @@ class SignupWorkerActivity : AppCompatActivity() {
         firstNameEt = findViewById(R.id.firstNameEt)
         middleNameEt = findViewById(R.id.middleNameEt)
         lastNameEt = findViewById(R.id.lastNameEt)
-        birthDateEt = findViewById(R.id.birthDateEt)
+        birthDateEt = binding.birthDateEt
         phoneNumberEt = findViewById(R.id.phoneNumberEt)
         landlineNumberEt = findViewById(R.id.landlineNumberEt)
         addressEt = findViewById(R.id.addressEt)
@@ -78,6 +81,10 @@ class SignupWorkerActivity : AppCompatActivity() {
         emailVerificationLayout = findViewById(R.id.emailVerificationLayout)
         resendVerificationTv = findViewById(R.id.resendVerificationTv)
         backToLoginBtn = findViewById(R.id.backToLoginBtn)
+
+        birthDateEt.setOnClickListener {
+            showDatePicker()
+        }
 
         binding.clearanceBtn.setOnClickListener {
             val intent = Intent(Intent.ACTION_GET_CONTENT)
@@ -263,6 +270,33 @@ class SignupWorkerActivity : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
             }
+    }
+
+    private fun showDatePicker() {
+        val currentDate = Calendar.getInstance()
+        val currentYear = currentDate.get(Calendar.YEAR)
+        val currentMonth = currentDate.get(Calendar.MONTH)
+        val currentDay = currentDate.get(Calendar.DAY_OF_MONTH)
+
+        // Create a DatePickerDialog
+        val datePickerDialog = DatePickerDialog(
+            this, { _, year, monthOfYear, dayOfMonth ->
+                // Create a new Calendar instance to hold the selected date
+                val selectedDate = Calendar.getInstance()
+                // Set the selected date using the values received from the DatePicker dialog
+                selectedDate.set(year, monthOfYear, dayOfMonth)
+                // Create a SimpleDateFormat to format the date as "dd/MM/yyyy"
+                val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+                // Format the selected date into a string
+                val formattedDate = dateFormat.format(selectedDate.time)
+                // Update the EditText to display the selected date
+                birthDateEt.setText(formattedDate)
+            },
+            currentYear, currentMonth, currentDay
+        )
+
+        // Show the DatePickerDialog
+        datePickerDialog.show()
     }
 
     private fun isValidPassword(password: String): Boolean {

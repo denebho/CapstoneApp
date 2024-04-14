@@ -66,23 +66,47 @@
     <string name="logOut">LOG OUT</string>
     <string name="editProfile">Edit/Save Profile</string>
 
+    <!-- Contact Us -->
+    <string name="sendInquiry">Send us an inquiry</string>
+    <string name="subjectTitle">Subject Title</string>
+    <string name="bodyText">Write your inquiry here...</string>
+    <string name="submit">SUBMIT</string>
+    <string name="contactResponse">Our Ayos! team will get back to you.</string>
+
     <!-- Bookings Page -->
+    <string name="statusBooked">Booked</string>
+    <string name="statusMatched">Matched</string>
     <string name="statusInProgress">In Progress</string>
-    <string name="statusCancelled">Cancelled</string>
     <string name="statusExtended">Extended</string>
     <string name="statusAyosNa">Ayos Na!</string>
+    <string name="statusCancelled">Cancelled</string>
 
-    <string name="paymentGcash">GCASH</string>
+    <string name="serviceAddress">Service Address</string>
+    <string name="serviceDate">Service Date</string>
+    <string name="serviceCategory">Service Category</string>
+    <string name="breakdownCost">Breakdown Cost</string>
+    <string name="bookingFee">Booking Fee</string>
+    <string name="serviceFee">Service Fee</string>
+    <string name="extraDayFee">Extra Day Fee</string>
+    <string name="totalFee">TOTAL</string>
+
+    <string name="paymentMethod">PAYMENT METHOD</string>
+    <string name="paymentGcash">ONLINE</string>
     <string name="paymentCash">CASH</string>
     <string name="paymentCredit">CREDIT CARD</string>
     <string name="paymentOthers">OTHERS</string>
 
+    <string name="paymentStatus">PAYMENT STATUS</string>
     <string name="paymentStatusPaid">Paid</string>
     <string name="paymentStatusUnpaid">Unpaid</string>
     <string name="paymentStatusIncomplete">Incomplete</string>
     <string name="paymentStatusOverdue">Overdue</string>
 
     <string name="matchingworker">Matching Worker</string>
+
+    <!-- Booking Detailed Page -->
+    <string name="submitReport">REPORT</string>
+    <string name="cancel">CANCEL</string>
 
     <!-- Personal Info Page -->
     <string name="personalFirstName">First Name</string>
