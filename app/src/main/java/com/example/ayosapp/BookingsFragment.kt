@@ -18,10 +18,10 @@ import com.google.firebase.firestore.Query
 
 class BookingsFragment : Fragment() {
 
-    private lateinit var binding: FragmentBookingsBinding
     private lateinit var bookingsAdapter: BookingsAdapter
-    private var dataArrayList = ArrayList<BookingsData>()
     private var bookingsData: BookingsData? = null
+    private var dataArrayList = ArrayList<BookingsData>()
+    private lateinit var binding: FragmentBookingsBinding
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
@@ -34,22 +34,18 @@ class BookingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView = view.findViewById(R.id.listview)
+        dataArrayList = arrayListOf()
+        recyclerView = view.findViewById(R.id.bookingsRv)
         val layoutManager = LinearLayoutManager(requireActivity())
         recyclerView.layoutManager = layoutManager
-        dataArrayList = arrayListOf()
-        val bundle = arguments
-        //val service = bundle?.getString("serviceCode","").toString()
-
         fetchDataFromFirestore()
-
-
     }
+
     private fun fetchDataFromFirestore() {
         val db = FirebaseFirestore.getInstance()
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
-        val addressRef = db.collection("booking")
-        addressRef.whereEqualTo("UID", userId)
+        val bookRef = db.collection("booking")
+        bookRef.whereEqualTo("UID", userId)
             .orderBy("timeScheduled", Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener { result ->

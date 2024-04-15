@@ -26,6 +26,7 @@ class WorkerBookingAdapter(
         RecyclerView.ViewHolder(binding.root)
 
     private val firestore = FirebaseFirestore.getInstance()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkerBookingsViewHolder {
         return WorkerBookingsViewHolder(
             ItemBookingWorkerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -75,6 +76,7 @@ class WorkerBookingAdapter(
 
         return "$dateString\nat $timeString"
     }
+
     //changes values to assign booking to working
     private fun AssignBooking(documentId: String?) {
         //connects to firestore

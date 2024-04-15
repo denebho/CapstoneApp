@@ -140,7 +140,7 @@ class AyosReviewBookingFragment : Fragment() {
                     "details" to details,
                     "initialPrice" to iPrice.toDouble(),
                     "serviceFee" to 0.00,
-                    "additionalFee" to 0.00,
+                    "equipmentFee" to 0.00,
                     "status" to "booked",
                     "timeUpdated" to timeNow,
                     "workerAssigned" to ""

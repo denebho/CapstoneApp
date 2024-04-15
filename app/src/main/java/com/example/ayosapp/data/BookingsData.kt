@@ -11,7 +11,7 @@ data class BookingsData(
     val service : String? = "",
     val initialPrice : Double?= 0.0,
     val serviceFee : Double? = 0.0,
-    val additionalFee : Double? =0.0,
+    val equipmentFee : Double? =0.0,
     val totalPrice : Double? = 0.0,
     val paymentStatus : String? = "",
     val status : String? = "",

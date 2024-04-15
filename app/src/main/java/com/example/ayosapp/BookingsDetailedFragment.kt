@@ -1,15 +1,36 @@
 package com.example.ayosapp
 
+import android.content.ContentValues
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.ayosapp.adapter.BookingsDetailedAdapter
+import com.example.ayosapp.data.BookingsData
 import com.example.ayosapp.databinding.FragmentBookingsDetailedBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
-class BookingsDetailedFragment : Fragment() {
+class BookingsDetailedFragment : Fragment(), BookingsDetailedAdapter.ReportClickListener {
 
+    private lateinit var bookingsDetailedAdapter: BookingsDetailedAdapter
+    private var bookingsData: BookingsData? = null
+    private var dataArrayList = ArrayList<BookingsData>()
     private lateinit var binding: FragmentBookingsDetailedBinding
+    private lateinit var recyclerView: RecyclerView
+
+    override fun onReportClick() {
+        val nextFragment = ReportFragment()
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.bookingDetailed_container, nextFragment)
+            .addToBackStack(null)
+            .commit()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,43 +42,29 @@ class BookingsDetailedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dataArrayList = arrayListOf()
+        recyclerView = view.findViewById(R.id.bookingsDetailedRv)
+        val layoutManager = LinearLayoutManager(requireActivity())
+        recyclerView.layoutManager = layoutManager
+        fetchDataFromFirestore()
+    }
 
-        /*
-        arguments?.let { args ->
-            val image = args.getInt("image", R.drawable.home_electrical)
-            val category = args.getString("category", "Category")
-            val paymentStatus = args.getString("payment status", "Pay Status")
-            val status = args.getString("status", "Status")
-            val paymentMethod = args.getString("payment method", "Pay Method")
-            val bookingFee = args.getString("booking fee", "39.00")?.toDouble() ?: 0.0
-            val serviceFee = args.getString("service fee", "500.00")?.toDouble() ?: 0.0
-            val equipmentFee = args.getString("equipment fee", "100.00")?.toDouble() ?: 0.0
-            val totalFee = args.getString("total fee", "539.00")?.toDouble() ?: 0.0
-            val worker = args.getString("worker", "Worker Name")
-            val address = args.getString("address", "Road, Barangay, City")
-            val date = args.getString("date", "XX/XX/20XX")
-            val bookingId = args.getString("booking id", "#XXXXX")
-
-            binding.itemImage.setImageResource(image)
-            binding.itemCategory.text = category
-            binding.itemPaymentStatus.text = paymentStatus
-            binding.statusBar.text = status
-            binding.itemPaymentMethod.text = paymentMethod
-            binding.itemBookingFee.text = bookingFee.toString()
-            binding.itemServiceFee.text = serviceFee.toString()
-            binding.itemEquipmentFee.text = equipmentFee.toString()
-            binding.itemTotalFee.text = totalFee.toString()
-            binding.itemWorker.text = worker
-            binding.itemAddress.text = address
-            binding.itemDate.text = date
-            binding.bookingId.text = bookingId */
-
-            binding.reportBtn.setOnClickListener {
-                val nextFragment = ReportFragment()
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.bookingDetailed_container, nextFragment)
-                    .addToBackStack(null)
-                    .commit()
+    private fun fetchDataFromFirestore() {
+        val db = FirebaseFirestore.getInstance()
+        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+        val bookRef = db.collection("booking")
+        bookRef.whereEqualTo("UID", userId)
+            .orderBy("timeScheduled", Query.Direction.DESCENDING)
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    dataArrayList.add(document.toObject(BookingsData::class.java))
+                }
+                val adapter = BookingsDetailedAdapter(requireActivity(), parentFragmentManager, dataArrayList)
+                recyclerView.adapter = adapter
+            }
+            .addOnFailureListener { exception ->
+                Log.w(ContentValues.TAG, "Error getting documents.", exception)
             }
     }
 }

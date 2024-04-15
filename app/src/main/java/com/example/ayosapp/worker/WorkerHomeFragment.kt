@@ -28,7 +28,7 @@ class WorkerHomeFragment : Fragment(),WorkerScheduledAdapter.ClickListener {
     private lateinit var recyclerViewSchedule: RecyclerView
     private lateinit var listener: WorkerScheduledAdapter.ClickListener
 
-            override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
 

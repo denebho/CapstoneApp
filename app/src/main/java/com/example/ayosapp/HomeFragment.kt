@@ -19,10 +19,9 @@ import com.google.firebase.firestore.Query
 
 class HomeFragment : Fragment() {
 
-    private lateinit var binding: FragmentHomeBinding
     private var dataArrayList = ArrayList<BookingsData>()
+    private lateinit var binding: FragmentHomeBinding
     private lateinit var recyclerView: RecyclerView
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,12 +34,13 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dataArrayList = arrayListOf()
         recyclerView = view.findViewById(R.id.recyclerview)
         val layoutManager = LinearLayoutManager(requireActivity())
         recyclerView.layoutManager = layoutManager
-        dataArrayList = arrayListOf()
         val bundle = Bundle()
         fetchDataFromFirestore()
+
         binding.homeApplianceIv.setOnClickListener{
             val nextFragment = AyosGetLocationFragment()
             bundle.putString("serviceCode", "Appliance")
@@ -77,15 +77,13 @@ class HomeFragment : Fragment() {
                 .addToBackStack(null)
                 .commit()
         }
-
-
     }
+
     private fun fetchDataFromFirestore() {
         val db = FirebaseFirestore.getInstance()
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
-        val addressRef = db.collection("booking")
-
-        addressRef.whereEqualTo("UID", userId)
+        val bookingRef = db.collection("booking")
+        bookingRef.whereEqualTo("UID", userId)
             .orderBy("timeScheduled", Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener { result ->
@@ -99,4 +97,5 @@ class HomeFragment : Fragment() {
                 Log.w(ContentValues.TAG, "Error getting documents.", exception)
             }
     }
+
 }
