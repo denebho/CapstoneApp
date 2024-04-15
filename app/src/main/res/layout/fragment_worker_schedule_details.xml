@@ -79,10 +79,10 @@
 
             <TextView
                 android:id="@+id/serviceAddress"
-                android:layout_width="120dp"
+                android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_below="@id/line1"
-                android:layout_marginStart="20dp"
+                android:layout_alignStart="@+id/line1"
                 android:layout_marginTop="15dp"
                 android:text="Service Address"
                 android:textColor="@color/primary_blue"
@@ -93,11 +93,12 @@
                 android:id="@+id/itemAddressImage"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:layout_alignStart="@+id/serviceAddress"
                 android:layout_alignTop="@+id/serviceAddress"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="0dp"
                 android:layout_marginTop="25dp"
-                android:layout_marginBottom="10dp"
 
+                android:layout_marginBottom="10dp"
                 android:src="@drawable/baseline_place_24" />
 
             <TextView
@@ -142,8 +143,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/servicedate"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="0dp"
+                android:layout_alignStart="@+id/servicedate"
                 android:gravity="center"
                 android:text="12/31/2024 at 8:00 AM"
                 android:textColor="@color/black"
@@ -240,6 +240,35 @@
                 android:text="BOOKING ID: #0000000000 "
                 android:textColor="@color/black"
                 android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/reportBtnWorker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/bookingId"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/red"
+                android:text="@string/submitReport"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+            <Button
+                android:id="@+id/ayosBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/bookingId"
+                android:layout_marginStart="69dp"
+                android:layout_marginTop="30dp"
+                android:layout_toEndOf="@+id/reportBtnWorker"
+                android:backgroundTint="@color/primary_blue"
+                android:text="Ayosin na"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
