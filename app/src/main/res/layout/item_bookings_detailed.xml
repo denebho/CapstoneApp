@@ -170,10 +170,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_alignTop="@id/serviceBreakdown"
-                android:layout_marginStart="210dp"
+                android:layout_marginStart="180dp"
                 android:layout_marginTop="30dp"
                 android:layout_toEndOf="@id/bookingFee"
-                android:text="booking fee"
+                android:text="book fee"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
@@ -191,12 +191,12 @@
             <TextView
                 android:id="@+id/itemServiceFee"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
                 android:layout_alignTop="@id/itemInitPrice"
-                android:layout_marginStart="210dp"
+                android:layout_marginStart="190dp"
                 android:layout_marginTop="30dp"
                 android:layout_toEndOf="@id/bookingFee"
-                android:text="service fee"
+                android:text="serve fee"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
@@ -214,12 +214,12 @@
             <TextView
                 android:id="@+id/itemEquipmentFee"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
                 android:layout_alignTop="@id/itemInitPrice"
-                android:layout_marginStart="210dp"
+                android:layout_marginStart="190dp"
                 android:layout_marginTop="60dp"
                 android:layout_toEndOf="@id/bookingFee"
-                android:text="extra fee"
+                android:text="equip fee"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
@@ -251,13 +251,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/line3"
-                android:layout_marginStart="220dp"
+                android:layout_marginStart="190dp"
                 android:layout_marginTop="20dp"
                 android:layout_toEndOf="@id/totalFee"
                 android:gravity="center"
                 android:text="total fee"
                 android:textColor="@color/primary_blue"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -273,10 +273,10 @@
 
             <TextView
                 android:id="@+id/itemPaymentStatus"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:layout_alignTop="@id/itemTotal"
-                android:layout_marginStart="210dp"
+                android:layout_marginStart="180dp"
                 android:layout_marginTop="30dp"
                 android:layout_toEndOf="@id/bookingFee"
                 android:text="Paid"
@@ -295,11 +295,11 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/itemPaymentMethod"
-                android:layout_width="wrap_content"
+                android:id="@+id/itemPaymentOptions"
+                android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:layout_alignTop="@id/itemPaymentStatus"
-                android:layout_marginStart="210dp"
+                android:layout_marginStart="190dp"
                 android:layout_marginTop="30dp"
                 android:layout_toEndOf="@id/bookingFee"
                 android:text="Cash"
@@ -321,11 +321,11 @@
 
             <Button
                 android:id="@+id/reportBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@id/bookingId"
                 android:layout_marginTop="30dp"
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="@color/primary_blue"
                 android:text="@string/submitReport"
@@ -336,7 +336,7 @@
 
             <Button
                 android:id="@+id/cancelBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@id/bookingId"
                 android:layout_alignLeft="@id/reportBtn"

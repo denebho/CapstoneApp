@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.ayosapp.data.BookingsData
 import com.example.ayosapp.databinding.FragmentReportBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -16,6 +17,18 @@ class ReportFragment : Fragment() {
     private lateinit var binding: FragmentReportBinding
     private lateinit var firebaseAuth: FirebaseAuth
     private val db = FirebaseFirestore.getInstance()
+
+    companion object {
+        // Factory method to create a new instance of ReportFragment
+        fun newInstance(bookingData: BookingsData): ReportFragment {
+            val fragment = ReportFragment()
+            // Pass any necessary data to the fragment using arguments
+            val args = Bundle()
+            args.putParcelable("bookingData", bookingData)
+            fragment.arguments = args
+            return fragment
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

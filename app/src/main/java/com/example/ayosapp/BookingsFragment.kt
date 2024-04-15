@@ -1,6 +1,5 @@
 package com.example.ayosapp
 
-import android.content.ContentValues
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -24,23 +23,6 @@ class BookingsFragment : Fragment() {
     private lateinit var binding: FragmentBookingsBinding
     private lateinit var recyclerView: RecyclerView
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentBookingsBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        dataArrayList = arrayListOf()
-        recyclerView = view.findViewById(R.id.bookingsRv)
-        val layoutManager = LinearLayoutManager(requireActivity())
-        recyclerView.layoutManager = layoutManager
-        fetchDataFromFirestore()
-    }
-
     private fun fetchDataFromFirestore() {
         val db = FirebaseFirestore.getInstance()
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
@@ -52,12 +34,29 @@ class BookingsFragment : Fragment() {
                 for (document in result) {
                     dataArrayList.add(document.toObject(BookingsData::class.java))
                 }
-                val adapter = BookingsAdapter(requireActivity(),dataArrayList)
-                recyclerView.adapter = adapter
+                bookingsAdapter = BookingsAdapter(requireContext(), parentFragmentManager, dataArrayList)
+                recyclerView.adapter = bookingsAdapter
             }
             .addOnFailureListener { exception ->
-                Log.w(ContentValues.TAG, "Error getting documents.", exception)
+                // Handle failure
             }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        Log.d("BookingsFragment", "onCreateView: inflating layout")
+        binding = FragmentBookingsBinding.inflate(inflater, container, false)
+        Log.d("BookingsFragment", "onCreateView: inflating layout")
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        recyclerView = binding.bookingsRv
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        fetchDataFromFirestore()
     }
 
 }
