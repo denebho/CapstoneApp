@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="ticket_tags">
-        <item>Report Worker</item>
+        <item>Report Worker/User</item>
         <item>Report Service</item>
         <item>Report Experience</item>
     </string-array>

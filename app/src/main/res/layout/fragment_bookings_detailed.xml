@@ -168,7 +168,7 @@
                             android:layout_alignStart="@+id/serviceBreakdown"
                             android:layout_alignEnd="@+id/line1"
                             android:padding="8dp"
-                            tools:listitem="@layout/item_ayosbreakdown" />
+                            tools:listitem="@layout/item_ayosbreakdowncustomer" />
                         <View
                             android:id="@+id/line3"
                             android:layout_width="match_parent"
