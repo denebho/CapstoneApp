@@ -34,7 +34,7 @@ class AddressFragment : Fragment(), OnItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //val list: ListView = view.findViewById(R.id.addressList)
-        recyclerView = view.findViewById(R.id.addressList)
+        recyclerView = binding.addressList
         val layoutManager = LinearLayoutManager(requireActivity())
         recyclerView.layoutManager = layoutManager
         dataArrayList = arrayListOf()

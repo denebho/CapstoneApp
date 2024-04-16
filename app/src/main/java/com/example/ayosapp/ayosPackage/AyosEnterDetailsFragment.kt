@@ -10,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.ayosapp.R
 import com.example.ayosapp.databinding.FragmentAyosEnterdetailsBinding
@@ -84,27 +85,28 @@ class AyosEnterDetailsFragment : Fragment() {
         }
 
         binding.bookServiceBtn.setOnClickListener {
-            //if (binding.dateofserviceEt.text.isNotEmpty() && binding.autoCompleteID.text.isNotEmpty()){
-            val nextFragment = AyosReviewBookingFragment()
-            val job = binding.autoCompleteID1.text.toString()
-            val detail = binding.detailsEt.text.toString()
-            val details = "$job: $detail"
-            bundle?.putString("serviceCode", service)
-            bundle?.putString("addressid", addressid)
-            bundle?.putString("addressline", addressline)
-            bundle?.putString("time", binding.autoCompleteID.text.toString())
-            Log.d("timepicker", binding.autoCompleteID.text.toString())
-            bundle?.putString("date", binding.dateofserviceEt.text.toString())
-            Log.d("details", details)
-            bundle?.putString("details", details)
-            nextFragment.arguments = bundle
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.frame_container_ayos, nextFragment)
-                .addToBackStack(null)
-                .commit()
-            //}else{
-            //    Toast.makeText(requireActivity(), "Please select a time and date to proceed.", Toast.LENGTH_SHORT).show()
-            //}
+
+            if (binding.dateofserviceEt.text.isNotEmpty() && binding.serviceType.text.isNotEmpty() && timepicked) {
+                val nextFragment = AyosReviewBookingFragment()
+                val job = binding.autoCompleteID1.text.toString()
+                val detail = binding.detailsEt.text.toString()
+                val details = "$job: $detail"
+                bundle?.putString("serviceCode", service)
+                bundle?.putString("addressid", addressid)
+                bundle?.putString("addressline", addressline)
+                bundle?.putString("time", binding.autoCompleteID.text.toString())
+                Log.d("timepicker", binding.autoCompleteID.text.toString())
+                bundle?.putString("date", binding.dateofserviceEt.text.toString())
+                Log.d("details", details)
+                bundle?.putString("details", details)
+                nextFragment.arguments = bundle
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.frame_container_ayos, nextFragment)
+                    .addToBackStack(null)
+                    .commit()
+            } else {
+                Toast.makeText(requireActivity(), "Please select a time and date to proceed.", Toast.LENGTH_SHORT).show()
+            }
         }
 
         val timeSlots = mutableListOf<String>()

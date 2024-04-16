@@ -28,9 +28,16 @@ class BookingFillerActivity : AppCompatActivity() {
 
         val fragmentTag = intent.getStringExtra("fragmentTag")
 
-        if (fragmentTag == "bookingsDetailedFragment")
-            replaceFragment(BookingsDetailedFragment())
-        supportActionBar?.title = name
+        if (fragmentTag == "bookingsDetailedFragment") {
+            val fragment = BookingsDetailedFragment().apply {
+                arguments = Bundle().apply {
+                    putString("bookingId", bookingId)
+                }
+            }
+            replaceFragment(fragment)
+            supportActionBar?.title = name
+        }
+
     }
 
     private fun replaceFragment(fragment: Fragment) {

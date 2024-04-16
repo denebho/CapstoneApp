@@ -128,6 +128,12 @@ class AyosReviewBookingFragment : Fragment() {
 
             user?.let {
                 val iPrice = binding.initalPrice.text.toString()
+                val paymentMethod = paymentSpinner.text.toString()
+
+                if (paymentMethod.isBlank()) {
+                    Toast.makeText(activity, "Please select a payment method", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
                 val newDocRef = collectionRef.document()
                 val documentId = newDocRef.id
                 val bookingData = hashMapOf(
