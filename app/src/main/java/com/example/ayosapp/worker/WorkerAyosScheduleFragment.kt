@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.firestore
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Locale
 
 class WorkerAyosScheduleFragment : Fragment() {
@@ -131,32 +133,7 @@ class WorkerAyosScheduleFragment : Fragment() {
                 jobOptions = airconOptions
             }
         }
-        //bundle?.getString("serviceCode", "Appliance")
-//        val icon = binding.itemImage
-//        val type = binding.itemService
-//        //var jobOptions: List<String> = listOf("")
-//        when (service) {
-//            "Appliance" -> {
-//                icon.setImageResource(R.drawable.home_appliance)
-//                jobOptions = applianceOptions
-//                type.setText(R.string.ayosAppliance)
-//            }
-//            "Electrical" -> {
-//                icon.setImageResource(R.drawable.home_electrical)
-//                jobOptions = electricalOptions
-//                type.setText(R.string.ayosElectrical)
-//            }
-//            "Plumbing" -> {
-//                icon.setImageResource(R.drawable.home_plumbing)
-//                jobOptions = plumbingOptions
-//                type.setText(R.string.ayosPlumbing)
-//            }
-//            "Aircon" -> {
-//                icon.setImageResource(R.drawable.home_aircon)
-//                jobOptions = airconOptions
-//                type.setText(R.string.ayosAircon)
-//            }
-//        }
+
         val adapter = ArrayAdapter(
             requireActivity(),
             android.R.layout.simple_spinner_dropdown_item, // Use dropdown item layout
@@ -182,6 +159,7 @@ class WorkerAyosScheduleFragment : Fragment() {
             val combinedString = dataArrayList.joinToString(", ") { chargesData ->
                 "${chargesData.charge}:${chargesData.price}"
             }
+            confirmDialog(bookingId!!)
         }
     }
 
@@ -209,8 +187,33 @@ class WorkerAyosScheduleFragment : Fragment() {
         totalTextView.text = getTotal().toString()
     }
 
-    private fun initiate() {
+    private fun initiate(bookingId: String) {
+        val bookingquery =
+            Firebase.firestore.collection("booking").whereEqualTo("bookingId", bookingId)
+        val timeNow = Calendar.getInstance().time
 
+        bookingquery.get().addOnSuccessListener {
+            val updateMap = mapOf(
+                "extracharges" to "",
+                "timeUpdated" to timeNow
+            )
+
+            Firebase.firestore.collection("booking").document(bookingId).update(updateMap)
+        }
+
+    }
+    private fun confirmDialog(bookingId: String) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Ayos na ba?")
+        builder.setMessage("Are you sure you want to confirm that this booking done?")
+        builder.setPositiveButton("YES") { _, _ ->
+            initiate(bookingId)
+        }
+        builder.setNegativeButton("NO") { dialog, _ ->
+            dialog.dismiss()
+        }
+        val dialog = builder.create()
+        dialog.show()
     }
 
     fun timestampToString(timestamp: com.google.firebase.Timestamp?): String {
