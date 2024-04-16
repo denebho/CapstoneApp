@@ -1,39 +1,27 @@
 package com.example.ayosapp
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ayosapp.adapter.BookingsAdapter
+import com.example.ayosapp.adapter.BookingsDetailedAdapter
 import com.example.ayosapp.data.BookingsData
 import com.example.ayosapp.databinding.FragmentBookingsDetailedBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
-class BookingsDetailedFragment : Fragment() {
+class BookingsDetailedFragment : Fragment(), BookingsDetailedAdapter.ReportClickListener {
 
-    private lateinit var bookingsAdapter: BookingsAdapter
+    private lateinit var bookingsDetailedAdapter: BookingsDetailedAdapter
     private var bookingsData: BookingsData? = null
     private var dataArrayList = ArrayList<BookingsData>()
     private lateinit var binding: FragmentBookingsDetailedBinding
     private lateinit var recyclerView: RecyclerView
-
-    companion object {
-        // Static method to create a new instance of the fragment
-        fun newInstance(bookingData: BookingsData): BookingsDetailedFragment {
-            val fragment = BookingsDetailedFragment()
-            // Pass data to the fragment using arguments
-            val args = Bundle().apply {
-                putParcelable("bookingData", bookingData)
-            }
-            fragment.arguments = args
-            return fragment
-        }
-    }
 
     private fun fetchDataFromFirestore() {
         val db = FirebaseFirestore.getInstance()
@@ -46,11 +34,11 @@ class BookingsDetailedFragment : Fragment() {
                 for (document in result) {
                     dataArrayList.add(document.toObject(BookingsData::class.java))
                 }
-                bookingsAdapter = BookingsAdapter(requireContext(), parentFragmentManager, dataArrayList)
-                recyclerView.adapter = bookingsAdapter
+                bookingsDetailedAdapter = BookingsDetailedAdapter(requireContext(), dataArrayList, this)
+                recyclerView.adapter = bookingsDetailedAdapter
             }
             .addOnFailureListener { exception ->
-                // Handle failure
+                Log.e("Firestore", "Error getting documents: ", exception)
             }
     }
 
@@ -66,6 +54,16 @@ class BookingsDetailedFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = binding.bookingsDetailedRv
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        bookingsDetailedAdapter = BookingsDetailedAdapter(requireContext(), dataArrayList, this)
+        recyclerView.adapter = bookingsDetailedAdapter
         fetchDataFromFirestore()
+    }
+
+    override fun onReportClick(bookingData: BookingsData) {
+        val fragment = ReportFragment.newInstance(bookingData)
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.frame_container_main, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }

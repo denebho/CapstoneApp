@@ -19,6 +19,9 @@
         android:theme="@style/Theme.AyosApp"
         tools:targetApi="31">
         <activity
+            android:name=".BookingFillerActivity"
+            android:exported="false" />
+        <activity
             android:name=".worker.WorkerMainActivity"
             android:exported="false" />
         <activity

@@ -24,7 +24,6 @@ class ReportFragment : Fragment() {
             val fragment = ReportFragment()
             // Pass any necessary data to the fragment using arguments
             val args = Bundle()
-            args.putParcelable("bookingData", bookingData)
             fragment.arguments = args
             return fragment
         }

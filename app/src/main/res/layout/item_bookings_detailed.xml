@@ -284,13 +284,13 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/paymentMethod"
+                android:id="@+id/paymentOptions"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_alignTop="@id/paymentStatus"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
-                android:text="@string/paymentMethod"
+                android:text="@string/paymentOptions"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
@@ -310,7 +310,7 @@
                 android:id="@+id/bookingId"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_alignTop="@id/paymentMethod"
+                android:layout_alignTop="@id/paymentOptions"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="20dp"

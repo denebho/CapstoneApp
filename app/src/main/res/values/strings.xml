@@ -90,7 +90,7 @@
     <string name="extraDayFee">Extra Day Fee</string>
     <string name="totalFee">TOTAL</string>
 
-    <string name="paymentMethod">PAYMENT METHOD</string>
+    <string name="paymentOptions">PAYMENT OPTION</string>
     <string name="paymentGcash">ONLINE</string>
     <string name="paymentCash">CASH</string>
     <string name="paymentCredit">CREDIT CARD</string>
