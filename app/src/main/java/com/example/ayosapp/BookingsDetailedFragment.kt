@@ -62,7 +62,7 @@ class BookingsDetailedFragment : Fragment(), BookingsDetailedAdapter.ReportClick
     override fun onReportClick(bookingData: BookingsData) {
         val fragment = ReportFragment.newInstance(bookingData)
         parentFragmentManager.beginTransaction()
-            .replace(R.id.frame_container_main, fragment)
+            .replace(R.id.bookingFillerFragmentContainerView, fragment)
             .addToBackStack(null)
             .commit()
     }

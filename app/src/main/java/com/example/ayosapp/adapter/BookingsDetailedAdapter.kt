@@ -16,7 +16,7 @@ class BookingsDetailedAdapter(
     private val dataArrayList: ArrayList<BookingsData>,
     private var reportClickListener: ReportClickListener? = null
 
-): RecyclerView.Adapter<BookingsDetailedAdapter.BookingViewHolder>() {
+) : RecyclerView.Adapter<BookingsDetailedAdapter.BookingViewHolder>() {
     inner class BookingViewHolder(val binding: ItemBookingsDetailedBinding) :
         RecyclerView.ViewHolder(binding.root)
 
@@ -24,28 +24,23 @@ class BookingsDetailedAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookingViewHolder {
         return BookingViewHolder(
-            ItemBookingsDetailedBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+            ItemBookingsDetailedBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
     override fun onBindViewHolder(holder: BookingViewHolder, position: Int) {
-        if(dataArrayList.isNotEmpty()) {
+        if (dataArrayList.isNotEmpty()) {
             val currentItem = dataArrayList[position]
-
-            holder.binding.reportBtn.setOnClickListener {
-                reportClickListener?.onReportClick(currentItem)
-            }
-
             holder.binding.apply {
 
-                when(currentItem.service){
-                    "Appliance"->itemImage.setImageResource(R.drawable.home_appliance)
-                    "Electrical"->itemImage.setImageResource(R.drawable.home_electrical)
-                    "Aircon"->itemImage.setImageResource(R.drawable.home_aircon)
-                    "Plumbing"->itemImage.setImageResource(R.drawable.home_plumbing)
+                when (currentItem.service) {
+                    "Appliance" -> itemImage.setImageResource(R.drawable.home_appliance)
+                    "Electrical" -> itemImage.setImageResource(R.drawable.home_electrical)
+                    "Aircon" -> itemImage.setImageResource(R.drawable.home_aircon)
+                    "Plumbing" -> itemImage.setImageResource(R.drawable.home_plumbing)
                 }
                 statusBar.text = currentItem.service
-                if(currentItem.workerAssigned.isNullOrBlank()) {
+                if (currentItem.workerAssigned.isNullOrBlank()) {
                     itemWorker.setText(R.string.matchingworker)
                 } else {
                     firestore.collection("booking").document(currentItem.workerAssigned).get()
@@ -97,6 +92,10 @@ class BookingsDetailedAdapter(
 
                 bookingId.text = currentItem.bookingId
 
+            }
+
+            holder.binding.reportBtn.setOnClickListener {
+                reportClickListener?.onReportClick(currentItem)
             }
         }
     }
