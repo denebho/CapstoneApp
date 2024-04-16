@@ -1,6 +1,7 @@
 package com.example.ayosapp.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -9,10 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ayosapp.data.BookingsData
 import com.example.ayosapp.databinding.ItemBookingWorkerBinding
 import com.google.firebase.Firebase
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 
 class WorkerBookingAdapter(
@@ -100,15 +103,57 @@ class WorkerBookingAdapter(
         }
     }
 
+    private fun checkBookingLimitForDay(doc: String?) {
+        // Get the current date
+        val currentDate = Calendar.getInstance()
+        val year = currentDate.get(Calendar.YEAR)
+        val month = currentDate.get(Calendar.MONTH) + 1 // Month is zero-based, so add 1
+        val day = currentDate.get(Calendar.DAY_OF_MONTH)
+
+        // Construct the start and end of the current day
+        val startOfDay = Timestamp(Date(year - 1900, month - 1, day, 0, 0))
+        val endOfDay = Timestamp(Date(year - 1900, month - 1, day, 23, 59, 59))
+        Log.d("TAG", "Start of day: $startOfDay")
+        Log.d("TAG", "End of day: $endOfDay")
+        // Query Firestore to get all bookings made by the user for the that day
+        val db = FirebaseFirestore.getInstance()
+        val query = db.collection("booking")
+            .whereEqualTo("workerAssigned", UID) // Assuming UID is the ID of the current user
+            .whereGreaterThanOrEqualTo("timeUpdated", startOfDay)
+            .whereLessThanOrEqualTo("timeUpdated", endOfDay)
+
+        query.get().addOnSuccessListener { documents ->
+            if (documents.size() >= 3) {
+                // User has already booked three times for the day, disable further bookings
+                nomoreDialog()
+            } else {
+                // User can make a new booking
+                AssignBooking(doc)
+            }
+        }.addOnFailureListener { exception ->
+            // Handle any errors
+            Log.e("TAG", "Error getting bookings", exception)
+        }
+    }
     //shows confirmation dialog to ensure worker wants to accept booking
     private fun ConfirmationDialog(doc: String?) {
         val builder = AlertDialog.Builder(context)
         builder.setTitle("Accept Booking")
         builder.setMessage("Are you sure you want to accept this booking?")
         builder.setPositiveButton("YES") { dialog, _ ->
-            AssignBooking(doc)
+            checkBookingLimitForDay(doc)
         }
         builder.setNegativeButton("NO") { dialog, _ ->
+            dialog.dismiss()
+        }
+        val dialog = builder.create()
+        dialog.show()
+    }
+    private fun nomoreDialog() {
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("Limit at 3 bookings")
+        builder.setMessage("Sorry we cant give you this booking as you've reached your limit for that day")
+        builder.setPositiveButton("OK") { dialog, _ ->
             dialog.dismiss()
         }
         val dialog = builder.create()
