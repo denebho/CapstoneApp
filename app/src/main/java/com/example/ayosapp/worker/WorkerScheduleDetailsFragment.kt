@@ -112,7 +112,6 @@ class WorkerScheduleDetailsFragment : Fragment() {
         return "$dateString at $timeString"
     }
     private fun updateadd(){
-        Log.d("idk",addid )
         val addressref = Firebase.firestore.collection("address")
         addressref.whereEqualTo("addressID", addid).get()
             .addOnSuccessListener { documents ->

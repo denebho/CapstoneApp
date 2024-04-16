@@ -105,9 +105,7 @@ class PersonalinfoFragment : Fragment() {
                             "mobile_number" to mobileNumber.text.toString().trim(),
                             "update_time" to timeNow
                         )
-
                         db.collection("customers").document(userId).update(updateMap)
-
                         Toast.makeText(requireActivity(), "Successfully edited", Toast.LENGTH_SHORT).show()
                     }.addOnFailureListener {
                         Toast.makeText(requireActivity(),"User data save failed",Toast.LENGTH_SHORT).show()

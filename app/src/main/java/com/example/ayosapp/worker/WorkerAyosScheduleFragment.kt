@@ -1,10 +1,12 @@
 package com.example.ayosapp.worker
 
+import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.TextView
@@ -159,7 +161,7 @@ class WorkerAyosScheduleFragment : Fragment() {
             val combinedString = dataArrayList.joinToString(", ") { chargesData ->
                 "${chargesData.charge}:${chargesData.price}"
             }
-            confirmDialog(bookingId!!)
+            confirmDialog(bookingId!!, combinedString)
         }
     }
 
@@ -187,27 +189,32 @@ class WorkerAyosScheduleFragment : Fragment() {
         totalTextView.text = getTotal().toString()
     }
 
-    private fun initiate(bookingId: String) {
+    private fun initiate(bookingId: String, combinedString: String) {
         val bookingquery =
             Firebase.firestore.collection("booking").whereEqualTo("bookingId", bookingId)
         val timeNow = Calendar.getInstance().time
-
+        val totalTextView = requireView().findViewById<TextView>(R.id.totalAmount)
+        val totalText = totalTextView.text.toString()
+        val totalAmount = totalText.toDoubleOrNull() ?: 0.0
         bookingquery.get().addOnSuccessListener {
             val updateMap = mapOf(
-                "extracharges" to "",
-                "timeUpdated" to timeNow
+                "extracharges" to combinedString,
+                "timeUpdated" to timeNow,
+                "status" to "ayos na",
+                "equipmentFee" to totalAmount,
+                "paymentStatus" to "paid"
             )
-
             Firebase.firestore.collection("booking").document(bookingId).update(updateMap)
+            showDialog()
         }
 
     }
-    private fun confirmDialog(bookingId: String) {
+    private fun confirmDialog(bookingId: String, combinedString:String) {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Ayos na ba?")
         builder.setMessage("Are you sure you want to confirm that this booking done?")
         builder.setPositiveButton("YES") { _, _ ->
-            initiate(bookingId)
+            initiate(bookingId,combinedString)
         }
         builder.setNegativeButton("NO") { dialog, _ ->
             dialog.dismiss()
@@ -224,5 +231,21 @@ class WorkerAyosScheduleFragment : Fragment() {
         val timeString = timeFormat.format(date)
 
         return "$dateString at $timeString"
+    }
+    private fun showDialog() {
+        val dialog = Dialog(requireActivity())
+        dialog.requestWindowFeature (Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.ayos_custom_dialog_confirming_ayos)
+        val btnOk: TextView = dialog.findViewById(R.id.OkBtnDialog)
+        btnOk.setOnClickListener {
+            val nextFragment = WorkerHomeFragment()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.worker_main_container, nextFragment)
+                .addToBackStack(null)
+                .commit()
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 }
