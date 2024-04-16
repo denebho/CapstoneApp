@@ -22,8 +22,6 @@ class FillerActivity : AppCompatActivity() {
 
         }
     }
-
-
     private fun replaceFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction().replace(R.id.fillerFragmentContainerView, fragment).commit()
     }

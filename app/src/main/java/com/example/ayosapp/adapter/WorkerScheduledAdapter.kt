@@ -1,6 +1,7 @@
 package com.example.ayosapp.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,8 +23,10 @@ RecyclerView.Adapter<WorkerScheduledAdapter.WorkerScheduledViewHolder>() {
         RecyclerView.ViewHolder(binding.root)
 
     private val firestore = FirebaseFirestore.getInstance()
+    private var addressline = ""
+
     interface ClickListener {
-        fun onBookingListItemClick(view: View, user: ScheduledData)
+        fun onBookingListItemClick(view: View, bookingId: String, addressLine:String)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkerScheduledViewHolder {
         return WorkerScheduledViewHolder(
@@ -33,13 +36,14 @@ RecyclerView.Adapter<WorkerScheduledAdapter.WorkerScheduledViewHolder>() {
 
     override fun onBindViewHolder(holder: WorkerScheduledViewHolder, position: Int) {
         val currentItem = bookingsList[position]
+
         holder.binding.apply {
             //gets address details from address collection using addressid
             firestore.collection("address").document(currentItem.addressID!!).get()
                 .addOnSuccessListener { documentSnapshot ->
                     if (documentSnapshot.exists()) {
                         //gets address line of address to pass to textview
-                        val addressline = documentSnapshot.getString("address")
+                        addressline = documentSnapshot.getString("address").toString()
                         AddressLine.text = addressline
                     } else {
                         // Document does not exist
@@ -56,10 +60,10 @@ RecyclerView.Adapter<WorkerScheduledAdapter.WorkerScheduledViewHolder>() {
             ProblemDescription.text = currentItem.details
         }
         holder.binding.scheduleCard.setOnClickListener{
-//            val intent = Intent(context, AyosMap::class.java)
-//            context.startActivity(intent)
-            clickListener.onBookingListItemClick(it, bookingsList[position])
-
+            val smth = bookingsList[position].bookingId
+            val add = addressline
+            clickListener.onBookingListItemClick(it, smth.toString(), add)
+            Log.d("clickListener","$smth" )
         }
     }
 

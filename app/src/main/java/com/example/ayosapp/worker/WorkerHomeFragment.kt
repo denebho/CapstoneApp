@@ -28,7 +28,7 @@ class WorkerHomeFragment : Fragment(),WorkerScheduledAdapter.ClickListener {
     private lateinit var recyclerViewSchedule: RecyclerView
     private lateinit var listener: WorkerScheduledAdapter.ClickListener
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+        override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
 
@@ -96,14 +96,16 @@ class WorkerHomeFragment : Fragment(),WorkerScheduledAdapter.ClickListener {
             }
     }
 
-    override fun onBookingListItemClick(view: View, user: ScheduledData) {
+    override fun onBookingListItemClick(view: View, bookingId: String, addressLine:String) {
         val nextFragment = WorkerScheduleDetailsFragment()
-        val bundle = Bundle().apply {
-            putSerializable("bookingData", user)
-        }
+        val bundle = Bundle()
+        bundle.putString("bookingId",bookingId )
+//            Bundle().apply {
+//           putSerializable("bookingData", user)
+//        }
         nextFragment.arguments = bundle
         parentFragmentManager.beginTransaction()
-            .replace(R.id.frame_container_schedule, nextFragment, "getLocationFrag")
+            .replace(R.id.worker_main_container, nextFragment)
             .addToBackStack(null)
             .commit()
     }

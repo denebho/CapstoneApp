@@ -78,7 +78,7 @@
                 android:drawablePadding="8dp"
                 android:hint="Floor, House Number, Building"
                 android:imeOptions="actionNext"
-                android:inputType="textEmailAddress"
+                android:inputType="text"
                 android:paddingStart="20dp"
                 android:textColor="@color/black" />
 
@@ -101,7 +101,7 @@
                 android:drawablePadding="8dp"
                 android:hint="i.e. Present ID to receptionist"
                 android:imeOptions="actionNext"
-                android:inputType="textPassword"
+                android:inputType="text"
                 android:paddingStart="20dp"
                 android:textColor="@color/black" />
 
