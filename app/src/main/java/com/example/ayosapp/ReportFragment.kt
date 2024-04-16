@@ -48,11 +48,7 @@ class ReportFragment : Fragment() {
         firebaseAuth = FirebaseAuth.getInstance()
         val collectionRef = db.collection("complaint")
         val bookingID = arguments?.getString("bookingid")
-//        val previousFragmentTag = arguments?.getString("user")
-//        var array: Array<out String>? = null
-//        if (previousFragmentTag == "worker"){
-//            array = resources.getStringArray(R.array.ticket_tags_worker)
-//        }
+
         val ticketTagSpinner = view.findViewById<Spinner>(R.id.ticketTagSpinner)
         val adapter = ArrayAdapter.createFromResource(requireContext(), R.array.ticket_tags, android.R.layout.simple_spinner_item)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)

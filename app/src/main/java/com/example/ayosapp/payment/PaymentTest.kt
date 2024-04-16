@@ -3,17 +3,17 @@ package com.example.ayosapp.payment
 //import com.example.ayosapp.CartContract
 //import com.example.ayosapp.CartPresenter
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.AttributeSet
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ayosapp.MainActivity
 import com.example.ayosapp.R
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.firestore
 import com.paymaya.sdk.android.common.LogLevel
 import com.paymaya.sdk.android.common.PayMayaEnvironment
 import com.paymaya.sdk.android.common.models.AmountDetails
@@ -22,9 +22,13 @@ import com.paymaya.sdk.android.common.models.TotalAmount
 import com.paymaya.sdk.android.paywithpaymaya.PayWithPayMaya
 import com.paymaya.sdk.android.paywithpaymaya.models.SinglePaymentRequest
 import org.json.JSONObject
+import java.util.Calendar
 
 class PaymentTest : AppCompatActivity() {
     private lateinit var button: Button
+    private lateinit var firebaseAuth: FirebaseAuth
+    private var totalAmount = 0.0
+    private var bookingId = ""
     private var REQUEST_REFERENCE_NUMBER =0
     private val SINGLE_PAYMENT_REQUEST_CODE = 1001
     private val payWithPayMayaClient = PayWithPayMaya.newBuilder()
@@ -40,10 +44,10 @@ class PaymentTest : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment_test)
         button = findViewById(R.id.buttonTest)
-        val totalAmount = intent.getStringExtra("totalAmount")
-        val addressid = intent.getStringExtra("addressid")
+        firebaseAuth = FirebaseAuth.getInstance()
+        totalAmount = intent.getDoubleExtra("totalAmount",100.0)
+        bookingId = intent.getStringExtra("bookingId").toString()
         val addressline = intent.getStringExtra("addressline")
-        val amount = 500.00
         val metadata = JSONObject("{\"pf\":{\"smn\":\"Ayos!\",\"smi\":\"EFS100001033\",\"mci\":\"pasay\",\"mpc\":\"608\",\"mco\":\"PHL\"}}")
 
         val redirectUrl= RedirectUrl(
@@ -54,7 +58,7 @@ class PaymentTest : AppCompatActivity() {
 
         val samplepayment =
             SinglePaymentRequest(
-                TotalAmount(amount.toBigDecimal(),
+                TotalAmount(totalAmount.toBigDecimal(),
                     "PHP",
                     AmountDetails()
                 ),
@@ -63,40 +67,16 @@ class PaymentTest : AppCompatActivity() {
                 metadata
             )
 
+        //button.setOnClickListener {
+            //payWithPayMayaClient.startSinglePaymentActivityForResult(this, samplepayment)
+        //}
         button.setOnClickListener {
-            payWithPayMayaClient.startSinglePaymentActivityForResult(this, samplepayment)
-            Log.d("Maya","payWithPayMayaClient Starting")
-        }
-
-    }
-
-    override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-        button = findViewById(R.id.buttonTest)
-        val totalAmount = intent.getStringExtra("totalAmount")
-        val addressid = intent.getStringExtra("addressid")
-        val addressline = intent.getStringExtra("addressline")
-        val amount = 500.00
-        val metadata = JSONObject("{\"pf\":{\"smn\":\"Ayos!\",\"smi\":\"EFS100001033\",\"mci\":\"pasay\",\"mpc\":\"608\",\"mco\":\"PHL\"}}")
-
-        val redirectUrl= RedirectUrl(
-            success = "http://success.com",
-            failure = "http://failure.com",
-            cancel = "http://cancel.com"
-        )
-
-        val samplepayment =
-            SinglePaymentRequest(
-                TotalAmount(amount.toBigDecimal(),
-                    "PHP",
-                    AmountDetails()
-                ),
-                getReferenceNumber(),
-                redirectUrl,
-                metadata
-            )
         payWithPayMayaClient.startSinglePaymentActivityForResult(this, samplepayment)
-        return super.onCreateView(name, context, attrs)
+        Log.d("Maya","payWithPayMayaClient Starting")
+        }
     }
+
+
 
    /* val client = OkHttpClient()
 
@@ -131,7 +111,23 @@ class PaymentTest : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK) {
             // Single payment completed successfully
             val paymentId = data?.getStringExtra("EXTRAS_RESULT_ID")
-            paymentSuccessDialog()
+            val userId = firebaseAuth.currentUser?.uid
+            val timeNow = Calendar.getInstance().time
+            val paymentref = Firebase.firestore.collection("payment")
+            val newDocRef = paymentref.document()
+            val documentId = newDocRef.id
+            val paymentData = hashMapOf(
+                "paymentId" to documentId,
+                "payerId" to userId,
+                "bookingId" to bookingId,
+                "reference" to paymentId,
+                "timePaid" to timeNow,
+                "totalAmount" to totalAmount,
+            )
+            newDocRef.set(paymentData)
+                .addOnSuccessListener {
+                    paymentSuccessDialog()
+                }
             if (paymentId != null) {
                 // Handle the single payment result
                 Log.d("Maya", "Single Payment Successful. Payment ID: $paymentId")
@@ -160,8 +156,8 @@ class PaymentTest : AppCompatActivity() {
     private fun paymentSuccessDialog() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Ayos na ba?")
-        builder.setMessage("Are you sure you want to confirm that this booking done?")
-        builder.setNegativeButton("OK") { dialog, _ ->
+        builder.setMessage("Payment Successful")
+        builder.setPositiveButton("OK") { dialog, _ ->
             dialog.dismiss()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -173,10 +169,8 @@ class PaymentTest : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Payment Failed")
         builder.setMessage("Something happened: $message")
-        builder.setNegativeButton("OK") { dialog, _ ->
+        builder.setPositiveButton("OK") { dialog, _ ->
             dialog.dismiss()
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
         }
         val dialog = builder.create()
         dialog.show()
