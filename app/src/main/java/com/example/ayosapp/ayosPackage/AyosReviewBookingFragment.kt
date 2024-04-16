@@ -123,43 +123,53 @@ class AyosReviewBookingFragment : Fragment() {
             }
         }
         binding.bookServiceBtn.setOnClickListener {
-            val user = firebaseAuth.currentUser
-            val userId = user?.uid
+            if (binding.autoCompleteTextView.text.isNotBlank()) {
+                val user = firebaseAuth.currentUser
+                val userId = user?.uid
 
-            user?.let {
-                val iPrice = binding.initalPrice.text.toString()
-                val paymentMethod = paymentSpinner.text.toString()
+                user?.let {
+                    val iPrice = binding.initalPrice.text.toString()
+                    val paymentMethod = paymentSpinner.text.toString()
 
-                if (paymentMethod.isBlank()) {
-                    Toast.makeText(activity, "Please select a payment method", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
+                    if (paymentMethod.isBlank()) {
+                        Toast.makeText(
+                            activity,
+                            "Please select a payment method",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        return@setOnClickListener
+                    }
+                    val newDocRef = collectionRef.document()
+                    val documentId = newDocRef.id
+                    val bookingData = hashMapOf(
+                        "bookingId" to documentId,
+                        "UID" to userId,
+                        "service" to service,
+                        "timeBooked" to timeNow,
+                        "timeScheduled" to timestamp,
+                        "addressID" to addressid,
+                        "details" to details,
+                        "initialPrice" to iPrice.toDouble(),
+                        "serviceFee" to 0.00,
+                        "equipmentFee" to 0.00,
+                        "status" to "booked",
+                        "timeUpdated" to timeNow,
+                        "workerAssigned" to ""
+                    )
+                    newDocRef.set(bookingData)
+                        .addOnSuccessListener {
+                            showDialog()
+                        }
+                        .addOnFailureListener { e ->
+                            Toast.makeText(
+                                activity,
+                                "Something went wrong. Please try again",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                            Log.e("reviewbooking", "$e")
+                        }
                 }
-                val newDocRef = collectionRef.document()
-                val documentId = newDocRef.id
-                val bookingData = hashMapOf(
-                    "bookingId" to documentId,
-                    "UID" to userId,
-                    "service" to service,
-                    "timeBooked" to timeNow,
-                    "timeScheduled" to timestamp,
-                    "addressID" to addressid,
-                    "details" to details,
-                    "initialPrice" to iPrice.toDouble(),
-                    "serviceFee" to 0.00,
-                    "equipmentFee" to 0.00,
-                    "status" to "booked",
-                    "timeUpdated" to timeNow,
-                    "workerAssigned" to ""
-                )
-                newDocRef.set(bookingData)
-                    .addOnSuccessListener {
-                        showDialog()
-                    }
-                    .addOnFailureListener { e ->
-                        Toast.makeText(activity, "Something went wrong. Please try again", Toast.LENGTH_SHORT)
-                            .show()
-                        Log.e("reviewbooking", "$e")
-                    }
             }
         }
 

@@ -36,7 +36,7 @@ class PaymentTest : AppCompatActivity() {
         .environment(PayMayaEnvironment.SANDBOX)
         .logLevel(LogLevel.ERROR)
         .build()
-    //private val presenter: CartContract.Presenter = ProfileFragment.PresenterModule.getCartPresenter()
+    //private val presenter: CartContract.Presenter = PresenterModule.getCartPresenter()
 
     private fun getReferenceNumber() =
         (++REQUEST_REFERENCE_NUMBER).toString()

@@ -84,30 +84,7 @@ class AyosEnterDetailsFragment : Fragment() {
             showDatePicker()
         }
 
-        binding.bookServiceBtn.setOnClickListener {
 
-            if (binding.dateofserviceEt.text.isNotEmpty() && binding.serviceType.text.isNotEmpty() && timepicked) {
-                val nextFragment = AyosReviewBookingFragment()
-                val job = binding.autoCompleteID1.text.toString()
-                val detail = binding.detailsEt.text.toString()
-                val details = "$job: $detail"
-                bundle?.putString("serviceCode", service)
-                bundle?.putString("addressid", addressid)
-                bundle?.putString("addressline", addressline)
-                bundle?.putString("time", binding.autoCompleteID.text.toString())
-                Log.d("timepicker", binding.autoCompleteID.text.toString())
-                bundle?.putString("date", binding.dateofserviceEt.text.toString())
-                Log.d("details", details)
-                bundle?.putString("details", details)
-                nextFragment.arguments = bundle
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.frame_container_ayos, nextFragment)
-                    .addToBackStack(null)
-                    .commit()
-            } else {
-                Toast.makeText(requireActivity(), "Please select a time and date to proceed.", Toast.LENGTH_SHORT).show()
-            }
-        }
 
         val timeSlots = mutableListOf<String>()
         val initialTime = Calendar.getInstance().apply {
@@ -167,7 +144,29 @@ class AyosEnterDetailsFragment : Fragment() {
                     jobpicked = false
                 }
             }
-
+        binding.bookServiceBtn.setOnClickListener {
+            if (binding.dateofserviceEt.text.isNotBlank() && binding.autoCompleteID1.text.isNotBlank() && binding.autoCompleteID.text.isNotBlank()) {
+                val nextFragment = AyosReviewBookingFragment()
+                val job = binding.autoCompleteID1.text.toString()
+                val detail = binding.detailsEt.text.toString()
+                val details = "$job: $detail"
+                bundle?.putString("serviceCode", service)
+                bundle?.putString("addressid", addressid)
+                bundle?.putString("addressline", addressline)
+                bundle?.putString("time", binding.autoCompleteID.text.toString())
+                Log.d("timepicker", binding.autoCompleteID.text.toString())
+                bundle?.putString("date", binding.dateofserviceEt.text.toString())
+                Log.d("details", details)
+                bundle?.putString("details", details)
+                nextFragment.arguments = bundle
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.frame_container_ayos, nextFragment)
+                    .addToBackStack(null)
+                    .commit()
+            } else {
+                Toast.makeText(requireActivity(), "Please select a time, date and job specification to proceed.", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
 

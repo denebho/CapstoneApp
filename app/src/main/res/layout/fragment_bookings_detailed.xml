@@ -290,6 +290,21 @@
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
+                        <Button
+                            android:id="@+id/payBtn"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@id/reportBtn"
+                            android:layout_alignTop="@id/bookingId"
+                            android:layout_marginLeft="190dp"
+                            android:layout_marginTop="30dp"
+                            android:backgroundTint="@color/red"
+                            android:text="Pay Ayos"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
+
                 </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
