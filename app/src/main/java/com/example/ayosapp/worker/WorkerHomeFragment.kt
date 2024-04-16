@@ -100,6 +100,7 @@ class WorkerHomeFragment : Fragment(),WorkerScheduledAdapter.ClickListener {
         val nextFragment = WorkerScheduleDetailsFragment()
         val bundle = Bundle()
         bundle.putString("bookingId",bookingId )
+        bundle.putString("addressLine",addressLine )
 //            Bundle().apply {
 //           putSerializable("bookingData", user)
 //        }

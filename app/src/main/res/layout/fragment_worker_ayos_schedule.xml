@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".worker.WorkerAyosScheduleFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="32dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/statusBar"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/itemImage"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@id/itemImage"
+                android:background="@drawable/floating_edittextblue"
+                android:gravity="center"
+                android:text="Ayos Na!"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/itemImage"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/home_electrical" />
+
+            <TextView
+                android:id="@+id/itemService"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/statusBar"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@id/itemImage"
+                android:text="Electrical"
+                android:textColor="@color/primary_blue"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/itemDate"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@+id/itemService"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@id/itemImage"
+                android:text="12/31/2024 at 8:00 AM"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <View
+                android:id="@+id/line1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/itemImage"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@android:color/darker_gray" />
+
+
+
+            <TextView
+                android:id="@+id/totalAmounttxt"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@id/extraChargesRV"
+                android:layout_alignStart="@+id/extraChargesRV"
+                android:text="TOTAL AMOUNT"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/totalAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignTop="@+id/totalAmounttxt"
+                android:layout_alignEnd="@+id/extraChargesRV"
+                android:layout_marginEnd="16dp"
+                android:text="0.00"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/extraChargesRV"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_below="@+id/line1"
+                android:layout_alignStart="@+id/line1"
+                android:layout_alignEnd="@+id/line1"
+                android:padding="16dp"
+                tools:listitem="@layout/item_ayosbreakdown" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/extraChargeSpinner"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/totalAmounttxt"
+                android:layout_alignStart="@+id/totalAmounttxt"
+                android:layout_alignEnd="@+id/totalAmount"
+                android:hint="Select extra charges"
+                android:minHeight="48dp">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteID"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/ayosnabtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/addextrachargebtn"
+                android:layout_alignStart="@+id/addextrachargebtn"
+                android:layout_alignEnd="@+id/addextrachargebtn"
+                android:backgroundTint="@color/primary_blue"
+                android:text="Confirm Ayos Na"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+            <Button
+                android:id="@+id/addextrachargebtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/extraChargeSpinner"
+                android:layout_alignStart="@+id/extraChargesRV"
+                android:layout_alignEnd="@+id/extraChargesRV"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/black"
+                android:text="Add Extra Charges"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</FrameLayout>

@@ -20,6 +20,9 @@ import java.util.Locale
 class WorkerScheduleDetailsFragment : Fragment() {
     private lateinit var binding: FragmentWorkerScheduleDetailsBinding
     private val firestore = FirebaseFirestore.getInstance()
+    private var addid:String = ""
+    private var uid:String = ""
+    private var bookingId:String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,12 +38,12 @@ class WorkerScheduleDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initiateValues()
+        val bundle = arguments
+        initiateValues(bundle!!)
 
         binding.reportBtnWorker.setOnClickListener {
             val nextFragment = ReportFragment()
             val id = binding.bookingId.text
-            val bundle = arguments
             bundle?.putString("bookingid", id.toString())
             nextFragment.arguments = bundle
             parentFragmentManager.beginTransaction()
@@ -50,8 +53,9 @@ class WorkerScheduleDetailsFragment : Fragment() {
         }
         binding.ayosBtn.setOnClickListener {
             val nextFragment = WorkerAyosScheduleFragment()
-            val bundle = arguments
-            //bundle?.putString("bookingid", id.toString())
+            nextFragment.arguments = bundle
+            bookingId = bundle?.getString("bookingId").toString()
+            bundle?.putString("bookingId", bookingId)
             //nextFragment.arguments = bundle
             parentFragmentManager.beginTransaction()
                 .replace(R.id.worker_main_container, nextFragment)
@@ -60,12 +64,11 @@ class WorkerScheduleDetailsFragment : Fragment() {
         }
     }
 
-    private fun initiateValues(){
+    private fun initiateValues(bundle: Bundle){
         val bookingData: ScheduledData? =
             arguments?.getSerializable("bookingData") as? ScheduledData
-        val bundle = arguments
-        val bookingId = bundle?.getString("bookingId")
-        val addressLine = bundle?.getString("addressLine")
+        bookingId = bundle.getString("bookingId").toString()
+        val addressLine = bundle.getString("addressLine")
 //        val userId: String? = bookingData?.UID
 //        val details = bookingData?.details
 //        val timeSchedule = bookingData?.timeScheduled
@@ -75,7 +78,7 @@ class WorkerScheduleDetailsFragment : Fragment() {
 //        val status = bookingData?.status
 //        val paymentMethod = bookingData?.paymentMethod
         val bookid ="BOOKING ID: $bookingId"
-       // binding.itemAddressLine.text = addressLine
+        binding.itemAddressLine.text = addressLine
         binding.bookingId.text = bookid
         val userRef = Firebase.firestore.collection("booking")
         userRef.whereEqualTo("bookingId", bookingId).get()
@@ -84,20 +87,20 @@ class WorkerScheduleDetailsFragment : Fragment() {
 
                     binding.statusBar.text = document.data["status"]?.toString()
                     binding.itemService.text = document.data["service"]?.toString()
-                    binding.itemAddressLine.text = document.data["addressID"].toString()
-                    binding.itemCustomer.text = document.data["UID"].toString()
+                    addid = document.data["addressID"].toString()
+                    uid = document.data["UID"].toString()
                     val time : Timestamp = document.data["timeScheduled"] as Timestamp
                     binding.itemDate.text = timestampToString(time)
                     binding.itemCategory.text = document.data["details"]?.toString()
                     binding.itemPaymentStatus.text = document.data["paymentStatus"]?.toString()
                     binding.itemPaymentMethod.text = document.data["paymentMethod"]?.toString()
+                    updateadd()
+                    updatename()
                 }
             }
             .addOnFailureListener { exception ->
                 // Handle errors
             }
-        updateadd()
-        updatename()
     }
     fun timestampToString(timestamp: com.google.firebase.Timestamp?): String {
         val date = timestamp?.toDate()
@@ -108,8 +111,8 @@ class WorkerScheduleDetailsFragment : Fragment() {
 
         return "$dateString at $timeString"
     }
-    fun updateadd(){
-        val addid = binding.itemAddressLine.text
+    private fun updateadd(){
+        Log.d("idk",addid )
         val addressref = Firebase.firestore.collection("address")
         addressref.whereEqualTo("addressID", addid).get()
             .addOnSuccessListener { documents ->
@@ -119,16 +122,15 @@ class WorkerScheduleDetailsFragment : Fragment() {
                 }
             }
     }
-    fun updatename(){
-        val uid = binding.itemCustomer.text
+    private fun updatename(){
+        Log.d("idk",uid )
         val nameref = Firebase.firestore.collection("customers")
         nameref.whereEqualTo("user_id", uid).get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
                     val q = document.data["first_name"]?.toString()
-                    val w = document.data["middle_name"]?.toString()
                     val e = document.data["last_name"]?.toString()
-                    val qwe= "$q $w $e"
+                    val qwe= "$q $e"
                     binding.itemCustomer.text = qwe
                     Log.d("idk",document.data["first_name"].toString() )
                 }
