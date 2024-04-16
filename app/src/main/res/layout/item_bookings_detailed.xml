@@ -154,80 +154,21 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/bookingFee"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_alignTop="@id/serviceBreakdown"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
-                android:text="Initial Price"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/itemInitPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_alignTop="@id/serviceBreakdown"
-                android:layout_marginStart="180dp"
-                android:layout_marginTop="30dp"
-                android:layout_toEndOf="@id/bookingFee"
-                android:text="book fee"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/serviceFee"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_alignTop="@id/bookingFee"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
-                android:text="Service Fee"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/itemServiceFee"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_alignTop="@id/itemInitPrice"
-                android:layout_marginStart="190dp"
-                android:layout_marginTop="30dp"
-                android:layout_toEndOf="@id/bookingFee"
-                android:text="serve fee"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/equipmentFee"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_alignTop="@id/serviceFee"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
-                android:text="Equipment Fee"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/itemEquipmentFee"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_alignTop="@id/itemInitPrice"
-                android:layout_marginStart="190dp"
-                android:layout_marginTop="60dp"
-                android:layout_toEndOf="@id/bookingFee"
-                android:text="equip fee"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/extraChargesRV"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_below="@+id/serviceBreakdown"
+                android:layout_alignStart="@+id/serviceBreakdown"
+                android:layout_alignEnd="@+id/line1"
+                android:padding="16dp"
+                tools:listitem="@layout/item_ayosbreakdown" />
 
             <View
                 android:id="@+id/line3"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_alignTop="@+id/equipmentFee"
+                android:layout_below="@+id/extraChargesRV"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginRight="20dp"
@@ -275,10 +216,9 @@
                 android:id="@+id/itemPaymentStatus"
                 android:layout_width="100dp"
                 android:layout_height="30dp"
+                android:layout_alignStart="@+id/itemTotal"
                 android:layout_alignTop="@id/itemTotal"
-                android:layout_marginStart="180dp"
                 android:layout_marginTop="30dp"
-                android:layout_toEndOf="@id/bookingFee"
                 android:text="Paid"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
@@ -298,10 +238,9 @@
                 android:id="@+id/itemPaymentOptions"
                 android:layout_width="100dp"
                 android:layout_height="30dp"
+                android:layout_alignStart="@+id/itemTotal"
                 android:layout_alignTop="@id/itemPaymentStatus"
-                android:layout_marginStart="190dp"
                 android:layout_marginTop="30dp"
-                android:layout_toEndOf="@id/bookingFee"
                 android:text="Cash"
                 android:textColor="@color/black"
                 android:textSize="15sp" />

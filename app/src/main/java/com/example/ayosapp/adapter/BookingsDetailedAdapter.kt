@@ -79,9 +79,6 @@ class BookingsDetailedAdapter(
                 itemDate.text = time
                 itemCategory.text = currentItem.service
 
-                itemInitPrice.text = currentItem.initialPrice.toString()
-                itemServiceFee.text = currentItem.serviceFee.toString()
-                itemEquipmentFee.text = currentItem.equipmentFee.toString()
 
                 val totalPrice = currentItem.totalPrice?.plus(currentItem.serviceFee!!)
                     ?.plus(currentItem.initialPrice!!)?.plus(currentItem.equipmentFee!!)

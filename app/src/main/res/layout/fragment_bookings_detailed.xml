@@ -8,23 +8,290 @@
     android:orientation="vertical"
     tools:context=".BookingsDetailedFragment">
 
-    <FrameLayout
-        android:id="@+id/fragmentDetailed_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="30dp"
-        android:layout_gravity="center">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/bookingsDetailedRv"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="10.0sp"
-            android:scrollbars="vertical"
-            tools:listitem="@layout/item_bookings_detailed" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="80dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="8dp">
 
-    </FrameLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/statusBar"
+                            android:layout_width="75dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="25dp"
+                            android:layout_toEndOf="@id/itemImage"
+                            android:background="@drawable/floating_edittextblue"
+                            android:gravity="center"
+                            android:text="Ayos Na!"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/itemImage"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:src="@drawable/home_electrical" />
+
+                        <TextView
+                            android:id="@+id/itemWorker"
+                            android:layout_width="120dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="50dp"
+                            android:layout_toEndOf="@id/itemImage"
+                            android:text="Name"
+                            android:textColor="@color/primary_blue"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:id="@+id/line1"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignTop="@+id/itemImage"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="80dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@android:color/darker_gray" />
+
+                        <ImageView
+                            android:id="@+id/itemAddressImage"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignTop="@+id/line1"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="10dp"
+                            android:src="@drawable/baseline_place_24" />
+
+                        <TextView
+                            android:id="@+id/itemAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/line1"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_toEndOf="@id/itemAddressImage"
+                            android:text="Address"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/servicedate"
+                            android:layout_width="120dp"
+                            android:layout_height="30dp"
+                            android:layout_alignTop="@id/itemAddress"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="50dp"
+                            android:text="@string/serviceDate"
+                            android:textColor="@color/primary_blue"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/itemDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/servicedate"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center"
+                            android:text="2023/10/20-2023/10/22"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/serviceCategory"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_alignTop="@id/servicedate"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="50dp"
+                            android:text="@string/serviceCategory"
+                            android:textColor="@color/primary_blue"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/itemCategory"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/serviceCategory"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center"
+                            android:text="Service"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+
+                        <View
+                            android:id="@+id/line2"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignTop="@+id/itemCategory"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="40dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@android:color/darker_gray" />
+
+                        <TextView
+                            android:id="@+id/serviceBreakdown"
+                            android:layout_width="120dp"
+                            android:layout_height="30dp"
+                            android:layout_alignTop="@id/line2"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/breakdownCost"
+                            android:textColor="@color/primary_blue"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/extraChargesRV"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_below="@+id/serviceBreakdown"
+                            android:layout_alignStart="@+id/serviceBreakdown"
+                            android:layout_alignEnd="@+id/line1"
+                            android:padding="8dp"
+                            tools:listitem="@layout/item_ayosbreakdown" />
+                        <View
+                            android:id="@+id/line3"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/extraChargesRV"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@android:color/darker_gray" />
+
+                        <TextView
+                            android:id="@+id/totalFee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/line3"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center"
+                            android:text="@string/totalFee"
+                            android:textColor="@color/primary_blue"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/itemTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/line3"
+                            android:layout_marginStart="190dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_toEndOf="@id/totalFee"
+                            android:gravity="center"
+                            android:text="total fee"
+                            android:textColor="@color/primary_blue"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/paymentStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_alignTop="@id/totalFee"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="30dp"
+                            android:text="@string/paymentStatus"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/itemPaymentStatus"
+                            android:layout_width="100dp"
+                            android:layout_height="30dp"
+                            android:layout_alignStart="@+id/itemTotal"
+                            android:layout_alignTop="@id/itemTotal"
+                            android:layout_marginTop="30dp"
+                            android:text="Paid"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/paymentOptions"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_alignTop="@id/paymentStatus"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="30dp"
+                            android:text="@string/paymentOptions"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/itemPaymentOptions"
+                            android:layout_width="100dp"
+                            android:layout_height="30dp"
+                            android:layout_alignStart="@+id/itemTotal"
+                            android:layout_alignTop="@id/itemPaymentStatus"
+                            android:layout_marginTop="30dp"
+                            android:text="Cash"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/bookingId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_alignTop="@id/paymentOptions"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="40dp"
+                            android:layout_marginBottom="20dp"
+                            android:text="BOOKING ID"
+                            android:textColor="@color/quantum_grey"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:id="@+id/reportBtn"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@id/bookingId"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginBottom="10dp"
+                            android:backgroundTint="@color/primary_blue"
+                            android:text="@string/submitReport"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                        <Button
+                            android:id="@+id/cancelBtn"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@id/bookingId"
+                            android:layout_alignLeft="@id/reportBtn"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginLeft="190dp"
+                            android:backgroundTint="@color/red"
+                            android:text="@string/cancel"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                </RelativeLayout>
+        </androidx.cardview.widget.CardView>
 
     <FrameLayout
         android:id="@+id/frame_container"

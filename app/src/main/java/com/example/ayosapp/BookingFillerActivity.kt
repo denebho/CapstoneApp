@@ -11,13 +11,11 @@ class BookingFillerActivity : AppCompatActivity() {
 
         val name = null
         val UID = intent.getStringExtra("UID")
-        val _token = intent.getStringExtra("_token")
         val workerAssigned = intent.getStringExtra("workerAssigned")
         val addressID = intent.getStringExtra("addressID")
         val details = intent.getStringExtra("details")
         val timeScheduled = intent.getStringExtra("timeScheduled")
         val timeBooked = intent.getStringExtra("timeBooked")
-        val timeUpdated = intent.getStringExtra("timeUpdated")
         val service = intent.getStringExtra("service")
         val initialPrice = intent.getDoubleExtra("initialPrice", 0.0)
         val serviceFee = intent.getDoubleExtra("serviceFee", 0.0)
