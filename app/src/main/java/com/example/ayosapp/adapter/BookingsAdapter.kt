@@ -78,9 +78,9 @@ class BookingsAdapter(
                             if (documentSnapshot.exists()) {
                                 //gets name of worker to pass to textview
                                 val worker1 = documentSnapshot.getString("first_name")
-                                //val worker2 = documentSnapshot.getString("middle_name")
+                                val worker2 = documentSnapshot.getString("middle_name")
                                 val worker3 = documentSnapshot.getString("last_name")
-                                val fullName = "$worker1 $worker3"
+                                val fullName = "$worker1 $worker2 $worker3"
                                 itemWorker.text = fullName
                             } else {
                                 // Document does not exist
