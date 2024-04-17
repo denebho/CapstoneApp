@@ -153,7 +153,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/red"
                 android:text="Add Extra Charges"
                 android:textColor="@color/white"
                 android:textSize="18sp"

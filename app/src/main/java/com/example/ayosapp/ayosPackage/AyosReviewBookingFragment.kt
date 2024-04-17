@@ -170,6 +170,8 @@ class AyosReviewBookingFragment : Fragment() {
                             Log.e("reviewbooking", "$e")
                         }
                 }
+            }else{
+
             }
         }
 

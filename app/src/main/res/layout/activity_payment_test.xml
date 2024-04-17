@@ -10,7 +10,7 @@
         android:id="@+id/buttonTest"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:text="Try Again Payment"
+        android:text="Pay with PayMaya"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

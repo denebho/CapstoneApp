@@ -10,12 +10,16 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.ayosapp.databinding.FragmentProfileBinding
+import com.example.ayosapp.payment.CartContract
+import com.example.ayosapp.payment.CartPresenter
+import com.example.ayosapp.payment.RepositoryModule
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var firebaseAuth: FirebaseAuth
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
@@ -97,7 +101,12 @@ class ProfileFragment : Fragment() {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
-
+    internal object PresenterModule {
+        fun getCartPresenter(): CartContract.Presenter =
+            CartPresenter(
+                RepositoryModule.cartRepository
+            )
+    }
 
 data class userinfo (
     val name: String?=null,

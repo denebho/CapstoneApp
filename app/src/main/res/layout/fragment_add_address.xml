@@ -65,7 +65,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="16dp"
-                android:text="Address Details " />
+                android:text="Address Details *" />
+
 
             <EditText
                 android:id="@+id/detailsEt"

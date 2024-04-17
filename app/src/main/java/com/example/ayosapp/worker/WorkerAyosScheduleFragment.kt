@@ -9,9 +9,11 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -83,6 +85,7 @@ class WorkerAyosScheduleFragment : Fragment() {
         val bundle = arguments
         val bookingId = bundle?.getString("bookingId")
         Log.d("idk", bookingId.toString())
+        val cancelBtn = requireView().findViewById<Button>(R.id.addextrachargebtn)
         val userRef = Firebase.firestore.collection("booking")
         userRef.whereEqualTo("bookingId", bookingId).get()
             .addOnSuccessListener { documents ->
@@ -93,7 +96,16 @@ class WorkerAyosScheduleFragment : Fragment() {
                     val time: Timestamp = document.data["timeScheduled"] as Timestamp
                     binding.itemDate.text = timestampToString(time)
                     val icon = binding.itemImage
-
+                    val status =document.data["status"]
+                    when (status) {
+                        "cancelled", "ayos na" -> {
+                            cancelBtn.isClickable = false
+                            cancelBtn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
+                        }
+                        else -> {
+                            cancelBtn.isClickable = true
+                        }
+                    }
                     when (service) {
                         "Appliance" -> {
                             icon.setImageResource(R.drawable.home_appliance)
@@ -189,12 +201,18 @@ class WorkerAyosScheduleFragment : Fragment() {
         totalTextView.text = getTotal().toString()
     }
 
-    private fun initiate(bookingId: String, combinedString: String) {
+    private fun initiate(bookingId: String, combinedString: String, boolean: Boolean) {
         val bookingquery =
             Firebase.firestore.collection("booking").whereEqualTo("bookingId", bookingId)
         val timeNow = Calendar.getInstance().time
         val totalTextView = requireView().findViewById<TextView>(R.id.totalAmount)
         val totalText = totalTextView.text.toString()
+        var paystat = ""
+        if (boolean) {
+            paystat = "paid"
+        }else {
+            paystat = "unpaid"
+        }
         val totalAmount = totalText.toDoubleOrNull() ?: 0.0
         bookingquery.get().addOnSuccessListener {
             val updateMap = mapOf(
@@ -202,7 +220,7 @@ class WorkerAyosScheduleFragment : Fragment() {
                 "timeUpdated" to timeNow,
                 "status" to "ayos na",
                 "equipmentFee" to totalAmount,
-                "paymentStatus" to "paid"
+                "paymentStatus" to paystat
             )
             Firebase.firestore.collection("booking").document(bookingId).update(updateMap)
             showDialog()
@@ -214,7 +232,33 @@ class WorkerAyosScheduleFragment : Fragment() {
         builder.setTitle("Ayos na ba?")
         builder.setMessage("Are you sure you want to confirm that this booking done?")
         builder.setPositiveButton("YES") { _, _ ->
-            initiate(bookingId,combinedString)
+            confirmDialogAgain(bookingId,combinedString)
+        }
+        builder.setNegativeButton("NO") { dialog, _ ->
+            dialog.dismiss()
+        }
+        val dialog = builder.create()
+        dialog.show()
+    }
+    private fun confirmDialogAgain(bookingId: String, combinedString:String) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Ayos na ba?")
+        builder.setMessage("Have you received cash payment from customer?")
+        builder.setPositiveButton("YES") { _, _ ->
+            initiate(bookingId,combinedString, true)
+        }
+        builder.setNegativeButton("NO") { dialog, _ ->
+            confirmDialogCard(bookingId,combinedString)
+        }
+        val dialog = builder.create()
+        dialog.show()
+    }
+    private fun confirmDialogCard(bookingId: String, combinedString:String) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Ayos na ba?")
+        builder.setMessage("Will they pay by card?")
+        builder.setPositiveButton("YES") { _, _ ->
+            initiate(bookingId,combinedString, false)
         }
         builder.setNegativeButton("NO") { dialog, _ ->
             dialog.dismiss()

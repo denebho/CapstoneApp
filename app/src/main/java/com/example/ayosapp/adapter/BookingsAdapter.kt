@@ -58,7 +58,7 @@ class BookingsAdapter(
 
             holder.binding.apply {
 
-                statusBar.text = currentItem.service
+                statusBar.text = currentItem.status
                 val time = timestampToString(currentItem.timeScheduled)
                 itemDate.text = time
 

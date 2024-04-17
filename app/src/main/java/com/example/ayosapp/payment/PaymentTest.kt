@@ -1,7 +1,5 @@
 package com.example.ayosapp.payment
 
-//import com.example.ayosapp.CartContract
-//import com.example.ayosapp.CartPresenter
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +8,7 @@ import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ayosapp.MainActivity
+import com.example.ayosapp.ProfileFragment
 import com.example.ayosapp.R
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -30,13 +29,12 @@ class PaymentTest : AppCompatActivity() {
     private var totalAmount = 0.0
     private var bookingId = ""
     private var REQUEST_REFERENCE_NUMBER =0
-    private val SINGLE_PAYMENT_REQUEST_CODE = 1001
     private val payWithPayMayaClient = PayWithPayMaya.newBuilder()
         .clientPublicKey("pk-rpwb5YR6EfnKiMsldZqY4hgpvJjuy8hhxW2bVAAiz2N")
         .environment(PayMayaEnvironment.SANDBOX)
         .logLevel(LogLevel.ERROR)
         .build()
-    //private val presenter: CartContract.Presenter = PresenterModule.getCartPresenter()
+    private val presenter: CartContract.Presenter = ProfileFragment.PresenterModule.getCartPresenter()
 
     private fun getReferenceNumber() =
         (++REQUEST_REFERENCE_NUMBER).toString()
@@ -47,8 +45,8 @@ class PaymentTest : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         totalAmount = intent.getDoubleExtra("totalAmount",100.0)
         bookingId = intent.getStringExtra("bookingId").toString()
-        val addressline = intent.getStringExtra("addressline")
-        val metadata = JSONObject("{\"pf\":{\"smn\":\"Ayos!\",\"smi\":\"EFS100001033\",\"mci\":\"pasay\",\"mpc\":\"608\",\"mco\":\"PHL\"}}")
+
+        val metadata = JSONObject("{\"pf\":{\"smn\":\"Ayos\",\"smi\":\"EFS100001033\",\"mci\":\"pasay\",\"mpc\":\"608\",\"mco\":\"PHL\"}}")
 
         val redirectUrl= RedirectUrl(
             success = "http://success.com",
@@ -67,40 +65,18 @@ class PaymentTest : AppCompatActivity() {
                 metadata
             )
 
-        //button.setOnClickListener {
-            //payWithPayMayaClient.startSinglePaymentActivityForResult(this, samplepayment)
-        //}
         button.setOnClickListener {
-        payWithPayMayaClient.startSinglePaymentActivityForResult(this, samplepayment)
-        Log.d("Maya","payWithPayMayaClient Starting")
+            payWithPayMayaClient.startSinglePaymentActivityForResult(this, samplepayment)
+            Log.d("Maya","payWithPayMayaClient Starting")
         }
     }
 
-
-
-   /* val client = OkHttpClient()
-
-    val mediaType = "application/json".toMediaTypeOrNull()
-    val body = RequestBody.create(mediaType, "{\"totalAmount\":{\"currency\":\"PHP\",\"value\":\"100\"},\"redirectUrl\":{\"success\":\"https://www.merchantsite.com/success?id=567834590\",\"failure\":\"https://www.merchantsite.com/failure?id=567834590\",\"cancel\":\"https://www.merchantsite.com/cancel?id=567834590\"},\"metadata\":{\"pf\":{\"smn\":\"ayos\",\"smi\":\"1\",\"mci\":\"pasay\",\"mpc\":\"608\",\"mco\":\"PHL\"}},\"requestReferenceNumber\":\"5b4a6d60-2165-4bc1-bb0e-e610d1a3f82d\"}")
-    val request = Request.Builder()
-        .url("https://pg-sandbox.paymaya.com/payby/v2/paymaya/payments")
-        .post(body)
-        .addHeader("accept", "application/json")
-        .addHeader("content-type", "application/json")
-        .addHeader("authorization", "Basic cGstcnB3YjVZUjZFZm5LaU1zbGRacVk0aGdwdkpqdXk4aGh4VzJiVkFBaXoyTjpzay02czlkd25ZR0ZKZFpPWXUxSENVQWZVWmN0V0VmOUFqdEhJRzM4a2V6WDhX")
-        .build()
-
-    private val response = client.newCall(request).execute()
-   // Log.d("maya",response.body.toString())
-    val uri = Uri.parse(response.body.toString())
-   // Log.d("maya", uri)
-*/
-//    internal object PresenterModule {
-//        fun getCartPresenter(): CartContract.Presenter =
-//            CartPresenter(
-//                RepositoryModule.cartRepository
-//            )
-//    }
+    internal object PresenterModule {
+        fun getCartPresenter(): CartContract.Presenter =
+            CartPresenter(
+                RepositoryModule.cartRepository
+            )
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         Log.d("Maya", "requestcode:$requestCode")

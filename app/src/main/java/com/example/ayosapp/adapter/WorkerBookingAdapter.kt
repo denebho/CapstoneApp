@@ -119,8 +119,8 @@ class WorkerBookingAdapter(
         val db = FirebaseFirestore.getInstance()
         val query = db.collection("booking")
             .whereEqualTo("workerAssigned", UID) // Assuming UID is the ID of the current user
-            .whereGreaterThanOrEqualTo("timeUpdated", startOfDay)
-            .whereLessThanOrEqualTo("timeUpdated", endOfDay)
+            .whereGreaterThanOrEqualTo("timeScheduled", startOfDay)
+            .whereLessThanOrEqualTo("timeScheduled", endOfDay)
 
         query.get().addOnSuccessListener { documents ->
             if (documents.size() >= 3) {
@@ -141,7 +141,7 @@ class WorkerBookingAdapter(
         builder.setTitle("Accept Booking")
         builder.setMessage("Are you sure you want to accept this booking?")
         builder.setPositiveButton("YES") { dialog, _ ->
-            checkBookingLimitForDay(doc)
+            AssignBooking(doc)
         }
         builder.setNegativeButton("NO") { dialog, _ ->
             dialog.dismiss()
